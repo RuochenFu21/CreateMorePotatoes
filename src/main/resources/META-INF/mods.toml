@@ -60,3 +60,9 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed mollis lacinia magn
     versionRange="[1.18.2,1.19)"
     ordering="NONE"
     side="BOTH"
+[[dependencies.createmorepotatoes]]
+    modId="create"
+    mandatory=true
+    versionRange="[0.5.0.e,)"
+    ordering="NONE"
+    side="BOTH"
