@@ -12,8 +12,8 @@ public class ModItems {
     public static final DeferredRegister<Item> ITEMS =
             DeferredRegister.create(ForgeRegistries.ITEMS, CreateMorePotatoes.MOD_ID);
 
-    public static final RegistryObject<Item> tnt_potato = ITEMS.register("tnt_potato",
-            () -> new Item(new Item.Properties().tab(CreativeModeTab.TAB_MISC)));
+    public static final RegistryObject<Item> TNT_POTATO = ITEMS.register("tnt_potato",
+            () -> new Item(new Item.Properties().tab(ModCreativeModeTab.MORE_POTATOES_TAB)));
 
     public static void register(IEventBus eventBus){
         ITEMS.register(eventBus);

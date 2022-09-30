@@ -1,3 +1,4 @@
 {
-  "item.createmorepotatoes.tnt_potato": "TNT potato"
+  "item.createmorepotatoes.tnt_potato": "TNT potato",
+  "itemGroup.potatotab":"Create More Potatoes"
 }
