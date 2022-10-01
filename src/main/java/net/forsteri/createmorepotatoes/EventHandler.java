@@ -13,8 +13,8 @@ public class EventHandler {
     public static void arrowNocked(ArrowNockEvent event) {
         LogUtils.getLogger().info("HELLO FROM PREINIT");
     }
-    @SubscribeEvent
-    public static void potato() {
-        LogUtils.getLogger().info("HELLO FROM PREINIT");
-    }
+//    @SubscribeEvent
+//    public static void potato() {
+//        LogUtils.getLogger().info("HELLO FROM PREINIT");
+//    }
 }
