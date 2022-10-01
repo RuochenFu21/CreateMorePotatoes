@@ -13,6 +13,6 @@ public class EffectHandler {
     @Inject(at = @At(value = "HEAD"), method = "onHitEntity(Lnet/minecraft/world/phys/EntityHitResult;)V", cancellable = true)
     protected void onHit(EntityHitResult ray, CallbackInfo info) {
 
-        LogUtils.getLogger().debug("HI, Im random");
+        LogUtils.getLogger().info("HI, Im random");
     }
 }
