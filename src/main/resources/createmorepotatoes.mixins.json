@@ -3,9 +3,9 @@
   "package": "net.forsteri.createmorepotatoes",
   "compatibilityLevel": "JAVA_17",
   "mixins": [
-    "item.EffectHandler"
   ],
   "client": [
+    "item.EffectHandler"
   ],
   "minVersion": "0.8"
 }
