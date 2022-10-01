@@ -50,7 +50,8 @@ minecraft {
     runs {
         client {
             workingDirectory project.file('run')
-
+            property 'mixin.env.remapRefMap', 'true'
+            property 'mixin.env.refMapRemappingFile', "${projectDir}/build/createSrgToMcp/output.srg"
             // Recommended logging data for a userdev environment
             // The markers can be added/remove as needed separated by commas.
             // "SCAN": For mods scan.
