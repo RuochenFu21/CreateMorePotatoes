@@ -11,7 +11,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 @Mixin(PotatoProjectileEntity.class)
 public class EffectHandler {
     @Inject(at = @At(value = "HEAD"), method = "onHitEntity(Lnet/minecraft/world/phys/EntityHitResult;)V", cancellable = true)
-    private void onHit(EntityHitResult ray, CallbackInfo info) {
+    protected void onHit(EntityHitResult ray, CallbackInfo info) {
 
         LogUtils.getLogger().debug("HI, Im random");
     }
