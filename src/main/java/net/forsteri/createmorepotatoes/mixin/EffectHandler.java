@@ -32,7 +32,7 @@ public abstract class EffectHandler extends AbstractHurtingProjectile {
     protected void onHit(EntityHitResult ray, CallbackInfo info) {
         LogUtils.getLogger().info(getX() + " " + getY());
 
-        if (stack.getItem() == ModItems.TNT_POTATO_ITEM) {
+        if (true) {
             Explosion derp = new Explosion(getLevel(), this, getX(), getY(), getZ(), 3, false, Explosion.BlockInteraction.BREAK);
             if (!level.isClientSide()) {
                 derp.explode();
