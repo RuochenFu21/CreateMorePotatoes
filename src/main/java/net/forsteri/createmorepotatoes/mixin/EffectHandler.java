@@ -9,6 +9,7 @@ import net.minecraft.world.entity.projectile.AbstractHurtingProjectile;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Explosion;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.EntityHitResult;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
@@ -35,6 +36,19 @@ public abstract class EffectHandler extends AbstractHurtingProjectile {
 
     @Inject(at = @At(value = "HEAD"), method = "onHitEntity(Lnet/minecraft/world/phys/EntityHitResult;)V")
     protected void onHit(EntityHitResult ray, CallbackInfo info) {
+        LogUtils.getLogger().info(Objects.requireNonNull(stack.getItem().getRegistryName()).toString());
+
+        if ("createmorepotatoes:tnt_potato".equals(stack.getItem().getRegistryName().toString())) {
+            Explosion derp = new Explosion(getLevel(), this, getX(), getY(), getZ(), 3, false, Explosion.BlockInteraction.BREAK);
+            if (!level.isClientSide()) {
+                derp.explode();
+            }
+            derp.finalizeExplosion(true);
+        }
+    }
+
+    @Inject(at = @At(value = "HEAD"), method = "onHitBlock(Lnet/minecraft/world/phys/BlockHitResult;)V")
+    protected void onHitBlock(BlockHitResult ray, CallbackInfo info) {
         LogUtils.getLogger().info(Objects.requireNonNull(stack.getItem().getRegistryName()).toString());
 
         if ("createmorepotatoes:tnt_potato".equals(stack.getItem().getRegistryName().toString())) {
