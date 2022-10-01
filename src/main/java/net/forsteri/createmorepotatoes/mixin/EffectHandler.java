@@ -28,6 +28,7 @@ public abstract class EffectHandler extends AbstractHurtingProjectile {
         Explosion derp = new Explosion(getLevel(), this, getX(), getY(), getZ(), 3, false, Explosion.BlockInteraction.BREAK);
         if (!level.isClientSide()) {
             derp.explode();
+            derp.finalizeExplosion(true);
         }else {
             derp.finalizeExplosion(true);
         }
