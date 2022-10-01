@@ -20,10 +20,10 @@ public abstract class EffectHandler extends AbstractHurtingProjectile {
         super(p_36833_, p_36834_);
     }
 
-    @Inject(at = @At(value = "HEAD"), method = "onHitEntity(Lnet/minecraft/world/phys/EntityHitResult;)V", cancellable = true)
+    @Inject(at = @At(value = "HEAD"), method = "onHitEntity(Lnet/minecraft/world/phys/EntityHitResult;)V")
     protected void onHit(EntityHitResult ray, CallbackInfo info) {
         LogUtils.getLogger().info(getX() + " " + getY());
-        Explosion derp = new Explosion(getLevel(), this, getX(), getY(), getZ(), 5);
+        Explosion derp = new Explosion(getLevel(), this, getX(), getY(), getZ(), 3, false, Explosion.BlockInteraction.BREAK);
         derp.explode();
     }
 }
