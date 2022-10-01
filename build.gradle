@@ -18,6 +18,7 @@ plugins {
 }
 apply plugin: 'net.minecraftforge.gradle'
 apply plugin: 'org.parchmentmc.librarian.forgegradle'
+apply plugin: 'maven-publish'
 apply plugin: 'org.spongepowered.mixin'
 version = '0.0.1-1.18.2'
 group = 'com.forsteri.createmorepotatoes' // http://maven.apache.org/guides/mini/guide-naming-conventions.html
@@ -212,8 +213,6 @@ publishing {
 }
 mixin {
     // MixinGradle Settings
-    add sourceSets.main, 'mixins.mymod.refmap.json'
-    config 'mixins.mymod.json'
 }
 tasks.withType(JavaCompile).configureEach {
     options.encoding = 'UTF-8' // Use the UTF-8 charset for Java compilation
