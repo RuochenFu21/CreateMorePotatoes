@@ -8,6 +8,7 @@ buildscript {
     dependencies {
         classpath group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: '5.1.+', changing: true
         classpath 'org.parchmentmc:librarian:1.+'
+        classpath 'org.spongepowered:mixingradle:0.7.+'
     }
 }
 // Only edit below this line, the above code adds and enables the necessary things for Forge to be setup.
@@ -17,6 +18,7 @@ plugins {
 }
 apply plugin: 'net.minecraftforge.gradle'
 apply plugin: 'org.parchmentmc.librarian.forgegradle'
+apply plugin: 'org.spongepowered.mixin'
 version = '0.0.1-1.18.2'
 group = 'com.forsteri.createmorepotatoes' // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = 'createmorepotatoes'
@@ -156,6 +158,9 @@ dependencies {
     // that the dep is a ForgeGradle 'patcher' dependency, and its patches will be applied.
     // The userdev artifact is a special name and will get all sorts of transformations applied to it.
     minecraft 'net.minecraftforge:forge:1.18.2-40.1.80'
+    annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
+    clientAnnotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
+    apiAnnotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
     implementation fg.deobf("com.simibubi.create:create-${create_minecraft_version}:${create_version}:slim") { transitive = false }
     implementation fg.deobf("com.jozufozu.flywheel:flywheel-forge-${flywheel_minecraft_version}:${flywheel_version}")
     implementation fg.deobf("com.tterrag.registrate:Registrate:${registrate_version}")
@@ -206,7 +211,11 @@ publishing {
         }
     }
 }
-
+mixin {
+    // MixinGradle Settings
+    add sourceSets.main, 'mixins.mymod.refmap.json'
+    config 'mixins.mymod.json'
+}
 tasks.withType(JavaCompile).configureEach {
     options.encoding = 'UTF-8' // Use the UTF-8 charset for Java compilation
 }
