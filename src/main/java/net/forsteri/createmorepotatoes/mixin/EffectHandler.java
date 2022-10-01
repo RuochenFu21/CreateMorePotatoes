@@ -23,6 +23,8 @@ public abstract class EffectHandler extends AbstractHurtingProjectile {
     protected void onHit(EntityHitResult ray, CallbackInfo info) {
         LogUtils.getLogger().info(getX() + " " + getY());
         Explosion derp = new Explosion(getLevel(), this, getX(), getY(), getZ(), 3, false, Explosion.BlockInteraction.BREAK);
+
         derp.explode();
+        derp.finalizeExplosion(true);
     }
 }
