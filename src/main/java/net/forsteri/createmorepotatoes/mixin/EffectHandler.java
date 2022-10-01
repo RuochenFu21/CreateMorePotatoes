@@ -1,4 +1,4 @@
-package net.forsteri.createmorepotatoes.item;
+package net.forsteri.createmorepotatoes.mixin;
 
 import com.mojang.logging.LogUtils;
 import com.simibubi.create.content.curiosities.weapons.PotatoProjectileEntity;

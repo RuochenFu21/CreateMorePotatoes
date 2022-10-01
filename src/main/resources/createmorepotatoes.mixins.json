@@ -1,11 +1,11 @@
 {
   "required": true,
-  "package": "net.forsteri.createmorepotatoes",
+  "package": "net.forsteri.createmorepotatoes.mixin",
   "compatibilityLevel": "JAVA_17",
   "mixins": [
   ],
   "client": [
-    "item.EffectHandler"
+    "EffectHandler"
   ],
   "minVersion": "0.8"
 }
