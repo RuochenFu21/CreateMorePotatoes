@@ -22,7 +22,6 @@ public abstract class EffectHandler extends AbstractHurtingProjectile {
     }
 
     @Inject(at = @At(value = "HEAD"), method = "onHitEntity(Lnet/minecraft/world/phys/EntityHitResult;)V")
-    @OnlyIn(Dist.DEDICATED_SERVER)
     protected void onHit(EntityHitResult ray, CallbackInfo info) {
         LogUtils.getLogger().info(getX() + " " + getY());
 
