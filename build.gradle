@@ -159,8 +159,6 @@ dependencies {
     // The userdev artifact is a special name and will get all sorts of transformations applied to it.
     minecraft 'net.minecraftforge:forge:1.18.2-40.1.80'
     annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
-    clientAnnotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
-    apiAnnotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
     implementation fg.deobf("com.simibubi.create:create-${create_minecraft_version}:${create_version}:slim") { transitive = false }
     implementation fg.deobf("com.jozufozu.flywheel:flywheel-forge-${flywheel_minecraft_version}:${flywheel_version}")
     implementation fg.deobf("com.tterrag.registrate:Registrate:${registrate_version}")
