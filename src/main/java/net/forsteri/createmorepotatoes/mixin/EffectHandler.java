@@ -3,8 +3,6 @@ package net.forsteri.createmorepotatoes.mixin;
 import com.mojang.logging.LogUtils;
 import com.simibubi.create.content.curiosities.weapons.PotatoProjectileEntity;
 import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.item.PrimedTnt;
 import net.minecraft.world.entity.projectile.AbstractHurtingProjectile;
 import net.minecraft.world.level.Explosion;
 import net.minecraft.world.level.Level;
@@ -25,6 +23,7 @@ public abstract class EffectHandler extends AbstractHurtingProjectile {
     @Inject(at = @At(value = "HEAD"), method = "onHitEntity(Lnet/minecraft/world/phys/EntityHitResult;)V")
     protected void onHit(EntityHitResult ray, CallbackInfo info) {
         LogUtils.getLogger().info(getX() + " " + getY());
-        PrimedTnt derp = new PrimedTnt(getLevel(), getX(), getY(), getZ(), (LivingEntity) getOwner());
+        Explosion derp = new Explosion(getLevel(), this, getX(), getY(), getZ(), 3, false, Explosion.BlockInteraction.BREAK);
+        derp.explode();
     }
 }
