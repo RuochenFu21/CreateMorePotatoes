@@ -4,6 +4,7 @@
   "compatibilityLevel": "JAVA_17",
   "refmap": "createmorepotatoes.refmap.json",
   "mixins": [
+    EffectHandler
   ],
   "client": [
   ],
