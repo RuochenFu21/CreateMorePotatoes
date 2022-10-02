@@ -2,20 +2,27 @@ package net.forsteri.createmorepotatoes.mixin;
 
 import com.mojang.logging.LogUtils;
 import com.simibubi.create.content.curiosities.weapons.PotatoProjectileEntity;
+import net.forsteri.createmorepotatoes.item.ModItems;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.projectile.AbstractHurtingProjectile;
 import net.minecraft.world.item.ItemStack;
+
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Explosion;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.EntityHitResult;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
+import net.minecraftforge.registries.ForgeRegistries;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+import net.forsteri.createmorepotatoes.item.ModItems;
+
 
 import java.util.Objects;
 
@@ -63,5 +70,4 @@ public abstract class EffectHandler extends AbstractHurtingProjectile {
             LogUtils.getLogger().info("converted!");
         }
     }
-
 }
