@@ -1,7 +1,6 @@
 package net.forsteri.createmorepotatoes.item;
 
 import net.forsteri.createmorepotatoes.CreateMorePotatoes;
-import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
@@ -12,7 +11,7 @@ public class ModItems {
     public static final DeferredRegister<Item> ITEMS =
             DeferredRegister.create(ForgeRegistries.ITEMS, CreateMorePotatoes.MOD_ID);
 
-    public static final RegistryObject<Item> TNT_POTATO = ITEMS.register("tnt_potato",
+    public static final RegistryObject<Item> EXPLOSIVE_POTATO = ITEMS.register("explosive_potato",
             () -> new Item(new Item.Properties().tab(ModCreativeModeTab.MORE_POTATOES_TAB)));
 
 

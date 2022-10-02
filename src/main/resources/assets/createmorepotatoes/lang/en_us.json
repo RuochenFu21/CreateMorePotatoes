@@ -1,5 +1,5 @@
 {
-  "item.createmorepotatoes.tnt_potato": "TNT potato",
-  "item.createmorepotatoes.bag_of_potatoes": "Bag of potatoes",
+  "item.createmorepotatoes.explosive_potato": "explosive potato",
+  "item.createmorepotatoes.bag_of_potatoes": "bag of potatoes",
   "itemGroup.potatotab":"Create More Potatoes"
 }

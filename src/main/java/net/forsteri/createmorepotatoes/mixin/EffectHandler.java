@@ -41,7 +41,7 @@ public abstract class EffectHandler extends AbstractHurtingProjectile {
     protected void onHit(EntityHitResult ray, CallbackInfo info) {
         LogUtils.getLogger().info(Objects.requireNonNull(stack.getItem().getRegistryName()).toString());
 
-        if ("createmorepotatoes:tnt_potato".equals(stack.getItem().getRegistryName().toString())) {
+        if ("createmorepotatoes:explosive_potato".equals(stack.getItem().getRegistryName().toString())) {
             Explosion derp = new Explosion(getLevel(), this, getX(), getY(), getZ(), 3, false, Explosion.BlockInteraction.BREAK);
             if (!level.isClientSide()) {
                 derp.explode();
@@ -54,7 +54,7 @@ public abstract class EffectHandler extends AbstractHurtingProjectile {
     protected void onHitBlock(BlockHitResult ray, CallbackInfo info) {
         LogUtils.getLogger().info(Objects.requireNonNull(stack.getItem().getRegistryName()).toString());
 
-        if ("createmorepotatoes:tnt_potato".equals(stack.getItem().getRegistryName().toString())) {
+        if ("createmorepotatoes:explosive_potato".equals(stack.getItem().getRegistryName().toString())) {
             Explosion derp = new Explosion(getLevel(), this, getX(), getY(), getZ(), 3, false, Explosion.BlockInteraction.BREAK);
             if (!level.isClientSide()) {
                 derp.explode();
