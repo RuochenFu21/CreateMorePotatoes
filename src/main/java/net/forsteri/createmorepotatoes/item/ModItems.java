@@ -16,6 +16,9 @@ public class ModItems {
             () -> new Item(new Item.Properties().tab(ModCreativeModeTab.MORE_POTATOES_TAB)));
 
 
+    public static final RegistryObject<Item> BAG_OF_POTATOES = ITEMS.register("bag_of_potatoes",
+            () -> new Item(new Item.Properties().tab(ModCreativeModeTab.MORE_POTATOES_TAB)));
+
 
     public static void register(IEventBus eventBus){
         ITEMS.register(eventBus);

@@ -7,6 +7,8 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.projectile.AbstractHurtingProjectile;
 import net.minecraft.world.item.ItemStack;
+
+import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Explosion;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.BlockHitResult;
@@ -20,6 +22,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import net.forsteri.createmorepotatoes.item.ModItems;
+
 
 import java.util.Objects;
 
@@ -57,6 +60,14 @@ public abstract class EffectHandler extends AbstractHurtingProjectile {
                 derp.explode();
             }
             derp.finalizeExplosion(true);
+        }
+    }
+
+    @Inject(at = @At(value = "HEAD"), method = "tick()V")
+    protected void OnTick(CallbackInfo info) {
+        if (Objects.requireNonNull(stack.getItem().getRegistryName()).toString().equals("createmorepotatoes:bag_of_potatoes")) {
+            stack = new ItemStack(Items.POTATO);
+            LogUtils.getLogger().info("converted!");
         }
     }
 }
