@@ -1,6 +1,6 @@
 {
   "items": [
-    "createmorepotatoes:tnt_potato"
+    "createmorepotatoes:explosive_potato"
   ],
   "reload_ticks": 20,
   "knockback": 1,

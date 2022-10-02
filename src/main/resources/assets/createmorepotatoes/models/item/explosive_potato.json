@@ -1,6 +1,6 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "createmorepotatoes:item/tnt_potato"
+    "layer0": "createmorepotatoes:item/explosive_potato"
   }
 }
