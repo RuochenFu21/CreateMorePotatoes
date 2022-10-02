@@ -1,0 +1,6 @@
+{
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "createmorepotatoes:item/bag_of_potatoes"
+  }
+}
