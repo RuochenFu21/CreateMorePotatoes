@@ -1,15 +1,10 @@
 package net.forsteri.createmorepotatoes.entry;
 
-import net.forsteri.createmorepotatoes.entry.ModItems;
+import net.fabricmc.fabric.api.client.itemgroup.FabricItemGroupBuilder;
+import net.forsteri.createmorepotatoes.CreateMorePotatoes;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.ItemStack;
-import org.jetbrains.annotations.NotNull;
 
 public class ModCreativeModeTab {
-    public static final CreativeModeTab MORE_POTATOES_TAB = new CreativeModeTab("potatotab") {
-        @Override
-        public @NotNull ItemStack makeIcon() {
-            return new ItemStack(ModItems.EXPLOSIVE_POTATO.get());
-        }
-    };
+    public static final CreativeModeTab MORE_POTATOES_TAB = FabricItemGroupBuilder.create(CreateMorePotatoes.asResource("potatotab")).icon(() -> new ItemStack(ModItems.EXPLOSIVE_POTATO)).build();
 }

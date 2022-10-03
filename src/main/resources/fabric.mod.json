@@ -1,0 +1,38 @@
+{
+  "schemaVersion": 1,
+  "id": "createmorepotatoes",
+  "version": "${version}",
+
+  "name": "Create More Potatoes",
+  "description": "This is a long form description of the mod. You can write whatever you want here",
+  "authors": [
+    "Forsteri",
+    "DM Fabric Ports"
+  ],
+  "contact": {
+    "homepage": "https://github.com/DM-Fabric-Ports/CreateMorePotatoes"
+  },
+
+  "license": "MIT",
+
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "net.forsteri.createmorepotatoes.CreateMorePotatoes"
+    ]
+  },
+  "mixins": [
+    "createmorepotatoes.mixins.json"
+  ],
+
+  "depends": {
+    "fabricloader": ">=0.14.6",
+    "fabric": "*",
+    "minecraft": "~1.18.2",
+    "java": ">=17",
+    "create": ">=0.5.0e"
+  },
+  "suggests": {
+    "quilt_loader": "*"
+  }
+}
