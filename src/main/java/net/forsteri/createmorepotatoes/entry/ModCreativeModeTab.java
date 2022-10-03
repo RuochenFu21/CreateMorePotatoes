@@ -1,5 +1,6 @@
-package net.forsteri.createmorepotatoes.item;
+package net.forsteri.createmorepotatoes.entry;
 
+import net.forsteri.createmorepotatoes.entry.ModItems;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.ItemStack;
 import org.jetbrains.annotations.NotNull;

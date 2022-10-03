@@ -1,4 +1,4 @@
-package net.forsteri.createmorepotatoes.item;
+package net.forsteri.createmorepotatoes.entry;
 
 import net.forsteri.createmorepotatoes.CreateMorePotatoes;
 import net.minecraft.world.item.Item;

@@ -1,4 +1,4 @@
-package net.forsteri.createmorepotatoes.item;
+package net.forsteri.createmorepotatoes.entry;
 
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
