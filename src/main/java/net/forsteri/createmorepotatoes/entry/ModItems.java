@@ -1,4 +1,4 @@
-package net.forsteri.createmorepotatoes.item;
+package net.forsteri.createmorepotatoes.entry;
 
 import net.forsteri.createmorepotatoes.CreateMorePotatoes;
 import net.minecraft.world.item.Item;
@@ -13,6 +13,10 @@ public class ModItems {
 
     public static final RegistryObject<Item> EXPLOSIVE_POTATO = ITEMS.register("explosive_potato",
             () -> new Item(new Item.Properties().tab(ModCreativeModeTab.MORE_POTATOES_TAB).food(ModFoods.EXPLOSIVE_POTATO)));
+
+
+    public static final RegistryObject<Item> GOLDEN_POTATO = ITEMS.register("golden_potato",
+            () -> new Item(new Item.Properties().tab(ModCreativeModeTab.MORE_POTATOES_TAB).food(ModFoods.GOLDEN_POTATO)));
 
 
     public static final RegistryObject<Item> BAG_OF_POTATOES = ITEMS.register("bag_of_potatoes",
