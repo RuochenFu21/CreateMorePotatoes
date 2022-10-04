@@ -1,29 +1,20 @@
 package net.forsteri.createmorepotatoes.entry;
 
 import net.forsteri.createmorepotatoes.CreateMorePotatoes;
+import net.minecraft.core.Registry;
 import net.minecraft.world.item.Item;
-import net.minecraftforge.eventbus.api.IEventBus;
-import net.minecraftforge.registries.DeferredRegister;
-import net.minecraftforge.registries.ForgeRegistries;
-import net.minecraftforge.registries.RegistryObject;
 
 public class ModItems {
-    public static final DeferredRegister<Item> ITEMS =
-            DeferredRegister.create(ForgeRegistries.ITEMS, CreateMorePotatoes.MOD_ID);
+	public static final Item EXPLOSIVE_POTATO = new Item(
+			new Item.Properties().tab(ModCreativeModeTab.MORE_POTATOES_TAB).food(ModFoods.EXPLOSIVE_POTATO));
+	public static final Item GOLDEN_POTATO = new Item(
+			new Item.Properties().tab(ModCreativeModeTab.MORE_POTATOES_TAB).food(ModFoods.GOLDEN_POTATO));
+	public static final Item BAG_OF_POTATOES = new Item(
+			new Item.Properties().tab(ModCreativeModeTab.MORE_POTATOES_TAB));
 
-    public static final RegistryObject<Item> EXPLOSIVE_POTATO = ITEMS.register("explosive_potato",
-            () -> new Item(new Item.Properties().tab(ModCreativeModeTab.MORE_POTATOES_TAB).food(ModFoods.EXPLOSIVE_POTATO)));
-
-
-    public static final RegistryObject<Item> GOLDEN_POTATO = ITEMS.register("golden_potato",
-            () -> new Item(new Item.Properties().tab(ModCreativeModeTab.MORE_POTATOES_TAB).food(ModFoods.GOLDEN_POTATO)));
-
-
-    public static final RegistryObject<Item> BAG_OF_POTATOES = ITEMS.register("bag_of_potatoes",
-            () -> new Item(new Item.Properties().tab(ModCreativeModeTab.MORE_POTATOES_TAB)));
-
-
-    public static void register(IEventBus eventBus){
-        ITEMS.register(eventBus);
-    }
+	public static void register() {
+		Registry.register(Registry.ITEM, CreateMorePotatoes.asResource("explosive_potato"), EXPLOSIVE_POTATO);
+		Registry.register(Registry.ITEM, CreateMorePotatoes.asResource("golden_potato"), GOLDEN_POTATO);
+		Registry.register(Registry.ITEM, CreateMorePotatoes.asResource("bag_of_potatoes"), BAG_OF_POTATOES);
+	}
 }
