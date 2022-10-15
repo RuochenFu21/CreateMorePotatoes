@@ -13,6 +13,6 @@ public class PotionPotatoItemColors {
     @SubscribeEvent
     public void registerItemColors(ColorHandlerEvent.Item event)
     {
-        event.getItemColors().register(((pStack, pTintIndex) -> (0xFFFFFF)), ModItems.PotionPotato);
+        event.getItemColors().register(((pStack, pTintIndex) -> (0xFFFFFF)), new PotionPotatoItem());
     }
 }

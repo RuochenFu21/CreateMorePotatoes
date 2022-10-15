@@ -9,8 +9,6 @@ import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 
 public class ModItems {
-
-    public static PotionPotatoItem PotionPotato = new PotionPotatoItem();
     public static final DeferredRegister<Item> ITEMS =
             DeferredRegister.create(ForgeRegistries.ITEMS, CreateMorePotatoes.MOD_ID);
 
