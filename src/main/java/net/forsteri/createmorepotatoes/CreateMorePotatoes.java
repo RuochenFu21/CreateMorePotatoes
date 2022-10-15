@@ -3,6 +3,7 @@ package net.forsteri.createmorepotatoes;
 import com.mojang.logging.LogUtils;
 import net.forsteri.createmorepotatoes.entry.ModItems;
 import net.forsteri.createmorepotatoes.entry.ColorHandlers;
+import net.forsteri.createmorepotatoes.item.PotionPotatoItem;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -19,6 +20,7 @@ public class CreateMorePotatoes
     // Directly reference a slf4j logger
     public static final Logger LOGGER = LogUtils.getLogger();
 
+    public static final PotionPotatoItem potionPotatoItem = new PotionPotatoItem();
 
     public CreateMorePotatoes()
     {
