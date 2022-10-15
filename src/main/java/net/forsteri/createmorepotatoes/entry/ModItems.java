@@ -9,6 +9,8 @@ import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 
 public class ModItems {
+
+    public static PotionPotatoItem PotionPotato = new PotionPotatoItem();
     public static final DeferredRegister<Item> ITEMS =
             DeferredRegister.create(ForgeRegistries.ITEMS, CreateMorePotatoes.MOD_ID);
 
@@ -28,8 +30,6 @@ public class ModItems {
 
     public static final RegistryObject<Item> POTION_POTATO = ITEMS.register("potion_potato",
             PotionPotatoItem::new);
-
-    public static PotionPotatoItem PotionPotato = new PotionPotatoItem();
 
 
     public static void register(IEventBus eventBus){
