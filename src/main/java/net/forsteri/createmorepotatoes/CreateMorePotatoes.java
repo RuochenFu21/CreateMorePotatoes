@@ -30,7 +30,6 @@ public class CreateMorePotatoes
         eventBus.addListener(this::setup);
         // Register ourselves for server and other game events we are interested in
         MinecraftForge.EVENT_BUS.register(this);
-        eventBus.register(PotionPotatoItemColors.class);
     }
 
     private void setup(final FMLCommonSetupEvent event)
