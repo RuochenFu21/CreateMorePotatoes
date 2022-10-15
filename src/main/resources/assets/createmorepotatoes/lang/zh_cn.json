@@ -4,5 +4,6 @@
   "item.createmorepotatoes.golden_potato": "金马铃薯",
   "item.createmorepotatoes.diamond_potato": "钻石马铃薯",
   "item.createmorepotatoes.potion_potato": "药水土豆",
-  "itemGroup.potatotab": "机械动力：更多土豆"
+  "itemGroup.potatotab": "机械动力：更多土豆",
+  "itemGroup.potionpotatotab":"机械动力：药水土豆"
 }
