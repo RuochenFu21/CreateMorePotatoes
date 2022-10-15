@@ -8,7 +8,6 @@ import net.minecraftforge.client.event.ColorHandlerEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
-@Mod.EventBusSubscriber(Dist.CLIENT)
 public class PotionPotatoItemColors {
     @SubscribeEvent
     public static void registerItemColors(ColorHandlerEvent.Item event)
