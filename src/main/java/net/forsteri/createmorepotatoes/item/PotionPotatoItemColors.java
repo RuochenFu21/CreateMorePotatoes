@@ -11,8 +11,9 @@ import net.minecraftforge.fml.common.Mod;
 @Mod.EventBusSubscriber(Dist.CLIENT)
 public class PotionPotatoItemColors {
     @SubscribeEvent
-    public void registerItemColors(ColorHandlerEvent.Item event)
+    public static void registerItemColors(ColorHandlerEvent.Item event)
     {
-        event.getItemColors().register(((pStack, pTintIndex) -> (0xAAAAAA)), new PotionPotatoItem());
+        CreateMorePotatoes.LOGGER.info("REGISTERING ITEM COLOR");
+        event.getItemColors().register(((pStack, pTintIndex) -> (0x555555)), new PotionPotatoItem());
     }
 }

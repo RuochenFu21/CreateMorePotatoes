@@ -2,6 +2,8 @@ package net.forsteri.createmorepotatoes;
 
 import com.mojang.logging.LogUtils;
 import net.forsteri.createmorepotatoes.entry.ModItems;
+import net.forsteri.createmorepotatoes.item.PotionPotatoItem;
+import net.forsteri.createmorepotatoes.item.PotionPotatoItemColors;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -16,7 +18,7 @@ public class CreateMorePotatoes
 {
     public static final String MOD_ID = "createmorepotatoes";
     // Directly reference a slf4j logger
-    private static final Logger LOGGER = LogUtils.getLogger();
+    public static final Logger LOGGER = LogUtils.getLogger();
 
 
     public CreateMorePotatoes()
@@ -28,6 +30,7 @@ public class CreateMorePotatoes
         eventBus.addListener(this::setup);
         // Register ourselves for server and other game events we are interested in
         MinecraftForge.EVENT_BUS.register(this);
+        eventBus.register(PotionPotatoItemColors.class);
     }
 
     private void setup(final FMLCommonSetupEvent event)
