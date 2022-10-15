@@ -2,8 +2,7 @@ package net.forsteri.createmorepotatoes;
 
 import com.mojang.logging.LogUtils;
 import net.forsteri.createmorepotatoes.entry.ModItems;
-import net.forsteri.createmorepotatoes.item.PotionPotatoItem;
-import net.forsteri.createmorepotatoes.item.PotionPotatoItemColors;
+import net.forsteri.createmorepotatoes.entry.ColorHandlers;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -30,7 +29,7 @@ public class CreateMorePotatoes
         eventBus.addListener(this::setup);
         // Register ourselves for server and other game events we are interested in
         MinecraftForge.EVENT_BUS.register(this);
-        MinecraftForge.EVENT_BUS.register(PotionPotatoItemColors.class);
+        FMLJavaModLoadingContext.get().getModEventBus().addListener(ColorHandlers::registerItemColors);
     }
 
     private void setup(final FMLCommonSetupEvent event)
