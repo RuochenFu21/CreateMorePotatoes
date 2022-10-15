@@ -29,7 +29,7 @@ public class CreateMorePotatoes
         eventBus.addListener(this::setup);
         // Register ourselves for server and other game events we are interested in
         MinecraftForge.EVENT_BUS.register(this);
-        FMLJavaModLoadingContext.get().getModEventBus().addListener(ColorHandlers::registerItemColors);
+        MinecraftForge.EVENT_BUS.register(ColorHandlers.class);
     }
 
     private void setup(final FMLCommonSetupEvent event)
