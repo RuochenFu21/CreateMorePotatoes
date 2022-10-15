@@ -50,7 +50,7 @@ public abstract class EffectHandler extends AbstractHurtingProjectile {
 
         if (stack.is(ModItems.POTION_POTATO.get())) {
             for (MobEffectInstance Effect : PotionUtils.getMobEffects(stack)) {
-                ((LivingEntity) ray.getEntity()).addEffect(Effect);
+                ((LivingEntity) ray.getEntity()).addEffect(new MobEffectInstance(Effect));
             }
         }
     }
