@@ -1,6 +1,7 @@
 package net.forsteri.createmorepotatoes.entry;
 
 import net.forsteri.createmorepotatoes.CreateMorePotatoes;
+import net.forsteri.createmorepotatoes.item.PotionPotatoItem;
 import net.minecraft.world.item.Item;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
@@ -24,6 +25,11 @@ public class ModItems {
 
     public static final RegistryObject<Item> BAG_OF_POTATOES = ITEMS.register("bag_of_potatoes",
             () -> new Item(new Item.Properties().tab(ModCreativeModeTab.MORE_POTATOES_TAB)));
+
+    public static final RegistryObject<Item> POTION_POTATO = ITEMS.register("potion_potato",
+            PotionPotatoItem::new);
+
+    public static PotionPotatoItem PotionPotato = new PotionPotatoItem();
 
 
     public static void register(IEventBus eventBus){
