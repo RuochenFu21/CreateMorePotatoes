@@ -13,7 +13,13 @@ group = project.maven_group
 
 repositories {
     maven { url = "https://hephaestus.dev/release" }
-    maven { url = "https://api.modrinth.com/maven" }
+    maven {
+        name = "Modrinth"
+        url = "https://api.modrinth.com/maven"
+        content {
+            includeGroup "maven.modrinth"
+        }
+    }
     maven { url = "https://cursemaven.com" }
     maven { url = "https://maven.parchmentmc.org" }
     maven { url = "https://maven.fabricmc.net/" }
@@ -46,6 +52,7 @@ dependencies {
 
     modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
     modImplementation "com.simibubi.create:create-fabric-${project.minecraft_version}:${project.create_version}"
+    modImplementation include("maven.modrinth:deferred-registries:0.1.2")
 }
 
 processResources {

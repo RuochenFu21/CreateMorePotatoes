@@ -1,20 +1,16 @@
 package net.forsteri.createmorepotatoes.entry;
 
 import com.mojang.logging.LogUtils;
-import net.forsteri.createmorepotatoes.CreateMorePotatoes;
-import net.forsteri.createmorepotatoes.item.PotionPotatoItem;
-import net.minecraft.world.item.alchemy.PotionUtils;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.client.event.ColorHandlerEvent;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.common.Mod;
 
-@Mod.EventBusSubscriber(modid = CreateMorePotatoes.MOD_ID, bus = Mod.EventBusSubscriber.Bus.FORGE, value = Dist.CLIENT)
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
+import net.fabricmc.fabric.api.client.rendering.v1.ColorProviderRegistry;
+import net.minecraft.world.item.alchemy.PotionUtils;
+
+@Environment(EnvType.CLIENT)
 public class ColorHandlers {
-    @SubscribeEvent
-    public static void registerItemColors(ColorHandlerEvent.Item event)
-    {
+    public static void registerItemColors() {
         LogUtils.getLogger().info("REGISTER ITEM COLORS");
-        event.getItemColors().register(((pStack, pTintIndex) -> (PotionUtils.getColor(pStack))), ModItems.POTION_POTATO.get());
+		ColorProviderRegistry.ITEM.register((pStack, pTintIndex) -> PotionUtils.getColor(pStack), ModItems.POTION_POTATO.get());
     }
 }
