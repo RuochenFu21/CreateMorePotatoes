@@ -1,6 +1,31 @@
 {
+  "itemGroup.potatotab":"Create More Potatoes",
   "item.createmorepotatoes.explosive_potato": "explosive potato",
   "item.createmorepotatoes.bag_of_potatoes": "bag of potatoes",
   "item.createmorepotatoes.golden_potato": "golden potato",
-  "itemGroup.potatotab":"Create More Potatoes"
+  "item.createmorepotatoes.diamond_potato": "diamond potato",
+  "item.createmorepotatoes.potion_potato": "potion potato",
+
+  "itemGroup.potionpotatotab":"Create Potion Potatoes",
+  "item.createmorepotatoes.potion_potato.effect.empty": "Effectless Potion Potato",
+  "item.createmorepotatoes.potion_potato.effect.water": "Effectless Potion Potato",
+  "item.createmorepotatoes.potion_potato.effect.mundane": "Effectless Potion Potato",
+  "item.createmorepotatoes.potion_potato.effect.thick": "Effectless Potion Potato",
+  "item.createmorepotatoes.potion_potato.effect.awkward": "Effectless Potion Potato",
+  "item.createmorepotatoes.potion_potato.effect.night_vision": "Night Vision Potato",
+  "item.createmorepotatoes.potion_potato.effect.invisibility": "Invisibility Potato",
+  "item.createmorepotatoes.potion_potato.effect.leaping": "Jump Boost Potato",
+  "item.createmorepotatoes.potion_potato.effect.fire_resistance": "Fire Resistance Potato",
+  "item.createmorepotatoes.potion_potato.effect.swiftness": "Swiftness Potato",
+  "item.createmorepotatoes.potion_potato.effect.slowness": "Slowness Potato",
+  "item.createmorepotatoes.potion_potato.effect.turtle_master": "Turtle Master Potato",
+  "item.createmorepotatoes.potion_potato.effect.water_breathing": "Water Breathing Potato",
+  "item.createmorepotatoes.potion_potato.effect.healing": "Instant Health Potato",
+  "item.createmorepotatoes.potion_potato.effect.harming": "Instant Damage Potato",
+  "item.createmorepotatoes.potion_potato.effect.poison": "Poisonous Potato",
+  "item.createmorepotatoes.potion_potato.effect.regeneration": "Regeneration Potato",
+  "item.createmorepotatoes.potion_potato.effect.strength": "Strength Potato",
+  "item.createmorepotatoes.potion_potato.effect.weakness": "Weakness Potato",
+  "item.createmorepotatoes.potion_potato.effect.luck": "Luck Potato",
+  "item.createmorepotatoes.potion_potato.effect.slow_falling": "Slow Falling Potato"
 }
