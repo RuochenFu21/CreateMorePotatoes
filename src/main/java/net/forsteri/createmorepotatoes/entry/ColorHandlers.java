@@ -14,6 +14,6 @@ public class ColorHandlers {
     public static void registerItemColors(ColorHandlerEvent.Item event)
     {
         LogUtils.getLogger().info("REGISTER ITEM COLORS");
-        event.getItemColors().register(((pStack, pTintIndex) -> (0x555555)), new PotionPotatoItem());
+        event.getItemColors().register(((pStack, pTintIndex) -> (0x555555)), ModItems.potionPotatoItem);
     }
 }
