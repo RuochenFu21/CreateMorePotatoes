@@ -27,7 +27,7 @@ public class ModItems {
             () -> new Item(new Item.Properties().tab(ModCreativeModeTab.MORE_POTATOES_TAB)));
 
     public static final RegistryObject<Item> POTION_POTATO = ITEMS.register("potion_potato",
-            () -> CreateMorePotatoes.potionPotatoItem);
+            PotionPotatoItem::new);
 
 
     public static void register(IEventBus eventBus){
