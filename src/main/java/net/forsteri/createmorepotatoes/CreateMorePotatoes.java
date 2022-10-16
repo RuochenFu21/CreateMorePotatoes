@@ -31,10 +31,10 @@ public class CreateMorePotatoes implements ModInitializer, ClientModInitializer
         LOGGER.info("HELLO FROM PREINIT");
         LOGGER.info("DIRT BLOCK >> {}", Blocks.DIRT.getRegistryName());
 
-		ModCreativeModeTab.loadClass();
-		PotionPotatoCreativeModeTab.loadClass();
-
-		ModItems.register();
+		    ModCreativeModeTab.loadClass();
+		    PotionPotatoCreativeModeTab.loadClass();
+    
+		    ModItems.register();
     }
 
     public static ResourceLocation asResource(String path) {
