@@ -26,6 +26,9 @@ public class ModItems {
     public static final RegistryObject<Item> BAG_OF_POTATOES = ITEMS.register("bag_of_potatoes",
             () -> new Item(new Item.Properties().tab(ModCreativeModeTab.MORE_POTATOES_TAB)));
 
+    public static final RegistryObject<Item> FRENCH_FRIES = ITEMS.register("french_fries",
+            () -> new Item(new Item.Properties().tab(ModCreativeModeTab.MORE_POTATOES_TAB)));
+
     public static final RegistryObject<Item> POTION_POTATO = ITEMS.register("potion_potato",
             PotionPotatoItem::new);
 
