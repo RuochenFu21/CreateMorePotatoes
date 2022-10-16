@@ -1,10 +1,10 @@
 {
   "items": [
-    "createmorepotatoes:golden_potato"
+    "createmorepotatoes:potion_potato"
   ],
   "reload_ticks": 10,
   "knockback": 0.5,
   "velocity_multiplier": 0.9,
   "gravity_multiplier": 1.2,
-  "damage": 10
+  "damage": 5
 }
