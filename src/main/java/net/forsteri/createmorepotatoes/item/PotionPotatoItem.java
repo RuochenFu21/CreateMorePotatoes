@@ -8,17 +8,18 @@ import net.minecraft.world.item.alchemy.PotionUtils;
 import java.util.Collection;
 
 public class PotionPotatoItem extends PotionItem {
-    private static final String NBT_ID = "ID";
-    private static final String NBT_DURATION = "Duration";
-    private static final String NBT_AMPLIFIER = "Amplifier";
-    public PotionPotatoItem(){
-        super(new Item.Properties().tab(PotionPotatoCreativeModeTab.POTION_POTATOES_TAB));
-    }
+	private static final String NBT_ID = "ID";
+	private static final String NBT_DURATION = "Duration";
+	private static final String NBT_AMPLIFIER = "Amplifier";
 
-    public static int getPotionColor(ItemStack stack){
-        return PotionUtils.getColor(
-                stack
-        );
-    }
+	public PotionPotatoItem() {
+		super(new Item.Properties().tab(PotionPotatoCreativeModeTab.POTION_POTATOES_TAB));
+	}
+
+	public static int getPotionColor(ItemStack stack) {
+		return PotionUtils.getColor(
+				stack
+		);
+	}
 
 }

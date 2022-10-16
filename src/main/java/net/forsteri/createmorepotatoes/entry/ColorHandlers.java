@@ -9,8 +9,8 @@ import net.minecraft.world.item.alchemy.PotionUtils;
 
 @Environment(EnvType.CLIENT)
 public class ColorHandlers {
-    public static void registerItemColors() {
-        LogUtils.getLogger().info("REGISTER ITEM COLORS");
+	public static void registerItemColors() {
+		LogUtils.getLogger().info("REGISTER ITEM COLORS");
 		ColorProviderRegistry.ITEM.register((pStack, pTintIndex) -> PotionUtils.getColor(pStack), ModItems.POTION_POTATO.get());
-    }
+	}
 }

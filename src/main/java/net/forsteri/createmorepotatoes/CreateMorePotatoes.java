@@ -10,15 +10,15 @@ import net.forsteri.createmorepotatoes.item.PotionPotatoCreativeModeTab;
 import net.minecraft.resources.ResourceLocation;
 import net.forsteri.createmorepotatoes.entry.ColorHandlers;
 import net.minecraft.world.level.block.Blocks;
+
 import org.slf4j.Logger;
 
-public class CreateMorePotatoes implements ModInitializer, ClientModInitializer
-{
-    public static final String MOD_ID = "createmorepotatoes";
+public class CreateMorePotatoes implements ModInitializer, ClientModInitializer {
+	public static final String MOD_ID = "createmorepotatoes";
 	public static final Logger LOGGER = LogUtils.getLogger();
 
-    @Override
-    public void onInitialize() {
+	@Override
+	public void onInitialize() {
 		setup();
 	}
 
@@ -27,17 +27,17 @@ public class CreateMorePotatoes implements ModInitializer, ClientModInitializer
 		ColorHandlers.registerItemColors();
 	}
 
-    private static void setup() {
-        LOGGER.info("HELLO FROM PREINIT");
-        LOGGER.info("DIRT BLOCK >> {}", Blocks.DIRT.getRegistryName());
+	private static void setup() {
+		LOGGER.info("HELLO FROM PREINIT");
+		LOGGER.info("DIRT BLOCK >> {}", Blocks.DIRT.getRegistryName());
 
-		    ModCreativeModeTab.loadClass();
-		    PotionPotatoCreativeModeTab.loadClass();
-    
-		    ModItems.register();
-    }
+		ModCreativeModeTab.loadClass();
+		PotionPotatoCreativeModeTab.loadClass();
 
-    public static ResourceLocation asResource(String path) {
-        return new ResourceLocation(MOD_ID, path);
-    }
+		ModItems.register();
+	}
+
+	public static ResourceLocation asResource(String path) {
+		return new ResourceLocation(MOD_ID, path);
+	}
 }
