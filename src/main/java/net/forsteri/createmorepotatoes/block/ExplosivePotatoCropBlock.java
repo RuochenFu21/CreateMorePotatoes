@@ -10,19 +10,19 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.PotatoBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.Level;
+import org.jetbrains.annotations.NotNull;
 
 public class ExplosivePotatoCropBlock extends PotatoBlock {
     public ExplosivePotatoCropBlock(Properties p_55198_) {
         super(p_55198_);
     }
 
-    @Override
-    protected ItemLike getBaseSeedId() {
+    protected @NotNull ItemLike getBaseSeedId() {
         return ModItems.EXPLOSIVE_POTATO.get();
     }
 
     @Override
-    public void entityInside(BlockState pState, Level pLevel, BlockPos pPos, Entity pEntity) {
+    public void entityInside(@NotNull BlockState pState, @NotNull Level pLevel, BlockPos pPos, @NotNull Entity pEntity) {
         Explosion derp = new Explosion(pLevel, null, pPos.getX(), pPos.getY(), pPos.getZ(), 3, false, Explosion.BlockInteraction.BREAK);
         if (!pLevel.isClientSide()) {
             derp.explode();

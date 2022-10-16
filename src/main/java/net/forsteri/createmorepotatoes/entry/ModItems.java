@@ -3,6 +3,7 @@ package net.forsteri.createmorepotatoes.entry;
 import net.forsteri.createmorepotatoes.CreateMorePotatoes;
 import net.forsteri.createmorepotatoes.item.PotionPotatoItem;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemNameBlockItem;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -13,7 +14,7 @@ public class ModItems {
             DeferredRegister.create(ForgeRegistries.ITEMS, CreateMorePotatoes.MOD_ID);
 
     public static final RegistryObject<Item> EXPLOSIVE_POTATO = ITEMS.register("explosive_potato",
-            () -> new Item(new Item.Properties().tab(ModCreativeModeTab.MORE_POTATOES_TAB).food(ModFoods.EXPLOSIVE_POTATO)));
+            () -> new ItemNameBlockItem(ModBlocks.EXPLOSIVE_POTATO_CROP.get(), new Item.Properties().tab(ModCreativeModeTab.MORE_POTATOES_TAB).food(ModFoods.EXPLOSIVE_POTATO)));
 
 
     public static final RegistryObject<Item> GOLDEN_POTATO = ITEMS.register("golden_potato",
