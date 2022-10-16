@@ -21,8 +21,10 @@ public class ModItems {
     public static final DeferredObject<Item> DIAMOND_POTATO = ITEMS.register("diamond_potato",
             () -> new Item(new Item.Properties().tab(ModCreativeModeTab.MORE_POTATOES_TAB).food(ModFoods.DIAMOND_POTATO)));
 
-
     public static final DeferredObject<Item> BAG_OF_POTATOES = ITEMS.register("bag_of_potatoes",
+            () -> new Item(new Item.Properties().tab(ModCreativeModeTab.MORE_POTATOES_TAB)));
+
+    public static final DeferredObject<Item> FRENCH_FRIES = ITEMS.register("french_fries",
             () -> new Item(new Item.Properties().tab(ModCreativeModeTab.MORE_POTATOES_TAB)));
 
     public static final DeferredObject<Item> POTION_POTATO = ITEMS.register("potion_potato",
