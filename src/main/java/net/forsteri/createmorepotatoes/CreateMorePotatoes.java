@@ -30,6 +30,7 @@ public class CreateMorePotatoes
         ModBlocks.register(eventBus);
 
         eventBus.addListener(this::setup);
+        eventBus.addListener(this::clientSetup);
         // Register ourselves for server and other game events we are interested in
         MinecraftForge.EVENT_BUS.register(this);
         FMLJavaModLoadingContext.get().getModEventBus().addListener(ColorHandlers::registerItemColors);
@@ -38,7 +39,7 @@ public class CreateMorePotatoes
     private void clientSetup(final FMLClientSetupEvent event){
         ItemBlockRenderTypes.setRenderLayer(ModBlocks.EXPLOSIVE_POTATO_CROP.get(), RenderType.cutout());
 
-        
+
     }
 
     private void setup(final FMLCommonSetupEvent event)
