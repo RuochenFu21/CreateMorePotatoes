@@ -6,5 +6,5 @@
   "knockback": 0.3,
   "velocity_multiplier": 1,
   "gravity_multiplier": 0.9,
-  "damage": 1
+  "damage": 2
 }
