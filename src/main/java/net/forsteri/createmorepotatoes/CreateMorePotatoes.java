@@ -1,6 +1,8 @@
 package net.forsteri.createmorepotatoes;
 
 import com.mojang.logging.LogUtils;
+import com.simibubi.create.foundation.data.CreateRegistrate;
+import com.tterrag.registrate.util.nullness.NonNullSupplier;
 import net.forsteri.createmorepotatoes.entry.ModBlocks;
 import net.forsteri.createmorepotatoes.entry.ModItems;
 import net.forsteri.createmorepotatoes.entry.ColorHandlers;
@@ -22,6 +24,9 @@ public class CreateMorePotatoes
     public static final String MOD_ID = "createmorepotatoes";
     // Directly reference a slf4j logger
     public static final Logger LOGGER = LogUtils.getLogger();
+
+    private static final NonNullSupplier<CreateRegistrate> registrate = CreateRegistrate.lazy(CreateMorePotatoes.MOD_ID);
+
     public CreateMorePotatoes()
     {
         IEventBus eventBus = FMLJavaModLoadingContext.get().getModEventBus();
@@ -47,5 +52,9 @@ public class CreateMorePotatoes
         // some preinit code
         LOGGER.info("HELLO FROM PREINIT");
         LOGGER.info("DIRT BLOCK >> {}", Blocks.DIRT.getRegistryName());
+    }
+
+    public static CreateRegistrate registrate() {
+        return registrate.get();
     }
 }
