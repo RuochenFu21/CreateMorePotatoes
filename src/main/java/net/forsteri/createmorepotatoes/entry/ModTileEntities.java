@@ -14,4 +14,8 @@ public class ModTileEntities {
             .validBlocks(ModBlocks.STATIONARY_POTATO_CANON)
             .renderer(() -> StationaryPotatoCanonRenderer::new)
             .register();
+
+    public static void register(){
+
+    }
 }

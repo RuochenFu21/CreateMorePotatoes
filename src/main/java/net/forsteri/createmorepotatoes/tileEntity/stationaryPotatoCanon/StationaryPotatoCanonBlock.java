@@ -18,13 +18,14 @@ public class StationaryPotatoCanonBlock extends RotatedPillarKineticBlock {
 
     @Override
     public Direction.Axis getRotationAxis(BlockState state) {
-        CreateMorePotatoes.LOGGER.info("axis of stationary:" + state.getValue(AXIS).toString());
+        CreateMorePotatoes.LOGGER.info("axis of stationary:" + state.getValue(AXIS));
         return state.getValue(AXIS);
     }
 
     @Override
     public boolean hasShaftTowards(LevelReader world, BlockPos pos, BlockState state, Direction face) {
-        CreateMorePotatoes.LOGGER.info("axis of shaft testing:" + face.getAxis().toString());
+        CreateMorePotatoes.LOGGER.info("axis of shaft testing:" + face.getAxis());
+        CreateMorePotatoes.LOGGER.info("It's " + (getRotationAxis(state) == face.getAxis()));
         return face.getAxis() == getRotationAxis(state);
     }
 }

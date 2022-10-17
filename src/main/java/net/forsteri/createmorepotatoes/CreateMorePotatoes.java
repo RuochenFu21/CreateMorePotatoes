@@ -6,6 +6,7 @@ import com.tterrag.registrate.util.nullness.NonNullSupplier;
 import net.forsteri.createmorepotatoes.entry.ModBlocks;
 import net.forsteri.createmorepotatoes.entry.ModItems;
 import net.forsteri.createmorepotatoes.entry.ColorHandlers;
+import net.forsteri.createmorepotatoes.entry.ModTileEntities;
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.world.level.block.Blocks;
@@ -33,6 +34,7 @@ public class CreateMorePotatoes
 
         ModItems.register(eventBus);
         ModBlocks.register(eventBus);
+        ModTileEntities.register();
 
         eventBus.addListener(this::setup);
         eventBus.addListener(this::clientSetup);
