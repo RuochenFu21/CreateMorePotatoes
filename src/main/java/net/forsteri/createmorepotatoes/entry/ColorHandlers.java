@@ -16,7 +16,7 @@ public class ColorHandlers {
     {
         LogUtils.getLogger().info("REGISTER ITEM COLORS");
         event.getItemColors().register(((pStack, pTintIndex) -> (PotionUtils.getColor(pStack))), ModItems.POTION_POTATO.get());
-        event.getItemColors().register(((pStack, pTintIndex) -> (PotionUtils.getColor(pStack))), ModItems.POTION_POTATO.get());
+        event.getItemColors().register(((pStack, pTintIndex) -> (PotionUtils.getColor(pStack))), ModItems.EXPLOSIVE_POTION_POTATO.get());
 
     }
 }
