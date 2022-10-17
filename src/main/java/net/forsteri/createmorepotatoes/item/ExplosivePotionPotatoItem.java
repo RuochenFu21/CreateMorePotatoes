@@ -11,12 +11,9 @@ import net.minecraft.world.item.alchemy.Potion;
 import net.minecraft.world.item.alchemy.PotionUtils;
 import net.minecraft.world.level.Level;
 
-public class ExplosivePotionPotatoItem extends PotionItem {
-    private static final String NBT_ID = "ID";
-    private static final String NBT_DURATION = "Duration";
-    private static final String NBT_AMPLIFIER = "Amplifier";
+public class ExplosivePotionPotatoItem extends PotionPotatoItem {
     public ExplosivePotionPotatoItem(){
-        super(new Properties().tab(PotionPotatoCreativeModeTab.POTION_POTATOES_TAB));
+        super();
     }
 
     public static void makeAreaOfEffectCloud(ItemStack p_37538_, Potion p_37539_, Level level, double x, double y, double z, Entity owner) {
