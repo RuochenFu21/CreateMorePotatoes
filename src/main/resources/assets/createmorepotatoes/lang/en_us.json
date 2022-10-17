@@ -30,5 +30,27 @@
   "item.createmorepotatoes.potion_potato.effect.strength": "Strength Potato",
   "item.createmorepotatoes.potion_potato.effect.weakness": "Weakness Potato",
   "item.createmorepotatoes.potion_potato.effect.luck": "Luck Potato",
-  "item.createmorepotatoes.potion_potato.effect.slow_falling": "Slow Falling Potato"
+  "item.createmorepotatoes.potion_potato.effect.slow_falling": "Slow Falling Potato",
+
+  "item.createmorepotatoes.explosive_potion_potato.effect.empty": "Effectless Explosive Potion Potato",
+  "item.createmorepotatoes.explosive_potion_potato.effect.water": "Effectless Explosive Potion Potato",
+  "item.createmorepotatoes.explosive_potion_potato.effect.mundane": "Effectless Explosive Potion Potato",
+  "item.createmorepotatoes.explosive_potion_potato.effect.thick": "Effectless Explosive Potion Potato",
+  "item.createmorepotatoes.explosive_potion_potato.effect.awkward": "Effectless Explosive Potion Potato",
+  "item.createmorepotatoes.explosive_potion_potato.effect.night_vision": "Night Vision Explosive Potato",
+  "item.createmorepotatoes.explosive_potion_potato.effect.invisibility": "Invisibility Explosive Potato",
+  "item.createmorepotatoes.explosive_potion_potato.effect.leaping": "Jump Boost Explosive Potato",
+  "item.createmorepotatoes.explosive_potion_potato.effect.fire_resistance": "Fire Resistance Explosive Potato",
+  "item.createmorepotatoes.explosive_potion_potato.effect.swiftness": "Swiftness Explosive Potato",
+  "item.createmorepotatoes.explosive_potion_potato.effect.slowness": "Slowness Explosive Potato",
+  "item.createmorepotatoes.explosive_potion_potato.effect.turtle_master": "Turtle Master Explosive Potato",
+  "item.createmorepotatoes.explosive_potion_potato.effect.water_breathing": "Water Breathing Explosive Potato",
+  "item.createmorepotatoes.explosive_potion_potato.effect.healing": "Instant Health Explosive Potato",
+  "item.createmorepotatoes.explosive_potion_potato.effect.harming": "Instant Damage Explosive Potato",
+  "item.createmorepotatoes.explosive_potion_potato.effect.poison": "Poisonous Explosive Potato",
+  "item.createmorepotatoes.explosive_potion_potato.effect.regeneration": "Regeneration Explosive Potato",
+  "item.createmorepotatoes.explosive_potion_potato.effect.strength": "Strength Explosive Potato",
+  "item.createmorepotatoes.explosive_potion_potato.effect.weakness": "Weakness Explosive Potato",
+  "item.createmorepotatoes.explosive_potion_potato.effect.luck": "Luck Explosive Potato",
+  "item.createmorepotatoes.explosive_potion_potato.effect.slow_falling": "Slow Falling Explosive Potato"
 }
