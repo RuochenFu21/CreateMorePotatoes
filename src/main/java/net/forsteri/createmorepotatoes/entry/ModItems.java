@@ -1,6 +1,7 @@
 package net.forsteri.createmorepotatoes.entry;
 
 import net.forsteri.createmorepotatoes.CreateMorePotatoes;
+import net.forsteri.createmorepotatoes.item.ExplosivePotionPotatoItem;
 import net.forsteri.createmorepotatoes.item.PotionPotatoItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemNameBlockItem;
@@ -35,6 +36,9 @@ public class ModItems {
 
     public static final RegistryObject<Item> POTION_POTATO = ITEMS.register("potion_potato",
             PotionPotatoItem::new);
+
+    public static final RegistryObject<Item> EXPLOSIVE_POTION_POTATO = ITEMS.register("explosive_potion_potato",
+            ExplosivePotionPotatoItem::new);
 
 
     public static void register(IEventBus eventBus){

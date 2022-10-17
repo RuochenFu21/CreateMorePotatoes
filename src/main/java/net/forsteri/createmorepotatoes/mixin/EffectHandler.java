@@ -3,7 +3,9 @@ package net.forsteri.createmorepotatoes.mixin;
 import com.mojang.logging.LogUtils;
 import com.simibubi.create.content.curiosities.weapons.PotatoProjectileEntity;
 import net.forsteri.createmorepotatoes.entry.ModItems;
+import net.forsteri.createmorepotatoes.item.ExplosivePotionPotatoItem;
 import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.entity.AreaEffectCloud;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
@@ -32,6 +34,8 @@ public abstract class EffectHandler extends AbstractHurtingProjectile {
 
     @Shadow protected Entity stuckEntity;
 
+    @Shadow protected double stuckFallSpeed;
+
     protected EffectHandler(EntityType<? extends AbstractHurtingProjectile> p_36833_, Level p_36834_) {
         super(p_36833_, p_36834_);
     }
@@ -53,6 +57,10 @@ public abstract class EffectHandler extends AbstractHurtingProjectile {
                 ((LivingEntity) ray.getEntity()).addEffect(new MobEffectInstance(Effect));
             }
         }
+
+        if (stack.is(ModItems.EXPLOSIVE_POTION_POTATO.get())) {
+            ExplosivePotionPotatoItem.makeAreaOfEffectCloud(stack, PotionUtils.getPotion(stack), getLevel(), getX(), getY(), getZ(), getOwner());
+        }
     }
 
     @Inject(at = @At(value = "HEAD"), method = "onHitBlock(Lnet/minecraft/world/phys/BlockHitResult;)V")
@@ -70,7 +78,7 @@ public abstract class EffectHandler extends AbstractHurtingProjectile {
 
     @Inject(at = @At(value = "HEAD"), method = "tick()V")
     protected void OnTick(CallbackInfo info) {
-        if (Objects.requireNonNull(stack.getItem().getRegistryName()).toString().equals("createmorepotatoes:bag_of_potatoes")) {
+        if (stack.is(ModItems.BAG_OF_POTATOES.get())) {
             stack = new ItemStack(Items.POTATO);
             LogUtils.getLogger().info("converted!");
         }

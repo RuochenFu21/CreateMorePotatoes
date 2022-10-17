@@ -14,11 +14,4 @@ public class PotionPotatoItem extends PotionItem {
     public PotionPotatoItem(){
         super(new Item.Properties().tab(PotionPotatoCreativeModeTab.POTION_POTATOES_TAB));
     }
-
-    public static int getPotionColor(ItemStack stack){
-        return PotionUtils.getColor(
-                stack
-        );
-    }
-
 }
