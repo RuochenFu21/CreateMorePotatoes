@@ -9,7 +9,7 @@ import net.forsteri.createmorepotatoes.tileEntity.stationaryPotatoCanon.Stationa
 public class ModTileEntities {
     private static final CreateRegistrate REGISTRATE = CreateMorePotatoes.registrate();
 
-    public static final BlockEntityEntry<StationaryPotatoCanonTileEntity> FLYWHEEL = REGISTRATE
+    public static final BlockEntityEntry<StationaryPotatoCanonTileEntity> STATIONARY_POTATO_CANON = REGISTRATE
             .tileEntity("stationary_potato_canon", StationaryPotatoCanonTileEntity::new)
             .validBlocks(ModBlocks.STATIONARY_POTATO_CANON)
             .renderer(() -> StationaryPotatoCanonRenderer::new)

@@ -8,6 +8,7 @@ import com.tterrag.registrate.util.entry.BlockEntry;
 import net.forsteri.createmorepotatoes.CreateMorePotatoes;
 import net.forsteri.createmorepotatoes.block.ExplosivePotatoCropBlock;
 import net.forsteri.createmorepotatoes.tileEntity.stationaryPotatoCanon.StationaryPotatoCanonBlock;
+import net.minecraft.client.renderer.RenderType;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
@@ -58,5 +59,6 @@ public class ModBlocks {
                     .blockstate(BlockStateGen.axisBlockProvider(true))
                     .item()
                     .transform(customItemModel())
+                    .addLayer(() -> RenderType::cutoutMipped)
                     .register();
 }
