@@ -30,6 +30,9 @@ public class ModItems {
     public static final RegistryObject<Item> FRENCH_FRIES = ITEMS.register("french_fries",
             () -> new Item(new Item.Properties().tab(ModCreativeModeTab.MORE_POTATOES_TAB)));
 
+    public static final RegistryObject<Item> CREATIVE_POTATO = ITEMS.register("creative_potato",
+            () -> new Item(new Item.Properties().tab(ModCreativeModeTab.MORE_POTATOES_TAB)));
+
     public static final RegistryObject<Item> POTION_POTATO = ITEMS.register("potion_potato",
             PotionPotatoItem::new);
 
