@@ -42,8 +42,6 @@ public abstract class EffectHandler extends AbstractHurtingProjectile {
 
     @Inject(at = @At(value = "HEAD"), method = "onHitEntity(Lnet/minecraft/world/phys/EntityHitResult;)V")
     protected void onHit(EntityHitResult ray, CallbackInfo info) {
-        LogUtils.getLogger().info(Objects.requireNonNull(stack.getItem().getRegistryName()).toString());
-
         if (stack.is(ModItems.EXPLOSIVE_POTATO.get())) {
             Explosion derp = new Explosion(getLevel(), this, getX(), getY(), getZ(), 3, false, Explosion.BlockInteraction.BREAK);
             if (!level.isClientSide()) {
@@ -67,8 +65,6 @@ public abstract class EffectHandler extends AbstractHurtingProjectile {
 
     @Inject(at = @At(value = "HEAD"), method = "onHitBlock(Lnet/minecraft/world/phys/BlockHitResult;)V")
     protected void onHitBlock(BlockHitResult ray, CallbackInfo info) {
-        LogUtils.getLogger().info(Objects.requireNonNull(stack.getItem().getRegistryName()).toString());
-
         if (stack.is(ModItems.EXPLOSIVE_POTATO.get())) {
             Explosion derp = new Explosion(getLevel(), this, getX(), getY(), getZ(), 3, false, Explosion.BlockInteraction.BREAK);
             if (!level.isClientSide()) {
@@ -88,7 +84,6 @@ public abstract class EffectHandler extends AbstractHurtingProjectile {
     protected void OnTick(CallbackInfo info) {
         if (stack.is(ModItems.BAG_OF_POTATOES.get())) {
             stack = new ItemStack(Items.POTATO);
-            LogUtils.getLogger().info("converted!");
         }
     }
 }
