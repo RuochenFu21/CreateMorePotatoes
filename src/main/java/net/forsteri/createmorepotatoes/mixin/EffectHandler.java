@@ -60,6 +60,8 @@ public abstract class EffectHandler extends AbstractHurtingProjectile {
 
         if (stack.is(ModItems.EXPLOSIVE_POTION_POTATO.get())) {
             ExplosivePotionPotatoItem.makeAreaOfEffectCloud(stack, PotionUtils.getPotion(stack), getLevel(), getX(), getY(), getZ(), getOwner());
+            Explosion derp = new Explosion(getLevel(), this, getX(), getY(), getZ(), 3, false, Explosion.BlockInteraction.NONE);
+            derp.finalizeExplosion(true);
         }
     }
 
@@ -74,6 +76,12 @@ public abstract class EffectHandler extends AbstractHurtingProjectile {
             }
             derp.finalizeExplosion(true);
         }
+        if (stack.is(ModItems.EXPLOSIVE_POTION_POTATO.get())) {
+            ExplosivePotionPotatoItem.makeAreaOfEffectCloud(stack, PotionUtils.getPotion(stack), getLevel(), getX(), getY(), getZ(), getOwner());
+            Explosion derp = new Explosion(getLevel(), this, getX(), getY(), getZ(), 3, false, Explosion.BlockInteraction.NONE);
+            derp.finalizeExplosion(true);
+        }
+
     }
 
     @Inject(at = @At(value = "HEAD"), method = "tick()V")
