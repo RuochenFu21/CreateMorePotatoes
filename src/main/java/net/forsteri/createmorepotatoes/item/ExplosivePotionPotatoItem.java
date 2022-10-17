@@ -1,10 +1,12 @@
 package net.forsteri.createmorepotatoes.item;
 
+import net.forsteri.createmorepotatoes.entry.ModItems;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.AreaEffectCloud;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.PotionItem;
 import net.minecraft.world.item.alchemy.Potion;
@@ -38,5 +40,9 @@ public class ExplosivePotionPotatoItem extends PotionPotatoItem {
         }
 
         level.addFreshEntity(areaeffectcloud);
+    }
+
+    protected Item finishedItem(){
+        return ModItems.EXPLOSIVE_POTATO.get();
     }
 }
