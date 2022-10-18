@@ -1,0 +1,52 @@
+{
+  "variants": {
+    "axis_along_first=false,facing=down": {
+      "model": "createmorepotatoes:block/stationary_potato_cannon/stationary_potato_cannon",
+      "x": 270,
+      "y": 90
+    },
+    "axis_along_first=true,facing=down": {
+      "model": "createmorepotatoes:block/stationary_potato_cannon/stationary_potato_cannon",
+      "x": 270
+    },
+    "axis_along_first=false,facing=up": {
+      "model": "createmorepotatoes:block/stationary_potato_cannon/stationary_potato_cannon",
+      "x": 90,
+      "y": 90
+    },
+    "axis_along_first=true,facing=up": {
+      "model": "createmorepotatoes:block/stationary_potato_cannon/stationary_potato_cannon",
+      "x": 90
+    },
+    "axis_along_first=false,facing=north": {
+      "model": "createmorepotatoes:block/stationary_potato_cannon/stationary_potato_cannon_vertical",
+      "y": 180
+    },
+    "axis_along_first=true,facing=north": {
+      "model": "createmorepotatoes:block/stationary_potato_cannon/stationary_potato_cannon",
+      "y": 180
+    },
+    "axis_along_first=false,facing=south": {
+      "model": "createmorepotatoes:block/stationary_potato_cannon/stationary_potato_cannon_vertical"
+    },
+    "axis_along_first=true,facing=south": {
+      "model": "createmorepotatoes:block/stationary_potato_cannon/stationary_potato_cannon"
+    },
+    "axis_along_first=false,facing=west": {
+      "model": "createmorepotatoes:block/stationary_potato_cannon/stationary_potato_cannon",
+      "y": 90
+    },
+    "axis_along_first=true,facing=west": {
+      "model": "createmorepotatoes:block/stationary_potato_cannon/stationary_potato_cannon_vertical",
+      "y": 90
+    },
+    "axis_along_first=false,facing=east": {
+      "model": "createmorepotatoes:block/stationary_potato_cannon/stationary_potato_cannon",
+      "y": 270
+    },
+    "axis_along_first=true,facing=east": {
+      "model": "createmorepotatoes:block/stationary_potato_cannon/stationary_potato_cannon_vertical",
+      "y": 270
+    }
+  }
+}

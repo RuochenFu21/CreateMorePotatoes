@@ -1,21 +1,20 @@
 package net.forsteri.createmorepotatoes.entry;
 
-import com.simibubi.create.content.contraptions.relays.encased.ShaftInstance;
 import com.simibubi.create.foundation.data.CreateRegistrate;
 import com.tterrag.registrate.util.entry.BlockEntityEntry;
 import net.forsteri.createmorepotatoes.CreateMorePotatoes;
-import net.forsteri.createmorepotatoes.tileEntity.stationaryPotatoCanon.StationaryPotatoCanonInstance;
-import net.forsteri.createmorepotatoes.tileEntity.stationaryPotatoCanon.StationaryPotatoCanonRenderer;
-import net.forsteri.createmorepotatoes.tileEntity.stationaryPotatoCanon.StationaryPotatoCanonTileEntity;
+import net.forsteri.createmorepotatoes.tileEntity.stationaryPotatoCannon.StationaryPotatoCannonInstance;
+import net.forsteri.createmorepotatoes.tileEntity.stationaryPotatoCannon.StationaryPotatoCannonRenderer;
+import net.forsteri.createmorepotatoes.tileEntity.stationaryPotatoCannon.StationaryPotatoCannonTileEntity;
 
 public class ModTileEntities {
     private static final CreateRegistrate REGISTRATE = CreateMorePotatoes.registrate();
 
-    public static final BlockEntityEntry<StationaryPotatoCanonTileEntity> STATIONARY_POTATO_CANON = REGISTRATE
-            .tileEntity("stationary_potato_canon", StationaryPotatoCanonTileEntity::new)
-            .instance(() -> StationaryPotatoCanonInstance::new)
-            .validBlocks(ModBlocks.STATIONARY_POTATO_CANON)
-            .renderer(() -> StationaryPotatoCanonRenderer::new)
+    public static final BlockEntityEntry<StationaryPotatoCannonTileEntity> STATIONARY_POTATO_CANNON = REGISTRATE
+            .tileEntity("stationary_potato_cannon", StationaryPotatoCannonTileEntity::new)
+            .instance(() -> StationaryPotatoCannonInstance::new)
+            .validBlocks(ModBlocks.STATIONARY_POTATO_CANNON)
+            .renderer(() -> StationaryPotatoCannonRenderer::new)
             .register();
 
     public static void register(){

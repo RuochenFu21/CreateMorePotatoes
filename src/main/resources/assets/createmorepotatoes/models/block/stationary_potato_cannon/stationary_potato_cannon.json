@@ -2,8 +2,8 @@
 	"credit": "Made with Blockbench",
 	"texture_size": [32, 32],
 	"textures": {
-		"particle": "createmorepotatoes:block/stationary_potato_canon",
-		"1_0": "createmorepotatoes:block/stationary_potato_canon"
+		"particle": "createmorepotatoes:block/stationary_potato_cannon",
+		"1_0": "createmorepotatoes:block/stationary_potato_cannon"
 	},
 	"elements": [
 		{
@@ -204,7 +204,7 @@
 	],
 	"groups": [
 		{
-			"name": "stationary_potato_canon",
+			"name": "stationary_potato_cannon",
 			"origin": [8, 8, 8],
 			"color": 0,
 			"children": [

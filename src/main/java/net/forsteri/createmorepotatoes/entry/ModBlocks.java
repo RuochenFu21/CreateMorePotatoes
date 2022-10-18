@@ -7,7 +7,7 @@ import com.simibubi.create.foundation.data.SharedProperties;
 import com.tterrag.registrate.util.entry.BlockEntry;
 import net.forsteri.createmorepotatoes.CreateMorePotatoes;
 import net.forsteri.createmorepotatoes.block.ExplosivePotatoCropBlock;
-import net.forsteri.createmorepotatoes.tileEntity.stationaryPotatoCanon.StationaryPotatoCanonBlock;
+import net.forsteri.createmorepotatoes.tileEntity.stationaryPotatoCannon.StationaryPotatoCannonBlock;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.CreativeModeTab;
@@ -22,7 +22,6 @@ import net.minecraftforge.registries.RegistryObject;
 
 import java.util.function.Supplier;
 
-import static com.simibubi.create.AllMovementBehaviours.movementBehaviour;
 import static com.simibubi.create.foundation.data.ModelGen.customItemModel;
 
 public class ModBlocks {
@@ -52,8 +51,8 @@ public class ModBlocks {
                     () -> ModCreativeModeTab.MORE_POTATOES_TAB
             );
 
-    public static final BlockEntry<StationaryPotatoCanonBlock> STATIONARY_POTATO_CANON =
-            REGISTRATE.block("stationary_potato_canon", StationaryPotatoCanonBlock::new)
+    public static final BlockEntry<StationaryPotatoCannonBlock> STATIONARY_POTATO_CANNON =
+            REGISTRATE.block("stationary_potato_cannon", StationaryPotatoCannonBlock::new)
                     .initialProperties(SharedProperties::softMetal)
                     .properties(BlockBehaviour.Properties::noOcclusion)
                     .blockstate(BlockStateGen.axisBlockProvider(true))
