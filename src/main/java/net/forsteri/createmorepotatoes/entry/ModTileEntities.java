@@ -1,5 +1,6 @@
 package net.forsteri.createmorepotatoes.entry;
 
+import com.simibubi.create.content.contraptions.relays.encased.ShaftInstance;
 import com.simibubi.create.foundation.data.CreateRegistrate;
 import com.tterrag.registrate.util.entry.BlockEntityEntry;
 import net.forsteri.createmorepotatoes.CreateMorePotatoes;
@@ -11,6 +12,7 @@ public class ModTileEntities {
 
     public static final BlockEntityEntry<StationaryPotatoCanonTileEntity> STATIONARY_POTATO_CANON = REGISTRATE
             .tileEntity("stationary_potato_canon", StationaryPotatoCanonTileEntity::new)
+            .instance(() -> ShaftInstance::new)
             .validBlocks(ModBlocks.STATIONARY_POTATO_CANON)
             .renderer(() -> StationaryPotatoCanonRenderer::new)
             .register();
