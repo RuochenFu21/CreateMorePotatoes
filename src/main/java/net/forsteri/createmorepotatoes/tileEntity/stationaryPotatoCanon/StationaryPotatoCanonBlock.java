@@ -24,10 +24,8 @@ import org.jetbrains.annotations.NotNull;
 import java.util.Objects;
 import java.util.Random;
 
-@SuppressWarnings("deprecation")
 public class StationaryPotatoCanonBlock extends DirectionalAxisKineticBlock implements ITE<StationaryPotatoCanonTileEntity> {
 
-    protected int timeOut;
     public StationaryPotatoCanonBlock(Properties properties) {
         super(properties);
     }
@@ -40,28 +38,5 @@ public class StationaryPotatoCanonBlock extends DirectionalAxisKineticBlock impl
     @Override
     public BlockEntityType<? extends StationaryPotatoCanonTileEntity> getTileEntityType() {
         return ModTileEntities.STATIONARY_POTATO_CANON.get();
-    }
-
-    public void neighborChanged(@NotNull BlockState pState, @NotNull Level pLevel, @NotNull BlockPos pPos, @NotNull Block pBlock, @NotNull BlockPos pFromPos, boolean pIsMoving) {
-        CreateMorePotatoes.LOGGER.info("timeout: " + timeOut);
-        CreateMorePotatoes.LOGGER.info("signal: " + pLevel.hasNeighborSignal(pPos));
-        CreateMorePotatoes.LOGGER.info("speed: " + Objects.requireNonNull(this.getTileEntity(pLevel, pPos)).getSpeed());
-        CreateMorePotatoes.LOGGER.info("spinning?: " + (Objects.requireNonNull(this.getTileEntity(pLevel, pPos)).getSpeed() != 0));
-        if (pLevel.hasNeighborSignal(pPos) && (this.timeOut <= 0) && (Objects.requireNonNull(this.getTileEntity(pLevel, pPos)).getSpeed() != 0))
-        {
-            this.shoot(pLevel, pPos);
-            this.timeOut = 10;
-        }
-    }
-
-    public void shoot(Level pLevel, BlockPos pPos){
-        CreateMorePotatoes.LOGGER.info("SHOOTING");
-    }
-
-    @Override
-    public void tick(@NotNull BlockState pState, @NotNull ServerLevel pLevel, @NotNull BlockPos pPos, @NotNull Random pRandom) {
-        super.tick(pState, pLevel, pPos, pRandom);
-        CreateMorePotatoes.LOGGER.info("TICKING");
-        timeOut--;
     }
 }
