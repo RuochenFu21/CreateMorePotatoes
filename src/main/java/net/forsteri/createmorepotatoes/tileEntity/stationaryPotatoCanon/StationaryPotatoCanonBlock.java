@@ -41,8 +41,11 @@ public class StationaryPotatoCanonBlock extends DirectionalAxisKineticBlock impl
     }
 
     public void neighborChanged(@NotNull BlockState pState, @NotNull Level pLevel, @NotNull BlockPos pPos, @NotNull Block pBlock, @NotNull BlockPos pFromPos, boolean pIsMoving) {
-        if (pLevel.hasNeighborSignal(pPos) && this.timeOut == 0) {
+        CreateMorePotatoes.LOGGER.info("NeighborChanged");
+        if (pLevel.hasNeighborSignal(pPos) && this.timeOut <= 0) {
             this.shoot(pLevel, pPos);
+            this.timeOut = 10;
+
         }else{
             timeOut--;
         }
@@ -50,6 +53,5 @@ public class StationaryPotatoCanonBlock extends DirectionalAxisKineticBlock impl
 
     public void shoot(Level pLevel, BlockPos pPos){
         CreateMorePotatoes.LOGGER.info("SHOOTING");
-        this.timeOut = 10;
     }
 }
