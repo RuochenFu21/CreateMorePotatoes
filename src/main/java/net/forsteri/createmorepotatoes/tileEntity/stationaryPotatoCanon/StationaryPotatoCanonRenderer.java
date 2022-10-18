@@ -32,18 +32,21 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.Vec3;
 
 import static com.simibubi.create.content.contraptions.base.DirectionalKineticBlock.FACING;
+import static com.simibubi.create.content.contraptions.base.KineticTileEntityRenderer.getRotationAxisOf;
 
-public class StationaryPotatoCanonRenderer extends SafeTileEntityRenderer<StationaryPotatoCanonTileEntity> {
+public class StationaryPotatoCanonRenderer extends KineticTileEntityRenderer {
     public StationaryPotatoCanonRenderer(BlockEntityRendererProvider.Context context) {
-    }
-
-    protected BlockState getRenderedBlockState(KineticTileEntity te) {
-        return KineticTileEntityRenderer.shaft(KineticTileEntityRenderer.getRotationAxisOf(te));
+        super(context);
     }
 
     @Override
-    protected void renderSafe(StationaryPotatoCanonTileEntity te, float partialTicks, PoseStack ms, MultiBufferSource bufferSource, int light, int overlay) {
-        /* renderItem(te, partialTicks, ms, bufferSource, light, overlay); */
-        FilteringRenderer.renderOnTileEntity(te, partialTicks, ms, bufferSource, light, overlay);
+    protected BlockState getRenderedBlockState(KineticTileEntity te) {
+        return shaft(getRotationAxisOf(te));
     }
+
+
+    /*protected void renderSafe(StationaryPotatoCanonTileEntity te, float partialTicks, PoseStack ms, MultiBufferSource bufferSource, int light, int overlay) {
+        *//* renderItem(te, partialTicks, ms, bufferSource, light, overlay); *//*
+        FilteringRenderer.renderOnTileEntity(te, partialTicks, ms, bufferSource, light, overlay);
+    }*/
 }
