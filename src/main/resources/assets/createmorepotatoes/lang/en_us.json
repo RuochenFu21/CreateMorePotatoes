@@ -6,8 +6,9 @@
   "item.createmorepotatoes.diamond_potato": "Diamond Potato",
   "item.createmorepotatoes.potion_potato": "Potion Potato",
   "item.createmorepotatoes.french_fries": "French Fries",
-  "block.createmorepotatoes.explosive_potato_crop": "Potato",
   "item.createmorepotatoes.creative_potato": "Creative Potato",
+  "block.createmorepotatoes.explosive_potato_crop": "Potato",
+  "block.createmorepotatoes.stationary_potato_canon": "Stationary Potato Canon",
 
   "itemGroup.potionpotatotab":"Create Potion Potatoes",
   "item.createmorepotatoes.potion_potato.effect.empty": "Effectless Potion Potato",
