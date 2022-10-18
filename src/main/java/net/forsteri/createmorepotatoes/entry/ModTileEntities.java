@@ -4,6 +4,7 @@ import com.simibubi.create.content.contraptions.relays.encased.ShaftInstance;
 import com.simibubi.create.foundation.data.CreateRegistrate;
 import com.tterrag.registrate.util.entry.BlockEntityEntry;
 import net.forsteri.createmorepotatoes.CreateMorePotatoes;
+import net.forsteri.createmorepotatoes.tileEntity.stationaryPotatoCanon.StationaryPotatoCanonInstance;
 import net.forsteri.createmorepotatoes.tileEntity.stationaryPotatoCanon.StationaryPotatoCanonRenderer;
 import net.forsteri.createmorepotatoes.tileEntity.stationaryPotatoCanon.StationaryPotatoCanonTileEntity;
 
@@ -12,7 +13,7 @@ public class ModTileEntities {
 
     public static final BlockEntityEntry<StationaryPotatoCanonTileEntity> STATIONARY_POTATO_CANON = REGISTRATE
             .tileEntity("stationary_potato_canon", StationaryPotatoCanonTileEntity::new)
-            /*.instance(() -> ShaftInstance::new)*/
+            .instance(() -> StationaryPotatoCanonInstance::new)
             .validBlocks(ModBlocks.STATIONARY_POTATO_CANON)
             .renderer(() -> StationaryPotatoCanonRenderer::new)
             .register();
