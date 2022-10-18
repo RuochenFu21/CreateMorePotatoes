@@ -20,6 +20,7 @@ import javax.annotation.ParametersAreNonnullByDefault;
 
 @ParametersAreNonnullByDefault
 @MethodsReturnNonnullByDefault
+@SuppressWarnings("deprecation")
 public class StationaryPotatoCannonBlock extends DirectionalAxisKineticBlock implements ITE<StationaryPotatoCannonTileEntity> {
 
     public StationaryPotatoCannonBlock(Properties properties) {
@@ -48,7 +49,7 @@ public class StationaryPotatoCannonBlock extends DirectionalAxisKineticBlock imp
             return InteractionResult.PASS;
         if (worldIn.isClientSide)
             return InteractionResult.SUCCESS;
-        if (PotatoProjectileTypeManager.getTypeForStack(heldByPlayer).isEmpty() || !heldByPlayer.isEmpty()){
+        if (PotatoProjectileTypeManager.getTypeForStack(heldByPlayer).isEmpty() && !heldByPlayer.isEmpty()){
             return InteractionResult.PASS;
         }
 
