@@ -58,7 +58,7 @@ public class StationaryPotatoCanonBlock extends DirectionalAxisKineticBlock impl
         if (AllItems.WRENCH.isIn(heldByPlayer))
             return InteractionResult.PASS;
 
-        if (hit.getDirection() != state.getValue(FACING))
+        if (hit.getDirection() == state.getValue(FACING).getOpposite())
             return InteractionResult.PASS;
         if (worldIn.isClientSide)
             return InteractionResult.SUCCESS;
