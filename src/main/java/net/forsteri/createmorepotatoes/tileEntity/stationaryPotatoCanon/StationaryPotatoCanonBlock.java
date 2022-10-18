@@ -63,7 +63,7 @@ public class StationaryPotatoCanonBlock extends DirectionalAxisKineticBlock impl
             return InteractionResult.PASS;
         if (worldIn.isClientSide)
             return InteractionResult.SUCCESS;
-        if (PotatoProjectileTypeManager.getTypeForStack(heldByPlayer).isEmpty()){
+        if (PotatoProjectileTypeManager.getTypeForStack(heldByPlayer).isEmpty() || !heldByPlayer.isEmpty()){
             return InteractionResult.PASS;
         }
 
