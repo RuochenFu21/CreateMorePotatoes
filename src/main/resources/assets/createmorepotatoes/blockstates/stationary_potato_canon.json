@@ -3,6 +3,8 @@
     "facing=east": { "model": "createmorepotatoes:block/stationary_potato_canon" },
     "facing=south": { "model": "createmorepotatoes:block/stationary_potato_canon", "y": 90 },
     "facing=west": { "model": "createmorepotatoes:block/stationary_potato_canon", "y": 180 },
-    "facing=north": { "model": "createmorepotatoes:block/stationary_potato_canon", "y": 270 }
+    "facing=north": { "model": "createmorepotatoes:block/stationary_potato_canon", "y": 270 },
+    "facing=up": { "model": "createmorepotatoes:block/stationary_potato_canon", "x": 90 },
+    "facing=down": { "model": "createmorepotatoes:block/stationary_potato_canon", "x": 270 }
   }
 }
