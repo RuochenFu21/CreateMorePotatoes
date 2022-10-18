@@ -5,6 +5,7 @@ import com.simibubi.create.content.contraptions.base.DirectionalKineticBlock;
 import com.simibubi.create.content.contraptions.base.KineticBlock;
 import com.simibubi.create.content.contraptions.base.RotatedPillarKineticBlock;
 import com.simibubi.create.content.contraptions.goggles.IHaveGoggleInformation;
+import com.simibubi.create.content.contraptions.relays.gauge.GaugeInstance;
 import com.simibubi.create.foundation.block.ITE;
 import net.forsteri.createmorepotatoes.CreateMorePotatoes;
 import net.forsteri.createmorepotatoes.entry.ModTileEntities;
@@ -20,6 +21,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import org.jetbrains.annotations.NotNull;
 
+import java.util.Objects;
 import java.util.Random;
 
 @SuppressWarnings("deprecation")
@@ -42,7 +44,8 @@ public class StationaryPotatoCanonBlock extends DirectionalAxisKineticBlock impl
 
     public void neighborChanged(@NotNull BlockState pState, @NotNull Level pLevel, @NotNull BlockPos pPos, @NotNull Block pBlock, @NotNull BlockPos pFromPos, boolean pIsMoving) {
         CreateMorePotatoes.LOGGER.info("SHOOTING");
-        if (pLevel.hasNeighborSignal(pPos) && this.timeOut <= 0) {
+        if (pLevel.hasNeighborSignal(pPos) && (this.timeOut <= 0) && (Objects.requireNonNull(this.getTileEntity(pLevel, pPos)).getSpeed() != 0))
+        {
             this.shoot(pLevel, pPos);
             this.timeOut = 10;
         }
