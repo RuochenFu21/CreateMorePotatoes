@@ -60,5 +60,6 @@ public class ModBlocks {
                     .item()
                     .transform(customItemModel())
                     .addLayer(() -> RenderType::cutoutMipped)
+                    .transform(BlockStressDefaults.setImpact(8))
                     .register();
 }
