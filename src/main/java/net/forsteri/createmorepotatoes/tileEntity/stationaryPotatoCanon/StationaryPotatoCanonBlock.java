@@ -7,6 +7,7 @@ import com.simibubi.create.content.contraptions.base.KineticBlock;
 import com.simibubi.create.content.contraptions.base.RotatedPillarKineticBlock;
 import com.simibubi.create.content.contraptions.goggles.IHaveGoggleInformation;
 import com.simibubi.create.content.contraptions.relays.gauge.GaugeInstance;
+import com.simibubi.create.content.curiosities.weapons.PotatoProjectileTypeManager;
 import com.simibubi.create.foundation.block.ITE;
 import net.forsteri.createmorepotatoes.CreateMorePotatoes;
 import net.forsteri.createmorepotatoes.entry.ModTileEntities;
@@ -62,6 +63,9 @@ public class StationaryPotatoCanonBlock extends DirectionalAxisKineticBlock impl
             return InteractionResult.PASS;
         if (worldIn.isClientSide)
             return InteractionResult.SUCCESS;
+        if (PotatoProjectileTypeManager.getTypeForStack(heldByPlayer).isEmpty()){
+            return InteractionResult.PASS;
+        }
 
         withTileEntityDo(worldIn, pos, te -> {
             ItemStack inStationary = te.stack
