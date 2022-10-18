@@ -5,6 +5,7 @@ import com.simibubi.create.content.contraptions.goggles.IHaveGoggleInformation;
 import net.forsteri.createmorepotatoes.CreateMorePotatoes;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntityType;
@@ -18,6 +19,8 @@ import java.util.Objects;
 public class StationaryPotatoCanonTileEntity extends KineticTileEntity{
 
     protected int timeOut;
+
+    public ItemStack stack = ItemStack.EMPTY;
 
     public StationaryPotatoCanonTileEntity(BlockEntityType<?> typeIn, BlockPos pos, BlockState state) {
         super(typeIn, pos, state);
