@@ -12,7 +12,7 @@ public class ModTileEntities {
 
     public static final BlockEntityEntry<StationaryPotatoCanonTileEntity> STATIONARY_POTATO_CANON = REGISTRATE
             .tileEntity("stationary_potato_canon", StationaryPotatoCanonTileEntity::new)
-            /*.instance(() -> ShaftInstance::new)*/
+            .instance(() -> ShaftInstance::new)
             .validBlocks(ModBlocks.STATIONARY_POTATO_CANON)
             .renderer(() -> StationaryPotatoCanonRenderer::new)
             .register();
