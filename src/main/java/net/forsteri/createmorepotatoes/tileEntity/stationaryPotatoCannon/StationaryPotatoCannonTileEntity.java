@@ -52,7 +52,7 @@ public class StationaryPotatoCannonTileEntity extends KineticTileEntity{
         projectile.setPos(getBlockPos().getX(), getBlockPos().getX(), getBlockPos().getX());
         projectile.setItem(stack);
         getLevel().addFreshEntity(projectile);
-        stack.shrink(1);
         timeOut = stack == ItemStack.EMPTY? 0 : PotatoProjectileTypeManager.getTypeForStack(stack).get().getReloadTicks() - 1;
+        stack.shrink(1);
     }
 }
