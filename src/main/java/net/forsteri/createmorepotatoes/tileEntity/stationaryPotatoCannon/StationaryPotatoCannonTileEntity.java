@@ -46,7 +46,9 @@ public class StationaryPotatoCannonTileEntity extends KineticTileEntity{
 
     public void shoot() {
         CreateMorePotatoes.LOGGER.info("SHOOTING");
+        PotatoProjectileEntity projectile = AllEntityTypes.POTATO_PROJECTILE.create(Objects.requireNonNull(getLevel()));
+        assert projectile != null;
+        projectile.setItem(stack);
+        getLevel().addFreshEntity(projectile);
     }
-
-
 }
