@@ -24,6 +24,7 @@ import net.minecraft.world.phys.Vec3;
 
 import java.util.Objects;
 
+@SuppressWarnings("OptionalGetWithoutIsPresent")
 public class StationaryPotatoCannonTileEntity extends KineticTileEntity{
 
     protected int timeOut;
@@ -37,7 +38,7 @@ public class StationaryPotatoCannonTileEntity extends KineticTileEntity{
     @Override
     public void tick() {
         super.tick();
-        if (Objects.requireNonNull(getLevel()).hasNeighborSignal(getBlockPos()) && (this.timeOut <= 0) && (this.getSpeed() != 0))
+        if (Objects.requireNonNull(getLevel()).hasNeighborSignal(getBlockPos()) && (this.timeOut <= 0) && (this.getSpeed() != 0) && (stack != ItemStack.EMPTY))
         {
             this.shoot();
         }
