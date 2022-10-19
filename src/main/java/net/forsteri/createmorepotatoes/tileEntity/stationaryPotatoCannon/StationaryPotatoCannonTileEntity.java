@@ -61,7 +61,7 @@ public class StationaryPotatoCannonTileEntity extends KineticTileEntity{
             case SOUTH -> zMove = 1;
             case NORTH -> zMove = -1;
         }
-        projectile.setPos(getBlockPos().getX()+xMove, getBlockPos().getY()+yMove, getBlockPos().getZ()+zMove);
+        projectile.setPos(getBlockPos().getX()+xMove+0.5, getBlockPos().getY()+yMove+0.5, getBlockPos().getZ()+zMove+0.5);
         projectile.setDeltaMovement(xMove, yMove, zMove);
         getLevel().addFreshEntity(projectile);
         assert PotatoProjectileTypeManager.getTypeForStack(stack).isPresent();
