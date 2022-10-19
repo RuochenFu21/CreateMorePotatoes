@@ -20,6 +20,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.phys.Vec3;
 
 import java.util.Objects;
@@ -48,8 +49,20 @@ public class StationaryPotatoCannonTileEntity extends KineticTileEntity{
         CreateMorePotatoes.LOGGER.info("SHOOTING");
         PotatoProjectileEntity projectile = AllEntityTypes.POTATO_PROJECTILE.create(Objects.requireNonNull(getLevel()));
         assert projectile != null;
-        projectile.setPos(getBlockPos().getX(), getBlockPos().getY(), getBlockPos().getZ());
         projectile.setItem(stack);
+        float xMove = 0;
+        float yMove = 0;
+        float zMove = 0;
+        switch (this.getBlockState().getValue(BlockStateProperties.FACING)){
+            case UP -> yMove = 1;
+            case DOWN -> yMove = -1;
+            case EAST -> xMove = 1;
+            case WEST -> xMove = -1;
+            case SOUTH -> zMove = 1;
+            case NORTH -> zMove = -1;
+        }
+        projectile.setPos(getBlockPos().getX()+xMove, getBlockPos().getY()+yMove, getBlockPos().getZ()+zMove);
+        projectile.setDeltaMovement(xMove, yMove, zMove);
         getLevel().addFreshEntity(projectile);
         assert PotatoProjectileTypeManager.getTypeForStack(stack).isPresent();
         timeOut = (stack == ItemStack.EMPTY)? 0 : PotatoProjectileTypeManager.getTypeForStack(stack).get().getReloadTicks();
