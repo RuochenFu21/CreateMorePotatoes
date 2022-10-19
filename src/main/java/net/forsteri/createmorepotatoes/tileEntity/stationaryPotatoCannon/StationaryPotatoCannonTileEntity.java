@@ -24,7 +24,6 @@ import net.minecraft.world.phys.Vec3;
 
 import java.util.Objects;
 
-@SuppressWarnings("OptionalGetWithoutIsPresent")
 public class StationaryPotatoCannonTileEntity extends KineticTileEntity{
 
     protected int timeOut;
@@ -49,10 +48,14 @@ public class StationaryPotatoCannonTileEntity extends KineticTileEntity{
         CreateMorePotatoes.LOGGER.info("SHOOTING");
         PotatoProjectileEntity projectile = AllEntityTypes.POTATO_PROJECTILE.create(Objects.requireNonNull(getLevel()));
         assert projectile != null;
-        projectile.setPos(getBlockPos().getX(), getBlockPos().getX(), getBlockPos().getX());
+        projectile.setPos(getBlockPos().getX(), getBlockPos().getY(), getBlockPos().getZ());
         projectile.setItem(stack);
         getLevel().addFreshEntity(projectile);
-        timeOut = stack == ItemStack.EMPTY? 0 : PotatoProjectileTypeManager.getTypeForStack(stack).get().getReloadTicks() - 1;
+        assert PotatoProjectileTypeManager.getTypeForStack(stack).isPresent();
+        timeOut = (stack == ItemStack.EMPTY)? 0 : PotatoProjectileTypeManager.getTypeForStack(stack).get().getReloadTicks();
         stack.shrink(1);
+        if (stack.getCount() == 0){
+            stack = ItemStack.EMPTY.copy();
+        }
     }
 }
