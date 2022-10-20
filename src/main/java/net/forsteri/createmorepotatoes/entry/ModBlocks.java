@@ -7,6 +7,7 @@ import com.simibubi.create.foundation.data.SharedProperties;
 import com.tterrag.registrate.util.entry.BlockEntry;
 import net.forsteri.createmorepotatoes.CreateMorePotatoes;
 import net.forsteri.createmorepotatoes.block.ExplosivePotatoCropBlock;
+import net.forsteri.createmorepotatoes.tileEntity.programmableStationaryPotatoCannon.ProgrammableStationaryPotatoCannonBlock;
 import net.forsteri.createmorepotatoes.tileEntity.stationaryPotatoCannon.StationaryPotatoCannonBlock;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.world.item.BlockItem;
@@ -53,6 +54,17 @@ public class ModBlocks {
 
     public static final BlockEntry<StationaryPotatoCannonBlock> STATIONARY_POTATO_CANNON =
             REGISTRATE.block("stationary_potato_cannon", StationaryPotatoCannonBlock::new)
+                    .initialProperties(SharedProperties::softMetal)
+                    .properties(BlockBehaviour.Properties::noOcclusion)
+                    .blockstate(BlockStateGen.axisBlockProvider(true))
+                    .item()
+                    .transform(customItemModel())
+                    .addLayer(() -> RenderType::cutoutMipped)
+                    .transform(BlockStressDefaults.setImpact(8))
+                    .register();
+
+    public static final BlockEntry<ProgrammableStationaryPotatoCannonBlock> PROGRAMMABLE_STATIONARY_POTATO_CANNON_BLOCK =
+            REGISTRATE.block("programmable_stationary_potato_cannon", ProgrammableStationaryPotatoCannonBlock::new)
                     .initialProperties(SharedProperties::softMetal)
                     .properties(BlockBehaviour.Properties::noOcclusion)
                     .blockstate(BlockStateGen.axisBlockProvider(true))
