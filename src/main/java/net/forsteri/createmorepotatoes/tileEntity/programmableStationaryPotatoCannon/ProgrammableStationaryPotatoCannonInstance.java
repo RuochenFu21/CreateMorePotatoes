@@ -20,7 +20,7 @@ public class ProgrammableStationaryPotatoCannonInstance extends KineticTileInsta
     protected RotatingData shaftInstance;
     public ProgrammableStationaryPotatoCannonInstance(MaterialManager modelManager, ProgrammableStationaryPotatoCannonTileEntity tile) {
         super(modelManager, tile);
-        Instancer<RotatingData> shaft = getRotatingMaterial().getModel(AllBlockPartials.SHAFT_HALF, blockState, Direction.DOWN);
+        Instancer<RotatingData> shaft = getRotatingMaterial().getModel(AllBlockPartials.SHAFT_HALF, blockState, Direction.UP);
         shaftInstance = shaft.createInstance();
         shaftInstance.setRotationAxis(Direction.Axis.Y)
                 .setRotationalSpeed(tile.getSpeed())
