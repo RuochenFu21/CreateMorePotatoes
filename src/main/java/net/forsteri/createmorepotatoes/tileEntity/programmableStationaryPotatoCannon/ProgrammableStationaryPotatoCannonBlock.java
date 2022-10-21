@@ -73,6 +73,6 @@ public class ProgrammableStationaryPotatoCannonBlock extends KineticBlock implem
 
     @Override
     public boolean hasShaftTowards(LevelReader world, BlockPos pos, BlockState state, Direction face) {
-        return (face == Direction.DOWN) || (face == Direction.UP);
+        return (face == Direction.UP) || (face == Direction.DOWN);
     }
 }
