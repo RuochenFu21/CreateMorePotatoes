@@ -3,10 +3,7 @@ package net.forsteri.createmorepotatoes;
 import com.mojang.logging.LogUtils;
 import com.simibubi.create.foundation.data.CreateRegistrate;
 import com.tterrag.registrate.util.nullness.NonNullSupplier;
-import net.forsteri.createmorepotatoes.entry.ModBlocks;
-import net.forsteri.createmorepotatoes.entry.ModItems;
-import net.forsteri.createmorepotatoes.entry.ColorHandlers;
-import net.forsteri.createmorepotatoes.entry.ModTileEntities;
+import net.forsteri.createmorepotatoes.entry.*;
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.resources.ResourceLocation;
@@ -36,6 +33,7 @@ public class CreateMorePotatoes
         ModItems.register(eventBus);
         ModBlocks.register(eventBus);
         ModTileEntities.register();
+        ModInstances.init();
 
         eventBus.addListener(this::setup);
         eventBus.addListener(this::clientSetup);
