@@ -36,13 +36,21 @@ public class ProgrammableStationaryPotatoCannonInstance extends KineticTileInsta
                 .setBlockLight(world.getBrightness(LightLayer.BLOCK, pos))
                 .setSkyLight(world.getBrightness(LightLayer.SKY, pos));
 
-        Instancer<ModelData> cannon = mat.getModel(ModBlockPartial.cannon_partial, blockState, Direction.UP);
+        Instancer<ModelData> cannon = mat.getModel(ModBlocks.STATIONARY_POTATO_CANNON.getDefaultState());
         cannonInstance = cannon.createInstance();
         cannonInstance.setBlockLight(world.getBrightness(LightLayer.BLOCK, pos));
+
+        cannonInstance.loadIdentity()
+                .translate(getInstancePosition());
 
     }
     @Override
     protected void remove() {
         shaftInstance.delete();
+    }
+
+    @Override
+    public void updateLight() {
+        relight(getWorldPosition(), cannonInstance);
     }
 }
