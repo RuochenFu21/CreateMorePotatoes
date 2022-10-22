@@ -9,6 +9,7 @@ import net.forsteri.createmorepotatoes.entry.ColorHandlers;
 import net.forsteri.createmorepotatoes.entry.ModTileEntities;
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -58,5 +59,9 @@ public class CreateMorePotatoes
 
     public static CreateRegistrate registrate() {
         return registrate.get();
+    }
+
+    public static ResourceLocation asResource(String path) {
+        return new ResourceLocation(MOD_ID, path);
     }
 }
