@@ -6,6 +6,7 @@ import com.jozufozu.flywheel.api.Material;
 import com.jozufozu.flywheel.api.MaterialManager;
 import com.jozufozu.flywheel.core.Materials;
 import com.jozufozu.flywheel.core.materials.model.ModelData;
+import com.jozufozu.flywheel.core.materials.oriented.OrientedData;
 import com.simibubi.create.AllBlockPartials;
 import com.simibubi.create.AllBlocks;
 import com.simibubi.create.content.contraptions.base.KineticTileEntity;
@@ -22,11 +23,11 @@ import net.minecraft.world.level.block.state.BlockState;
 public class ProgrammableStationaryPotatoCannonInstance extends KineticTileInstance<ProgrammableStationaryPotatoCannonTileEntity> {
 
     protected RotatingData shaftInstance;
-    protected ModelData cannonInstance;
+    protected OrientedData cannonInstance;
     public ProgrammableStationaryPotatoCannonInstance(MaterialManager modelManager, ProgrammableStationaryPotatoCannonTileEntity tile) {
         super(modelManager, tile);
-        Material<ModelData> mat = materialManager.defaultSolid()
-                .material(Materials.TRANSFORMED);
+        Material<OrientedData> mat = materialManager.defaultCutout()
+                .material(Materials.ORIENTED);
         Instancer<RotatingData> shaft = getRotatingMaterial().getModel(AllBlockPartials.SHAFT_HALF, blockState, Direction.UP);
         shaftInstance = shaft.createInstance();
         shaftInstance.setRotationAxis(Direction.Axis.Y)
@@ -36,21 +37,22 @@ public class ProgrammableStationaryPotatoCannonInstance extends KineticTileInsta
                 .setBlockLight(world.getBrightness(LightLayer.BLOCK, pos))
                 .setSkyLight(world.getBrightness(LightLayer.SKY, pos));
 
-        Instancer<ModelData> cannon = mat.getModel(ModBlocks.STATIONARY_POTATO_CANNON.getDefaultState());
+        Instancer<OrientedData> cannon = mat.getModel(ModBlocks.STATIONARY_POTATO_CANNON.getDefaultState());
         cannonInstance = cannon.createInstance();
 
-        cannonInstance.loadIdentity()
-                .translate(getInstancePosition())
-                .setBlockLight(world.getBrightness(LightLayer.BLOCK, pos));
+        cannonInstance.setPosition(getInstancePosition())
+            .setBlockLight(world.getBrightness(LightLayer.BLOCK, pos));
 
     }
     @Override
     protected void remove() {
         shaftInstance.delete();
+        cannonInstance.delete();
     }
 
     @Override
     public void updateLight() {
+        relight(getWorldPosition(), shaftInstance);
         relight(getWorldPosition(), cannonInstance);
     }
 }
