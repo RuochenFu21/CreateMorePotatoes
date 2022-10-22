@@ -38,10 +38,10 @@ public class ProgrammableStationaryPotatoCannonInstance extends KineticTileInsta
 
         Instancer<ModelData> cannon = mat.getModel(ModBlocks.STATIONARY_POTATO_CANNON.getDefaultState());
         cannonInstance = cannon.createInstance();
-        cannonInstance.setBlockLight(world.getBrightness(LightLayer.BLOCK, pos));
 
         cannonInstance.loadIdentity()
-                .translate(getInstancePosition());
+                .translate(getInstancePosition())
+                .setBlockLight(world.getBrightness(LightLayer.BLOCK, pos));
 
     }
     @Override
