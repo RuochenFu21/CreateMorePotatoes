@@ -2,7 +2,9 @@ package net.forsteri.createmorepotatoes.tileEntity.programmableStationaryPotatoC
 
 import com.jozufozu.flywheel.api.InstanceData;
 import com.jozufozu.flywheel.api.Instancer;
+import com.jozufozu.flywheel.api.Material;
 import com.jozufozu.flywheel.api.MaterialManager;
+import com.jozufozu.flywheel.core.Materials;
 import com.jozufozu.flywheel.core.materials.model.ModelData;
 import com.simibubi.create.AllBlockPartials;
 import com.simibubi.create.AllBlocks;
@@ -23,6 +25,8 @@ public class ProgrammableStationaryPotatoCannonInstance extends KineticTileInsta
     protected ModelData cannonInstance;
     public ProgrammableStationaryPotatoCannonInstance(MaterialManager modelManager, ProgrammableStationaryPotatoCannonTileEntity tile) {
         super(modelManager, tile);
+        Material<ModelData> mat = materialManager.defaultSolid()
+                .material(Materials.TRANSFORMED);
         Instancer<RotatingData> shaft = getRotatingMaterial().getModel(AllBlockPartials.SHAFT_HALF, blockState, Direction.UP);
         shaftInstance = shaft.createInstance();
         shaftInstance.setRotationAxis(Direction.Axis.Y)
@@ -32,9 +36,10 @@ public class ProgrammableStationaryPotatoCannonInstance extends KineticTileInsta
                 .setBlockLight(world.getBrightness(LightLayer.BLOCK, pos))
                 .setSkyLight(world.getBrightness(LightLayer.SKY, pos));
 
-        Instancer<ModelData> cannon = getTransformMaterial().getModel(ModBlockPartial.cannon_partial, blockState, Direction.UP);
+        Instancer<ModelData> cannon = mat.getModel(ModBlockPartial.cannon_partial, blockState, Direction.UP);
         cannonInstance = cannon.createInstance();
         cannonInstance.setBlockLight(world.getBrightness(LightLayer.BLOCK, pos));
+
     }
     @Override
     protected void remove() {
