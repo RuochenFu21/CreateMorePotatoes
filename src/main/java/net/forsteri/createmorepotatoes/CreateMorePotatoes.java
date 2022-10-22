@@ -33,7 +33,6 @@ public class CreateMorePotatoes
         ModItems.register(eventBus);
         ModBlocks.register(eventBus);
         ModTileEntities.register();
-        ModInstances.init();
 
         eventBus.addListener(this::setup);
         eventBus.addListener(this::clientSetup);
