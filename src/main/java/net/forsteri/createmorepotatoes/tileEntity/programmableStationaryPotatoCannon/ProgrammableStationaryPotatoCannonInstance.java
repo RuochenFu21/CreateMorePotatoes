@@ -3,6 +3,7 @@ package net.forsteri.createmorepotatoes.tileEntity.programmableStationaryPotatoC
 import com.jozufozu.flywheel.api.InstanceData;
 import com.jozufozu.flywheel.api.Instancer;
 import com.jozufozu.flywheel.api.MaterialManager;
+import com.jozufozu.flywheel.core.materials.model.ModelData;
 import com.simibubi.create.AllBlockPartials;
 import com.simibubi.create.AllBlocks;
 import com.simibubi.create.content.contraptions.base.KineticTileEntity;
@@ -10,6 +11,7 @@ import com.simibubi.create.content.contraptions.base.KineticTileInstance;
 import com.simibubi.create.content.contraptions.base.SingleRotatingInstance;
 import com.simibubi.create.content.contraptions.base.flwdata.RotatingData;
 import com.simibubi.create.content.contraptions.relays.elementary.ShaftBlock;
+import net.forsteri.createmorepotatoes.entry.ModBlockPartial;
 import net.forsteri.createmorepotatoes.entry.ModBlocks;
 import net.minecraft.core.Direction;
 import net.minecraft.world.level.LightLayer;
@@ -18,6 +20,7 @@ import net.minecraft.world.level.block.state.BlockState;
 public class ProgrammableStationaryPotatoCannonInstance extends KineticTileInstance<ProgrammableStationaryPotatoCannonTileEntity> {
 
     protected RotatingData shaftInstance;
+    protected ModelData cannonInstance;
     public ProgrammableStationaryPotatoCannonInstance(MaterialManager modelManager, ProgrammableStationaryPotatoCannonTileEntity tile) {
         super(modelManager, tile);
         Instancer<RotatingData> shaft = getRotatingMaterial().getModel(AllBlockPartials.SHAFT_HALF, blockState, Direction.UP);
@@ -28,6 +31,10 @@ public class ProgrammableStationaryPotatoCannonInstance extends KineticTileInsta
                 .setPosition(getInstancePosition())
                 .setBlockLight(world.getBrightness(LightLayer.BLOCK, pos))
                 .setSkyLight(world.getBrightness(LightLayer.SKY, pos));
+
+        Instancer<ModelData> cannon = getTransformMaterial().getModel(ModBlockPartial.cannon_partial, blockState, Direction.UP);
+        cannonInstance = cannon.createInstance();
+        cannonInstance.setBlockLight(world.getBrightness(LightLayer.BLOCK, pos));
     }
     @Override
     protected void remove() {

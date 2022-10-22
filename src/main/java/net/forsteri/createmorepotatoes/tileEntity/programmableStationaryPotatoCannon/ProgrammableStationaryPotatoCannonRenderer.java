@@ -11,6 +11,7 @@ import com.simibubi.create.foundation.render.CachedBufferer;
 import com.simibubi.create.foundation.render.SuperByteBuffer;
 import com.simibubi.create.foundation.utility.AnimationTickHolder;
 import net.forsteri.createmorepotatoes.CreateMorePotatoes;
+import net.forsteri.createmorepotatoes.entry.ModBlockPartial;
 import net.forsteri.createmorepotatoes.entry.ModBlocks;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
@@ -46,8 +47,7 @@ public class ProgrammableStationaryPotatoCannonRenderer extends KineticTileEntit
         kineticRotationTransform(shaft, te, Direction.Axis.Y, angle, light);
         shaft.renderInto(ms, buffer.getBuffer(RenderType.solid()));
 
-        PartialModel cannon_partial = new PartialModel(CreateMorePotatoes.asResource("block/stationary_potato_cannon/stationary_potato_cannon"));
-        SuperByteBuffer cannon = CachedBufferer.partialFacing(cannon_partial, te.getBlockState(), Direction.UP);
+        SuperByteBuffer cannon = CachedBufferer.partialFacing(ModBlockPartial.cannon_partial, te.getBlockState(), Direction.UP);
         cannon.renderInto(ms, buffer.getBuffer(RenderType.solid()));
     }
 }
