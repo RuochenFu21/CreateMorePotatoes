@@ -27,6 +27,7 @@ public class ProgrammableStationaryPotatoCannonInstance extends KineticTileInsta
     protected ModelData cannonInstance;
     public ProgrammableStationaryPotatoCannonInstance(MaterialManager modelManager, ProgrammableStationaryPotatoCannonTileEntity tile) {
         super(modelManager, tile);
+        /*
 
         Material<ModelData> mat = materialManager.defaultSolid()
                 .material(Materials.TRANSFORMED);
@@ -45,6 +46,7 @@ public class ProgrammableStationaryPotatoCannonInstance extends KineticTileInsta
         cannonInstance.loadIdentity()
                 .translate(getInstancePosition())
                 .setBlockLight(world.getBrightness(LightLayer.BLOCK, pos));
+        */
     }
     @Override
     protected void remove() {
