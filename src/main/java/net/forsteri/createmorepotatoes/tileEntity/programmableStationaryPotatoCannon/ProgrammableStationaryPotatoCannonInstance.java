@@ -4,6 +4,7 @@ import com.jozufozu.flywheel.api.InstanceData;
 import com.jozufozu.flywheel.api.Instancer;
 import com.jozufozu.flywheel.api.Material;
 import com.jozufozu.flywheel.api.MaterialManager;
+import com.jozufozu.flywheel.api.instance.DynamicInstance;
 import com.jozufozu.flywheel.core.Materials;
 import com.jozufozu.flywheel.core.materials.model.ModelData;
 import com.simibubi.create.AllBlockPartials;
@@ -20,7 +21,7 @@ import net.minecraft.core.Direction;
 import net.minecraft.world.level.LightLayer;
 import net.minecraft.world.level.block.state.BlockState;
 
-public class ProgrammableStationaryPotatoCannonInstance extends KineticTileInstance<ProgrammableStationaryPotatoCannonTileEntity> {
+public class ProgrammableStationaryPotatoCannonInstance extends KineticTileInstance<ProgrammableStationaryPotatoCannonTileEntity> implements DynamicInstance {
 
     protected RotatingData shaftInstance;
     protected ModelData cannonInstance;
@@ -55,5 +56,9 @@ public class ProgrammableStationaryPotatoCannonInstance extends KineticTileInsta
     @Override
     public void updateLight() {
         relight(getWorldPosition(), cannonInstance);
+    }
+
+    @Override
+    public void beginFrame() {
     }
 }
