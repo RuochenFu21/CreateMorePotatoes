@@ -22,7 +22,7 @@ public class ModTileEntities {
 
     public static final BlockEntityEntry<ProgrammableStationaryPotatoCannonTileEntity> PROGRAMMABLE_STATIONARY_POTATO_CANNON = REGISTRATE
             .tileEntity("programmable_stationary_potato_cannon", ProgrammableStationaryPotatoCannonTileEntity::new)
-            .instance(() -> ProgrammableStationaryPotatoCannonInstance::new)
+            .instance(() -> ProgrammableStationaryPotatoCannonInstance::new, false)
             .validBlocks(ModBlocks.PROGRAMMABLE_STATIONARY_POTATO_CANNON_BLOCK)
             .renderer(() -> ProgrammableStationaryPotatoCannonRenderer::new)
             .register();
