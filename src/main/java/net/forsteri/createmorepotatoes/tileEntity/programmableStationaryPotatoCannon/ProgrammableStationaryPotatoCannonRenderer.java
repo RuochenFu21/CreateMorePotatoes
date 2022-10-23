@@ -47,7 +47,8 @@ public class ProgrammableStationaryPotatoCannonRenderer extends KineticTileEntit
         kineticRotationTransform(shaft, te, Direction.Axis.Y, angle, light);
         shaft.renderInto(ms, buffer.getBuffer(RenderType.solid()));
 
-        SuperByteBuffer cannon = CachedBufferer.partialFacing(ModBlockPartial.cannon_partial, te.getBlockState(), Direction.UP);
-        cannon.renderInto(ms, buffer.getBuffer(RenderType.solid()));
+        CreateMorePotatoes.LOGGER.info("Renderer Rendering!");
+        SuperByteBuffer cannon = CachedBufferer.partialFacing(ModBlockPartial.cannon_partial, te.getBlockState());
+        cannon.renderInto(ms, buffer.getBuffer(RenderType.cutoutMipped()));
     }
 }
