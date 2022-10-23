@@ -13,6 +13,7 @@ import com.simibubi.create.content.contraptions.base.KineticTileInstance;
 import com.simibubi.create.content.contraptions.base.SingleRotatingInstance;
 import com.simibubi.create.content.contraptions.base.flwdata.RotatingData;
 import com.simibubi.create.content.contraptions.relays.elementary.ShaftBlock;
+import net.forsteri.createmorepotatoes.CreateMorePotatoes;
 import net.forsteri.createmorepotatoes.entry.ModBlockPartial;
 import net.forsteri.createmorepotatoes.entry.ModBlocks;
 import net.minecraft.core.Direction;
@@ -42,6 +43,8 @@ public class ProgrammableStationaryPotatoCannonInstance extends KineticTileInsta
         cannonInstance.loadIdentity()
                 .translate(getInstancePosition())
                 .setBlockLight(world.getBrightness(LightLayer.BLOCK, pos));
+
+        CreateMorePotatoes.LOGGER.info("Instancing");
 
     }
     @Override
