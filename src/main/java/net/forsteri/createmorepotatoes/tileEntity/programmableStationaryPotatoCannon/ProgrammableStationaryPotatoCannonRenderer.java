@@ -28,7 +28,6 @@ public class ProgrammableStationaryPotatoCannonRenderer extends KineticTileEntit
 
     @Override
     protected void renderSafe(KineticTileEntity te, float partialTicks, PoseStack ms, MultiBufferSource buffer, int light, int overlay) {
-        /*
         SuperByteBuffer shaft = CachedBufferer.partialFacing(AllBlockPartials.SHAFT_HALF, te.getBlockState(), Direction.UP);
         float offset = getRotationOffsetForPosition(te, te.getBlockPos(), Direction.Axis.Y);
         float angle = (AnimationTickHolder.getRenderTime(te.getLevel()) * te.getSpeed() * 3f / 10) % 360;
@@ -51,6 +50,5 @@ public class ProgrammableStationaryPotatoCannonRenderer extends KineticTileEntit
         CreateMorePotatoes.LOGGER.info("Renderer Rendering!");
         SuperByteBuffer cannon = CachedBufferer.partialFacing(ModBlockPartial.cannon_partial, te.getBlockState());
         cannon.renderInto(ms, buffer.getBuffer(RenderType.cutoutMipped()));
-        */
     }
 }
