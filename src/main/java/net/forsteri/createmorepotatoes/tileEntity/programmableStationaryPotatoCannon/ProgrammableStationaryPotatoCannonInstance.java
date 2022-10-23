@@ -59,5 +59,6 @@ public class ProgrammableStationaryPotatoCannonInstance extends KineticTileInsta
 
     @Override
     public void beginFrame() {
+        CreateMorePotatoes.LOGGER.info("Instancing");
     }
 }
