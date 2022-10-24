@@ -26,7 +26,6 @@ public class ProgrammableStationaryPotatoCannonTileEntity extends KineticTileEnt
     @Override
     public void tick() {
         super.tick();
-        CreateMorePotatoes.LOGGER.info("TICKING");
         if (Objects.requireNonNull(getLevel()).hasNeighborSignal(getBlockPos()) && (this.timeOut <= 0) && (this.getSpeed() != 0) && (stack != ItemStack.EMPTY))
         {
             this.shoot();
@@ -35,7 +34,6 @@ public class ProgrammableStationaryPotatoCannonTileEntity extends KineticTileEnt
     }
 
     public void shoot() {
-        CreateMorePotatoes.LOGGER.info("SHOOTING");
         PotatoProjectileEntity projectile = AllEntityTypes.POTATO_PROJECTILE.create(Objects.requireNonNull(getLevel()));
         assert projectile != null;
         projectile.setItem(stack);
