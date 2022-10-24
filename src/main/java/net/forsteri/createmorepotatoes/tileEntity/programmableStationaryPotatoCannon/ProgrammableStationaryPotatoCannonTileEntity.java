@@ -26,6 +26,7 @@ public class ProgrammableStationaryPotatoCannonTileEntity extends KineticTileEnt
     @Override
     public void tick() {
         super.tick();
+        CreateMorePotatoes.LOGGER.info("TICKING");
         if (Objects.requireNonNull(getLevel()).hasNeighborSignal(getBlockPos()) && (this.timeOut <= 0) && (this.getSpeed() != 0) && (stack != ItemStack.EMPTY))
         {
             this.shoot();
