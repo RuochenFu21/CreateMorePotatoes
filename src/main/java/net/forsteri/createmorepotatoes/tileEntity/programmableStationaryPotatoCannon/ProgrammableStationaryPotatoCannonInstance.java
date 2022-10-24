@@ -49,6 +49,7 @@ public class ProgrammableStationaryPotatoCannonInstance extends KineticTileInsta
     @Override
     protected void remove() {
         shaftInstance.delete();
+        cannonInstance.delete();
     }
 
     @Override
