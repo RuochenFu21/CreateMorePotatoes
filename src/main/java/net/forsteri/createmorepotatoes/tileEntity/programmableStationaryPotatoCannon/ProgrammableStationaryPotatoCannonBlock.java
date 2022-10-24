@@ -22,9 +22,10 @@ import net.minecraft.world.phys.BlockHitResult;
 
 import javax.annotation.ParametersAreNonnullByDefault;
 
+@SuppressWarnings("deprecation")
 @ParametersAreNonnullByDefault
 @MethodsReturnNonnullByDefault
-public class ProgrammableStationaryPotatoCannonBlock extends KineticBlock implements ITE<StationaryPotatoCannonTileEntity> {
+public class ProgrammableStationaryPotatoCannonBlock extends KineticBlock implements ITE<ProgrammableStationaryPotatoCannonTileEntity> {
     public ProgrammableStationaryPotatoCannonBlock(Properties properties) {
         super(properties);
     }
@@ -35,13 +36,13 @@ public class ProgrammableStationaryPotatoCannonBlock extends KineticBlock implem
     }
 
     @Override
-    public Class<StationaryPotatoCannonTileEntity> getTileEntityClass() {
-        return StationaryPotatoCannonTileEntity.class;
+    public Class<ProgrammableStationaryPotatoCannonTileEntity> getTileEntityClass() {
+        return ProgrammableStationaryPotatoCannonTileEntity.class;
     }
 
     @Override
-    public BlockEntityType<? extends StationaryPotatoCannonTileEntity> getTileEntityType() {
-        return ModTileEntities.STATIONARY_POTATO_CANNON.get();
+    public BlockEntityType<? extends ProgrammableStationaryPotatoCannonTileEntity> getTileEntityType() {
+        return ModTileEntities.PROGRAMMABLE_STATIONARY_POTATO_CANNON.get();
     }
 
     @Override
