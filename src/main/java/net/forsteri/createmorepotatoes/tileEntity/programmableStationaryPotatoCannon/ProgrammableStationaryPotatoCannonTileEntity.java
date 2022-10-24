@@ -6,12 +6,17 @@ import com.simibubi.create.content.curiosities.weapons.PotatoProjectileEntity;
 import com.simibubi.create.content.curiosities.weapons.PotatoProjectileTypeManager;
 import net.forsteri.createmorepotatoes.CreateMorePotatoes;
 import net.minecraft.core.BlockPos;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.ai.targeting.TargetingConditions;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
+import net.minecraft.world.phys.AABB;
 
+import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 public class ProgrammableStationaryPotatoCannonTileEntity extends KineticTileEntity {
 
@@ -34,6 +39,20 @@ public class ProgrammableStationaryPotatoCannonTileEntity extends KineticTileEnt
     }
 
     public void shoot() {
+        LivingEntity nearestEntity = getLevel().getNearestEntity(
+                getLevel().getEntities(
+                        null, new AABB(
+                                getBlockPos().getX()+256,
+                                getBlockPos().getY()+256,
+                                getBlockPos().getZ()+256,
+                                getBlockPos().getX()-256,
+                                getBlockPos().getY()-256,
+                                getBlockPos().getZ()-256
+                        )
+                ).stream().map(entity -> (LivingEntity) entity).collect(Collectors.toList()), TargetingConditions.forNonCombat().range(16.0D).ignoreInvisibilityTesting(), null, getBlockPos().getX(), getBlockPos().getY(), getBlockPos().getZ()
+        );
+
+        CreateMorePotatoes.LOGGER.info("nearest entity name: " + (nearestEntity != null ? nearestEntity.getName() : "null"));
         PotatoProjectileEntity projectile = AllEntityTypes.POTATO_PROJECTILE.create(Objects.requireNonNull(getLevel()));
         assert projectile != null;
         projectile.setItem(stack);
