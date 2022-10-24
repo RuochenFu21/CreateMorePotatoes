@@ -39,7 +39,7 @@ public class ProgrammableStationaryPotatoCannonTileEntity extends KineticTileEnt
     }
 
     public void shoot() {
-        LivingEntity nearestEntity = getLevel().getNearestEntity(
+        LivingEntity nearestEntity = Objects.requireNonNull(getLevel()).getNearestEntity(
                 getLevel().getEntities(
                         null, new AABB(
                                 getBlockPos().getX()+256,
@@ -59,15 +59,6 @@ public class ProgrammableStationaryPotatoCannonTileEntity extends KineticTileEnt
         float xMove = 0;
         float yMove = 0;
         float zMove = 0;
-        switch (this.getBlockState().getValue(BlockStateProperties.FACING)){
-            case UP -> yMove = 1;
-            case DOWN -> yMove = -1;
-            case EAST -> xMove = 1;
-            case WEST -> xMove = -1;
-            case SOUTH -> zMove = 1;
-            case NORTH -> zMove = -1;
-            default -> {}
-        }
         projectile.setPos(getBlockPos().getX()+xMove+0.5, getBlockPos().getY()+yMove+0.5, getBlockPos().getZ()+zMove+0.5);
         projectile.setDeltaMovement(xMove * 2 , yMove * 2, zMove * 2);
         getLevel().addFreshEntity(projectile);
