@@ -49,7 +49,7 @@ public class ProgrammableStationaryPotatoCannonTileEntity extends KineticTileEnt
                                 getBlockPos().getY()-256,
                                 getBlockPos().getZ()-256
                         )
-                ).stream().map(entity -> (LivingEntity) entity).collect(Collectors.toList()), TargetingConditions.forNonCombat().range(16.0D).ignoreInvisibilityTesting(), null, getBlockPos().getX(), getBlockPos().getY(), getBlockPos().getZ()
+                ).stream().filter(entity -> entity instanceof LivingEntity).map(entity -> (LivingEntity) entity).collect(Collectors.toList()), TargetingConditions.forNonCombat().range(16.0D).ignoreInvisibilityTesting(), null, getBlockPos().getX(), getBlockPos().getY(), getBlockPos().getZ()
         );
 
         CreateMorePotatoes.LOGGER.info("nearest entity name: " + (nearestEntity != null ? nearestEntity.getName() : "null"));
