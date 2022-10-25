@@ -50,7 +50,7 @@ public class ProgrammableStationaryPotatoCannonInstance extends SingleRotatingIn
 
     @Override
     public void beginFrame() {
-        cannonInstance.rotateCentered(Direction.SOUTH, 1);
+        cannonInstance.rotateCentered(Direction.UP, 1);
     }
     @Override
     protected BlockState getRenderedBlockState() {
