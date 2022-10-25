@@ -33,7 +33,6 @@ public class ProgrammableStationaryPotatoCannonInstance extends SingleRotatingIn
                 .translate(getInstancePosition())
                 .setBlockLight(world.getBrightness(LightLayer.BLOCK, pos));
 
-        cannonInstance.rotateCentered(Direction.SOUTH, (float) (Math.PI/4));
     }
     @Override
     public void remove() {
