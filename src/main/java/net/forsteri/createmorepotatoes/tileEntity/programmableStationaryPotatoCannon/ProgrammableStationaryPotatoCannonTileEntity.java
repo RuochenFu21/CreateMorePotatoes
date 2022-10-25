@@ -16,6 +16,7 @@ import net.minecraft.world.phys.AABB;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
+@SuppressWarnings("OptionalGetWithoutIsPresent")
 public class ProgrammableStationaryPotatoCannonTileEntity extends KineticTileEntity {
 
     protected int timeOut;
@@ -77,7 +78,15 @@ public class ProgrammableStationaryPotatoCannonTileEntity extends KineticTileEnt
         );
 
         assert nearestEntity != null;
-        this.phi = Math.atan2(nearestEntity.getX()-getBlockPos().getX()-0.5, nearestEntity.getZ()-getBlockPos().getZ()-0.5) + Math.PI;
+        double g = ((stack == ItemStack.EMPTY) ? 1.2 : PotatoProjectileTypeManager.getTypeForStack(stack).get().getGravityMultiplier());
+        double v = ((stack == ItemStack.EMPTY) ? 9 : PotatoProjectileTypeManager.getTypeForStack(stack).get().getVelocityMultiplier() * 10);
+        double x = nearestEntity.getX()-getBlockPos().getX()-0.5;
+        double y = nearestEntity.getZ()-getBlockPos().getZ()-0.5;
+        this.phi = Math.atan2(x, y) + Math.PI;
+        this.theta = Math.atan2(
+                v*v - Math.sqrt(v*v*v*v-g*(g*x*x+2*y*v*v)),
+                g*x
+        );
     }
 
     public double getPhi() {
