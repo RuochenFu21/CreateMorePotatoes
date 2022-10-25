@@ -54,7 +54,7 @@ public class ProgrammableStationaryPotatoCannonTileEntity extends KineticTileEnt
         );
 
         assert nearestEntity != null;
-        theta = Math.atan2(nearestEntity.getX()-getBlockPos().getX(), nearestEntity.getY()-getBlockPos().getY());
+        theta = Math.atan2(nearestEntity.getX()-getBlockPos().getX(), nearestEntity.getY()-getBlockPos().getY()) * 180 / Math.PI;
 
         CreateMorePotatoes.LOGGER.info("theta: " + theta);
         PotatoProjectileEntity projectile = AllEntityTypes.POTATO_PROJECTILE.create(Objects.requireNonNull(getLevel()));
