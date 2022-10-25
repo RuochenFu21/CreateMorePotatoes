@@ -96,6 +96,6 @@ public class ProgrammableStationaryPotatoCannonTileEntity extends KineticTileEnt
         );
 
         assert nearestEntity != null;
-        this.theta = Math.atan2(nearestEntity.getX()-getBlockPos().getX(), nearestEntity.getZ()-getBlockPos().getZ()) * 180 / Math.PI;
+        this.theta = Math.atan2(nearestEntity.getX()-getBlockPos().getX()-0.5, nearestEntity.getZ()-getBlockPos().getZ()-0.5) * 180 / Math.PI;
     }
 }
