@@ -20,7 +20,7 @@ public class ProgrammableStationaryPotatoCannonInstance extends SingleRotatingIn
 
     protected ProgrammableStationaryPotatoCannonTileEntity tileEntity;
 
-//    protected float theta_now = 0;
+    protected float theta_now = 0;
     public ProgrammableStationaryPotatoCannonInstance(MaterialManager modelManager, ProgrammableStationaryPotatoCannonTileEntity tile) {
         super(modelManager, tile);
         this.tileEntity = tile;
@@ -50,9 +50,8 @@ public class ProgrammableStationaryPotatoCannonInstance extends SingleRotatingIn
     @Override
     public void beginFrame() {
         float theta = (float) tileEntity.getTheta();
-        cannonInstance.rotateToFace(Direction.SOUTH);
-        cannonInstance.rotateCentered(Direction.UP, theta);
-//        theta_now = theta;
+        cannonInstance.rotateCentered(Direction.UP, theta-theta_now);
+        theta_now = theta;
     }
     @Override
     protected BlockState getRenderedBlockState() {
