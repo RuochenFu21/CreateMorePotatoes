@@ -21,7 +21,7 @@ public class ProgrammableStationaryPotatoCannonTileEntity extends KineticTileEnt
 
     protected int timeOut;
     protected double phi = 0;
-    protected double theta = Math.PI/4;
+    protected double theta = 0;
 
     public ItemStack stack = ItemStack.EMPTY;
 
