@@ -32,17 +32,14 @@ public class ProgrammableStationaryPotatoCannonTileEntity extends KineticTileEnt
     @Override
     public void tick() {
         super.tick();
-        if (Objects.requireNonNull(getLevel()).hasNeighborSignal(getBlockPos()) && (this.timeOut <= 0) && (this.getSpeed() != 0) && (stack != ItemStack.EMPTY))
+        if (Objects.requireNonNull(getLevel()).hasNeighborSignal(getBlockPos()) && (this.timeOut <= 0) && (this.getSpeed() != 0))
         {
-            this.shoot();
+            this.calculateTheta();
+            if(stack != ItemStack.EMPTY){
+                this.shoot();
+            }
         }
         timeOut--;
-        CreateMorePotatoes.LOGGER.info(
-                ""+
-                        "this.timeOut = " + this.timeOut+
-                        "this.getSpeed() = " + this.getSpeed() +
-                        "this.stack" + this.stack +
-                        "this.getTheta = " + theta);
     }
 
     public void shoot() {
@@ -82,5 +79,23 @@ public class ProgrammableStationaryPotatoCannonTileEntity extends KineticTileEnt
 
     public double getTheta() {
         return this.theta;
+    }
+
+    protected void calculateTheta(){
+        LivingEntity nearestEntity = Objects.requireNonNull(getLevel()).getNearestEntity(
+                getLevel().getEntities(
+                        null, new AABB(
+                                getBlockPos().getX()+256,
+                                getBlockPos().getY()+256,
+                                getBlockPos().getZ()+256,
+                                getBlockPos().getX()-256,
+                                getBlockPos().getY()-256,
+                                getBlockPos().getZ()-256
+                        )
+                ).stream().filter(entity -> entity instanceof LivingEntity).map(entity -> (LivingEntity) entity).collect(Collectors.toList()), TargetingConditions.forNonCombat().range(16.0D).ignoreInvisibilityTesting(), null, getBlockPos().getX(), getBlockPos().getY(), getBlockPos().getZ()
+        );
+
+        assert nearestEntity != null;
+        this.theta = Math.atan2(nearestEntity.getX()-getBlockPos().getX(), nearestEntity.getY()-getBlockPos().getY()) * 180 / Math.PI;
     }
 }
