@@ -32,12 +32,13 @@ public class ProgrammableStationaryPotatoCannonTileEntity extends KineticTileEnt
     @Override
     public void tick() {
         super.tick();
-        if (Objects.requireNonNull(getLevel()).hasNeighborSignal(getBlockPos()) && (this.timeOut <= 0) && (this.getSpeed() != 0))
+        if(level != null && level.isClientSide){
+            this.calculateTheta();
+        }
+        if (Objects.requireNonNull(getLevel()).hasNeighborSignal(getBlockPos()) && (this.timeOut <= 0) && (this.getSpeed() != 0) && (stack != ItemStack.EMPTY))
         {
             this.calculateTheta();
-            if(stack != ItemStack.EMPTY){
-                this.shoot();
-            }
+            this.shoot();
         }
         timeOut--;
     }
