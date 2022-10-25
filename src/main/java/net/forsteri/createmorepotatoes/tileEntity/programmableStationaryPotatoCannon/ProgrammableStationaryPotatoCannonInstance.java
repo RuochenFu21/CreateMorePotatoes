@@ -52,9 +52,9 @@ public class ProgrammableStationaryPotatoCannonInstance extends SingleRotatingIn
 
     @Override
     public void beginFrame() {
-        cannonInstance.rotateCentered(Direction.UP, (float) -theta_now);
-        CreateMorePotatoes.LOGGER.info("framing! theta now:" + theta_now + ". theta we got: ((ProgrammableStationaryPotatoCannonTileEntity) blockEntity).theta");
-        cannonInstance.rotateCentered(Direction.UP, (float) ((ProgrammableStationaryPotatoCannonTileEntity) blockEntity).theta);
+        cannonInstance.rotateCentered(Direction.UP, (float) (((float) ((ProgrammableStationaryPotatoCannonTileEntity) blockEntity).theta)-theta_now));
+        CreateMorePotatoes.LOGGER.info("framing! theta now:" + theta_now + ". theta we got: " + ((ProgrammableStationaryPotatoCannonTileEntity) blockEntity).theta);
+//        cannonInstance.rotateCentered(Direction.UP, (float) ((ProgrammableStationaryPotatoCannonTileEntity) blockEntity).theta);
         theta_now = ((ProgrammableStationaryPotatoCannonTileEntity) blockEntity).theta;
     }
     @Override
