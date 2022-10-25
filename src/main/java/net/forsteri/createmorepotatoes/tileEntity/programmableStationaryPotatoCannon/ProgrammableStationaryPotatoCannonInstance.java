@@ -50,6 +50,7 @@ public class ProgrammableStationaryPotatoCannonInstance extends SingleRotatingIn
 
     @Override
     public void beginFrame() {
+        cannonInstance.rotate(45, Direction.Axis.Y);
     }
     @Override
     protected BlockState getRenderedBlockState() {
