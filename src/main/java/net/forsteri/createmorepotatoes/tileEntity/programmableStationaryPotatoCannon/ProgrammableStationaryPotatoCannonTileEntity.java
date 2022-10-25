@@ -87,7 +87,7 @@ public class ProgrammableStationaryPotatoCannonTileEntity extends KineticTileEnt
 
         this.phi = Math.atan2(x, z) + Math.PI;
         this.theta = Math.atan2(
-                v*v - Math.sqrt(v*v*v*v-g*(g*r*r+2*z*v*v)),
+                v*v - Math.sqrt(v*v*v*v-g*(g*r*r+2*y*v*v)),
                 g*r
         );
     }
