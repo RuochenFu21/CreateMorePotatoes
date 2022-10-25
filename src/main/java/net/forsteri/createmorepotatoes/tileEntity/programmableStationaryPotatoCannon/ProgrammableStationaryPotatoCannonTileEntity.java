@@ -21,6 +21,7 @@ import java.util.stream.Collectors;
 public class ProgrammableStationaryPotatoCannonTileEntity extends KineticTileEntity {
 
     protected int timeOut;
+    public double theta = 0;
 
     public ItemStack stack = ItemStack.EMPTY;
 
@@ -52,7 +53,10 @@ public class ProgrammableStationaryPotatoCannonTileEntity extends KineticTileEnt
                 ).stream().filter(entity -> entity instanceof LivingEntity).map(entity -> (LivingEntity) entity).collect(Collectors.toList()), TargetingConditions.forNonCombat().range(16.0D).ignoreInvisibilityTesting(), null, getBlockPos().getX(), getBlockPos().getY(), getBlockPos().getZ()
         );
 
-        CreateMorePotatoes.LOGGER.info("nearest entity name: " + (nearestEntity != null ? nearestEntity.getName() : "null"));
+        assert nearestEntity != null;
+        theta = Math.atan2(nearestEntity.getX()-getBlockPos().getX(), nearestEntity.getY()-getBlockPos().getY());
+
+        CreateMorePotatoes.LOGGER.info("nearest entity name: " + nearestEntity.getName());
         PotatoProjectileEntity projectile = AllEntityTypes.POTATO_PROJECTILE.create(Objects.requireNonNull(getLevel()));
         assert projectile != null;
         projectile.setItem(stack);

@@ -23,6 +23,8 @@ import net.minecraft.world.level.block.state.BlockState;
 
 public class ProgrammableStationaryPotatoCannonInstance extends SingleRotatingInstance implements DynamicInstance {
     protected ModelData cannonInstance;
+
+    protected double theta_now = 0;
     public ProgrammableStationaryPotatoCannonInstance(MaterialManager modelManager, ProgrammableStationaryPotatoCannonTileEntity tile) {
         super(modelManager, tile);
 
@@ -50,7 +52,9 @@ public class ProgrammableStationaryPotatoCannonInstance extends SingleRotatingIn
 
     @Override
     public void beginFrame() {
-        cannonInstance.rotateCentered(Direction.UP, 1);
+        cannonInstance.rotateCentered(Direction.UP, (float) -theta_now);
+        cannonInstance.rotateCentered(Direction.UP, (float) ((ProgrammableStationaryPotatoCannonTileEntity) blockEntity).theta);
+        theta_now = ((ProgrammableStationaryPotatoCannonTileEntity) blockEntity).theta;
     }
     @Override
     protected BlockState getRenderedBlockState() {
