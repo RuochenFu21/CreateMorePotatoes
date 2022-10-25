@@ -21,23 +21,13 @@ import net.minecraft.core.Direction;
 import net.minecraft.world.level.LightLayer;
 import net.minecraft.world.level.block.state.BlockState;
 
-public class ProgrammableStationaryPotatoCannonInstance extends KineticTileInstance<ProgrammableStationaryPotatoCannonTileEntity> implements DynamicInstance {
-
-    protected RotatingData shaftInstance;
+public class ProgrammableStationaryPotatoCannonInstance extends SingleRotatingInstance implements DynamicInstance {
     protected ModelData cannonInstance;
     public ProgrammableStationaryPotatoCannonInstance(MaterialManager modelManager, ProgrammableStationaryPotatoCannonTileEntity tile) {
         super(modelManager, tile);
 
         Material<ModelData> mat = materialManager.defaultSolid()
                 .material(Materials.TRANSFORMED);
-        Instancer<RotatingData> shaft = getRotatingMaterial().getModel(AllBlockPartials.SHAFT_HALF, blockState, Direction.UP);
-        shaftInstance = shaft.createInstance();
-        shaftInstance.setRotationAxis(Direction.Axis.Y)
-                .setRotationalSpeed(tile.getSpeed())
-                .setRotationOffset(getRotationOffset(axis)).setColor(tile)
-                .setPosition(getInstancePosition())
-                .setBlockLight(world.getBrightness(LightLayer.BLOCK, pos))
-                .setSkyLight(world.getBrightness(LightLayer.SKY, pos));
 
         Instancer<ModelData> cannon = mat.getModel(ModBlocks.STATIONARY_POTATO_CANNON.getDefaultState());
         cannonInstance = cannon.createInstance();
@@ -47,17 +37,22 @@ public class ProgrammableStationaryPotatoCannonInstance extends KineticTileInsta
                 .setBlockLight(world.getBrightness(LightLayer.BLOCK, pos));
     }
     @Override
-    protected void remove() {
-        shaftInstance.delete();
+    public void remove() {
+        super.remove();
         cannonInstance.delete();
     }
 
     @Override
     public void updateLight() {
+        super.updateLight();
         relight(getWorldPosition(), cannonInstance);
     }
 
     @Override
     public void beginFrame() {
+    }
+    @Override
+    protected BlockState getRenderedBlockState() {
+        return shaft();
     }
 }
