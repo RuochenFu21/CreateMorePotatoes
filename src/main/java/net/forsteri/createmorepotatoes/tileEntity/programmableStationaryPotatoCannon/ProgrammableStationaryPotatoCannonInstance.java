@@ -49,7 +49,7 @@ public class ProgrammableStationaryPotatoCannonInstance extends SingleRotatingIn
 
     @Override
     public void beginFrame() {
-        double theta = tileEntity.theta;
+        double theta = tileEntity.getTheta();
         cannonInstance.rotateCentered(Direction.UP, (float) ((float) theta-theta_now));
         CreateMorePotatoes.LOGGER.info("framing! theta now:" + theta_now + ". theta we got: " + theta);
 //        cannonInstance.rotateCentered(Direction.UP, (float) ((ProgrammableStationaryPotatoCannonTileEntity) blockEntity).theta);

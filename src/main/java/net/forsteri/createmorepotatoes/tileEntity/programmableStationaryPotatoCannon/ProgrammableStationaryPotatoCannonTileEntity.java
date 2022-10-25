@@ -21,7 +21,7 @@ import java.util.stream.Collectors;
 public class ProgrammableStationaryPotatoCannonTileEntity extends KineticTileEntity {
 
     protected int timeOut;
-    public double theta = 0;
+    protected double theta = 0;
 
     public ItemStack stack = ItemStack.EMPTY;
 
@@ -72,5 +72,9 @@ public class ProgrammableStationaryPotatoCannonTileEntity extends KineticTileEnt
         if (stack.getCount() == 0){
             stack = ItemStack.EMPTY.copy();
         }
+    }
+
+    public double getTheta() {
+        return theta;
     }
 }
