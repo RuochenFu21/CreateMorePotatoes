@@ -34,13 +34,18 @@ public class ProgrammableStationaryPotatoCannonTileEntity extends KineticTileEnt
         super.tick();
         if (Objects.requireNonNull(getLevel()).hasNeighborSignal(getBlockPos()) && (this.timeOut <= 0) && (this.getSpeed() != 0) && (stack != ItemStack.EMPTY))
         {
-            theta = this.shoot();
+            this.shoot();
         }
         timeOut--;
-        CreateMorePotatoes.LOGGER.info("this.getTheta = " + theta);
+        CreateMorePotatoes.LOGGER.info(
+                ""+
+                        "this.timeOut = " + this.timeOut+
+                        "this.getSpeed() = " + this.getSpeed() +
+                        "this.stack" + this.stack +
+                        "this.getTheta = " + theta);
     }
 
-    public double shoot() {
+    public void shoot() {
         LivingEntity nearestEntity = Objects.requireNonNull(getLevel()).getNearestEntity(
                 getLevel().getEntities(
                         null, new AABB(
@@ -73,7 +78,6 @@ public class ProgrammableStationaryPotatoCannonTileEntity extends KineticTileEnt
         if (stack.getCount() == 0){
             stack = ItemStack.EMPTY.copy();
         }
-        return Math.atan2(nearestEntity.getX()-getBlockPos().getX(), nearestEntity.getY()-getBlockPos().getY()) * 180 / Math.PI;
     }
 
     public double getTheta() {

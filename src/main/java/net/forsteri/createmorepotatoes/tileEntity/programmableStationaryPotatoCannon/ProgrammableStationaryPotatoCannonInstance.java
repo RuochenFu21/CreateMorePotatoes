@@ -53,8 +53,6 @@ public class ProgrammableStationaryPotatoCannonInstance extends SingleRotatingIn
                 ((ProgrammableStationaryPotatoCannonTileEntity) Objects.requireNonNull(world.getBlockEntity(getWorldPosition())))
         ).getTheta();
         cannonInstance.rotateCentered(Direction.UP, (float) ((float) theta-theta_now));
-        CreateMorePotatoes.LOGGER.info("this tileEntity == got tile entity?:" +
-                (((ProgrammableStationaryPotatoCannonTileEntity) world.getBlockEntity(getWorldPosition())) == tileEntity));
 //        cannonInstance.rotateCentered(Direction.UP, (float) ((ProgrammableStationaryPotatoCannonTileEntity) blockEntity).theta);
         theta_now = theta;
     }
