@@ -37,7 +37,7 @@ public class ProgrammableStationaryPotatoCannonTileEntity extends KineticTileEnt
             theta = this.shoot();
         }
         timeOut--;
-        CreateMorePotatoes.LOGGER.info("this.getTheta = " + this.getTheta());
+        CreateMorePotatoes.LOGGER.info("this.getTheta = " + theta);
     }
 
     public double shoot() {
