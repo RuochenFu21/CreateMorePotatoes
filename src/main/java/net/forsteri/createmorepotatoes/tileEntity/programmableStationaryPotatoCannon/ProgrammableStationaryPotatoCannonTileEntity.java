@@ -11,16 +11,15 @@ import net.minecraft.world.entity.ai.targeting.TargetingConditions;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.phys.AABB;
 
-import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
 public class ProgrammableStationaryPotatoCannonTileEntity extends KineticTileEntity {
 
     protected int timeOut;
+    protected double phi = 0;
     protected double theta = 0;
 
     public ItemStack stack = ItemStack.EMPTY;
@@ -33,34 +32,19 @@ public class ProgrammableStationaryPotatoCannonTileEntity extends KineticTileEnt
     public void tick() {
         super.tick();
         if(level != null && level.isClientSide){
-            this.calculateTheta();
+            this.calculateDimensions();
         }
         if (Objects.requireNonNull(getLevel()).hasNeighborSignal(getBlockPos()) && (this.timeOut <= 0) && (this.getSpeed() != 0) && (stack != ItemStack.EMPTY))
         {
-            this.calculateTheta();
+            this.calculateDimensions();
             this.shoot();
         }
         timeOut--;
     }
 
     public void shoot() {
-        LivingEntity nearestEntity = Objects.requireNonNull(getLevel()).getNearestEntity(
-                getLevel().getEntities(
-                        null, new AABB(
-                                getBlockPos().getX()+256,
-                                getBlockPos().getY()+256,
-                                getBlockPos().getZ()+256,
-                                getBlockPos().getX()-256,
-                                getBlockPos().getY()-256,
-                                getBlockPos().getZ()-256
-                        )
-                ).stream().filter(entity -> entity instanceof LivingEntity).map(entity -> (LivingEntity) entity).collect(Collectors.toList()), TargetingConditions.forNonCombat().range(16.0D).ignoreInvisibilityTesting(), null, getBlockPos().getX(), getBlockPos().getY(), getBlockPos().getZ()
-        );
 
-        assert nearestEntity != null;
-        this.theta = Math.atan2(nearestEntity.getX()-getBlockPos().getX(), nearestEntity.getY()-getBlockPos().getY()) * 180 / Math.PI;
-
-        CreateMorePotatoes.LOGGER.info("theta: " + this.getTheta());
+        CreateMorePotatoes.LOGGER.info("theta: " + this.getPhi());
         PotatoProjectileEntity projectile = AllEntityTypes.POTATO_PROJECTILE.create(Objects.requireNonNull(getLevel()));
         assert projectile != null;
         projectile.setItem(stack);
@@ -78,11 +62,7 @@ public class ProgrammableStationaryPotatoCannonTileEntity extends KineticTileEnt
         }
     }
 
-    public double getTheta() {
-        return this.theta;
-    }
-
-    protected void calculateTheta(){
+    protected void calculateDimensions(){
         LivingEntity nearestEntity = Objects.requireNonNull(getLevel()).getNearestEntity(
                 getLevel().getEntities(
                         null, new AABB(
@@ -97,6 +77,14 @@ public class ProgrammableStationaryPotatoCannonTileEntity extends KineticTileEnt
         );
 
         assert nearestEntity != null;
-        this.theta = Math.atan2(nearestEntity.getX()-getBlockPos().getX()-0.5, nearestEntity.getZ()-getBlockPos().getZ()-0.5) + Math.PI;
+        this.phi = Math.atan2(nearestEntity.getX()-getBlockPos().getX()-0.5, nearestEntity.getZ()-getBlockPos().getZ()-0.5) + Math.PI;
+    }
+
+    public double getPhi() {
+        return this.phi;
+    }
+
+    public double getTheta() {
+        return this.theta;
     }
 }

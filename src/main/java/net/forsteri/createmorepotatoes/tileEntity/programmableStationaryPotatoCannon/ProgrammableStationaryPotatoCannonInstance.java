@@ -7,20 +7,17 @@ import com.jozufozu.flywheel.api.instance.DynamicInstance;
 import com.jozufozu.flywheel.core.Materials;
 import com.jozufozu.flywheel.core.materials.model.ModelData;
 import com.simibubi.create.content.contraptions.base.SingleRotatingInstance;
-import net.forsteri.createmorepotatoes.CreateMorePotatoes;
 import net.forsteri.createmorepotatoes.entry.ModBlocks;
 import net.minecraft.core.Direction;
 import net.minecraft.world.level.LightLayer;
 import net.minecraft.world.level.block.state.BlockState;
-
-import java.util.Objects;
 
 public class ProgrammableStationaryPotatoCannonInstance extends SingleRotatingInstance implements DynamicInstance {
     protected ModelData cannonInstance;
 
     protected ProgrammableStationaryPotatoCannonTileEntity tileEntity;
 
-    protected float theta_now = 0;
+    protected float phiLastRender = 0;
     public ProgrammableStationaryPotatoCannonInstance(MaterialManager modelManager, ProgrammableStationaryPotatoCannonTileEntity tile) {
         super(modelManager, tile);
         this.tileEntity = tile;
@@ -51,9 +48,9 @@ public class ProgrammableStationaryPotatoCannonInstance extends SingleRotatingIn
 
     @Override
     public void beginFrame() {
-        float theta = (float) tileEntity.getTheta();
-        cannonInstance.rotateCentered(Direction.UP, theta-theta_now);
-        theta_now = theta;
+        float theta = (float) tileEntity.getPhi();
+        cannonInstance.rotateCentered(Direction.UP, theta- phiLastRender);
+        phiLastRender = theta;
     }
     @Override
     protected BlockState getRenderedBlockState() {
