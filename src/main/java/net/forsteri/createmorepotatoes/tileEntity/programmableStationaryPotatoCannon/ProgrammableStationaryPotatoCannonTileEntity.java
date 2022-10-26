@@ -37,9 +37,8 @@ public class ProgrammableStationaryPotatoCannonTileEntity extends KineticTileEnt
         }
         if (Objects.requireNonNull(getLevel()).hasNeighborSignal(getBlockPos()) && (this.timeOut <= 0) && (this.getSpeed() != 0) && (stack != ItemStack.EMPTY))
         {
-            if (this.calculateDimensions()){
-                this.shoot();
-            }
+            this.calculateDimensions();
+            this.shoot();
         }
         timeOut--;
     }
@@ -64,7 +63,7 @@ public class ProgrammableStationaryPotatoCannonTileEntity extends KineticTileEnt
         }
     }
 
-    protected boolean calculateDimensions(){
+    protected void calculateDimensions(){
         LivingEntity nearestEntity = Objects.requireNonNull(getLevel()).getNearestEntity(
                 getLevel().getEntities(
                         null, new AABB(
@@ -79,7 +78,7 @@ public class ProgrammableStationaryPotatoCannonTileEntity extends KineticTileEnt
         );
 
         if(nearestEntity == null){
-            return false;
+            return;
         }
 
         double entityX = nearestEntity.getX();
@@ -98,7 +97,6 @@ public class ProgrammableStationaryPotatoCannonTileEntity extends KineticTileEnt
                 g*r
         );
 
-        return true;
     }
 
     public double getPhi() {
