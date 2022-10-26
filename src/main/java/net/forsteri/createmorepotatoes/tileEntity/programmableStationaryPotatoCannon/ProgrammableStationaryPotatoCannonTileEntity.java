@@ -48,9 +48,9 @@ public class ProgrammableStationaryPotatoCannonTileEntity extends KineticTileEnt
         PotatoProjectileEntity projectile = AllEntityTypes.POTATO_PROJECTILE.create(Objects.requireNonNull(getLevel()));
         assert projectile != null;
         projectile.setItem(stack);
-        float xMove = (float) Math.cos(theta);
+        float xMove = (float) Math.sin(theta);
         float yMove = (float)  (1.0 - Math.cos(phi));
-        float zMove = (float) Math.sin(theta);
+        float zMove = (float) Math.cos(theta);
         projectile.setPos(getBlockPos().getX()+xMove+0.5, getBlockPos().getY()+yMove+0.5, getBlockPos().getZ()+zMove+0.5);
         projectile.setDeltaMovement(xMove , yMove, zMove);
         getLevel().addFreshEntity(projectile);
