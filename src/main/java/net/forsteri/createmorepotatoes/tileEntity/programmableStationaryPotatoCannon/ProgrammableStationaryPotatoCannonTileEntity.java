@@ -49,7 +49,7 @@ public class ProgrammableStationaryPotatoCannonTileEntity extends KineticTileEnt
         PotatoProjectileEntity projectile = AllEntityTypes.POTATO_PROJECTILE.create(Objects.requireNonNull(getLevel()));
         assert projectile != null;
         projectile.setItem(stack);
-        Vec3 facing = new Vec3(0, 0, -1).yRot((float) phi)/* .xRot((float) theta) */;
+        Vec3 facing = new Vec3(0, 0, -v).yRot((float) phi)/* .xRot((float) theta) */;
         float xMove = (float) facing.x;
         float yMove = (float) facing.y;
         float zMove = (float) facing.z;
@@ -87,7 +87,7 @@ public class ProgrammableStationaryPotatoCannonTileEntity extends KineticTileEnt
         entityY = (nearestEntity.getEyeY()+nearestEntity.getY())/2;
         entityZ = nearestEntity.getZ();
         g = ((stack == ItemStack.EMPTY) ? 1.2 : PotatoProjectileTypeManager.getTypeForStack(stack).get().getGravityMultiplier());
-        v = ((stack == ItemStack.EMPTY) ? 9 : PotatoProjectileTypeManager.getTypeForStack(stack).get().getVelocityMultiplier() * 10);
+        v = ((stack == ItemStack.EMPTY) ? 9 : PotatoProjectileTypeManager.getTypeForStack(stack).get().getVelocityMultiplier());
         x = entityX-getBlockPos().getX()-.5;
         y = entityY-getBlockPos().getY()-.5;
         z = entityZ-getBlockPos().getZ()-.5;
