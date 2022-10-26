@@ -45,7 +45,6 @@ public class ProgrammableStationaryPotatoCannonTileEntity extends KineticTileEnt
     }
 
     public void shoot() {
-        CreateMorePotatoes.LOGGER.info("theta: " + this.getPhi());
         PotatoProjectileEntity projectile = AllEntityTypes.POTATO_PROJECTILE.create(Objects.requireNonNull(getLevel()));
         assert projectile != null;
         projectile.setItem(stack);
@@ -99,6 +98,8 @@ public class ProgrammableStationaryPotatoCannonTileEntity extends KineticTileEnt
                 v*v - Math.sqrt(v*v*v*v-g*(g*r*r+2*y*v*v)),
                 g*r
         );
+
+        CreateMorePotatoes.LOGGER.info("" + g + " " + v + " " + x + " " + y + " " + z + " " + r + " " + (nearestEntity == null));
 
     }
 
