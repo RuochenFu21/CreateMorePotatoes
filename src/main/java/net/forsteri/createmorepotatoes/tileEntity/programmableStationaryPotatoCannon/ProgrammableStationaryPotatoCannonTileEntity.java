@@ -68,12 +68,12 @@ public class ProgrammableStationaryPotatoCannonTileEntity extends KineticTileEnt
         nearestEntity = Objects.requireNonNull(getLevel()).getNearestEntity(
                 getLevel().getEntities(
                         null, new AABB(
-                                getBlockPos().getX()+256,
+                                getBlockPos().getX()+128,
                                 getBlockPos().getY()+256,
-                                getBlockPos().getZ()+256,
-                                getBlockPos().getX()-256,
+                                getBlockPos().getZ()+128,
+                                getBlockPos().getX()-128,
                                 getBlockPos().getY()-256,
-                                getBlockPos().getZ()-256
+                                getBlockPos().getZ()-128
                         )
                 ).stream().filter(entity -> entity instanceof LivingEntity).map(entity -> (LivingEntity) entity).collect(Collectors.toList()), TargetingConditions.forNonCombat().range(16.0D).ignoreInvisibilityTesting(), null, getBlockPos().getX(), getBlockPos().getY(), getBlockPos().getZ()
         );
