@@ -95,7 +95,6 @@ public class ProgrammableStationaryPotatoCannonTileEntity extends KineticTileEnt
                 g*r
         );
 
-        this.theta = Math.PI/8;
         return true;
     }
 
