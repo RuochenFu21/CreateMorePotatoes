@@ -44,16 +44,15 @@ public class ProgrammableStationaryPotatoCannonTileEntity extends KineticTileEnt
     }
 
     public void shoot() {
-
         CreateMorePotatoes.LOGGER.info("theta: " + this.getPhi());
         PotatoProjectileEntity projectile = AllEntityTypes.POTATO_PROJECTILE.create(Objects.requireNonNull(getLevel()));
         assert projectile != null;
         projectile.setItem(stack);
-        float xMove = 0;
-        float yMove = 0;
-        float zMove = 0;
+        float xMove = (float) Math.cos(theta);
+        float yMove = (float)  (1.0 - Math.cos(phi));
+        float zMove = (float) Math.sin(theta);
         projectile.setPos(getBlockPos().getX()+xMove+0.5, getBlockPos().getY()+yMove+0.5, getBlockPos().getZ()+zMove+0.5);
-        projectile.setDeltaMovement(xMove * 2 , yMove * 2, zMove * 2);
+        projectile.setDeltaMovement(xMove , yMove, zMove);
         getLevel().addFreshEntity(projectile);
         assert PotatoProjectileTypeManager.getTypeForStack(stack).isPresent();
         timeOut = (stack == ItemStack.EMPTY)? 0 : PotatoProjectileTypeManager.getTypeForStack(stack).get().getReloadTicks() /2;
@@ -64,7 +63,7 @@ public class ProgrammableStationaryPotatoCannonTileEntity extends KineticTileEnt
     }
 
     protected void calculateDimensions(){
-        LivingEntity nearestEntity = Objects.requireNonNull(getLevel()).getNearestEntity(
+        nearestEntity = Objects.requireNonNull(getLevel()).getNearestEntity(
                 getLevel().getEntities(
                         null, new AABB(
                                 getBlockPos().getX()+256,
@@ -81,15 +80,15 @@ public class ProgrammableStationaryPotatoCannonTileEntity extends KineticTileEnt
             return;
         }
 
-        double entityX = nearestEntity.getX();
-        double entityY = (nearestEntity.getEyeY()+nearestEntity.getY())/2;
-        double entityZ = nearestEntity.getZ();
-        double g = ((stack == ItemStack.EMPTY) ? 1.2 : PotatoProjectileTypeManager.getTypeForStack(stack).get().getGravityMultiplier());
-        double v = ((stack == ItemStack.EMPTY) ? 9 : PotatoProjectileTypeManager.getTypeForStack(stack).get().getVelocityMultiplier() * 10);
-        double x = entityX-getBlockPos().getX()-.5;
-        double y = entityY-getBlockPos().getY()-.5;
-        double z = entityZ-getBlockPos().getZ()-.5;
-        double r = Math.sqrt(x*x+z*z);
+        entityX = nearestEntity.getX();
+        entityY = (nearestEntity.getEyeY()+nearestEntity.getY())/2;
+        entityZ = nearestEntity.getZ();
+        g = ((stack == ItemStack.EMPTY) ? 1.2 : PotatoProjectileTypeManager.getTypeForStack(stack).get().getGravityMultiplier());
+        v = ((stack == ItemStack.EMPTY) ? 9 : PotatoProjectileTypeManager.getTypeForStack(stack).get().getVelocityMultiplier() * 10);
+        x = entityX-getBlockPos().getX()-.5;
+        y = entityY-getBlockPos().getY()-.5;
+        z = entityZ-getBlockPos().getZ()-.5;
+        r = Math.sqrt(x*x+z*z);
 
         this.phi = Math.atan2(x, z) + Math.PI;
         this.theta = Math.atan2(
@@ -106,4 +105,15 @@ public class ProgrammableStationaryPotatoCannonTileEntity extends KineticTileEnt
     public double getTheta() {
         return this.theta;
     }
+
+    protected LivingEntity nearestEntity;
+    protected double entityX;
+    protected double entityY;
+    protected double entityZ;
+    protected double g;
+    protected double v;
+    protected double x;
+    protected double y;
+    protected double z;
+    protected double r;
 }
