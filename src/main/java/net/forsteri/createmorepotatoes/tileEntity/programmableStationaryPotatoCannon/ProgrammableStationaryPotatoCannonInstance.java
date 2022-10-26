@@ -51,12 +51,11 @@ public class ProgrammableStationaryPotatoCannonInstance extends SingleRotatingIn
         float phi = (float) tileEntity.getPhi();
         float theta = (float) tileEntity.getTheta();
 
-        cannonInstance.rotateCentered(Direction.UP, -phiLastRender);
         cannonInstance.rotateCentered(Direction.EAST, -thetaLastRender);
+        cannonInstance.rotateCentered(Direction.UP, -phiLastRender);
 
-        cannonInstance.rotateCentered(Direction.EAST, theta);
         cannonInstance.rotateCentered(Direction.UP, phi);
-
+        cannonInstance.rotateCentered(Direction.EAST, theta);
 
 
         phiLastRender = phi;
