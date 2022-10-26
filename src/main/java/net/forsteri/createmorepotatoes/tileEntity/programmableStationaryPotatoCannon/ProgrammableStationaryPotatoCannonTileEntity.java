@@ -12,6 +12,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.AABB;
+import net.minecraft.world.phys.Vec3;
 
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -48,9 +49,10 @@ public class ProgrammableStationaryPotatoCannonTileEntity extends KineticTileEnt
         PotatoProjectileEntity projectile = AllEntityTypes.POTATO_PROJECTILE.create(Objects.requireNonNull(getLevel()));
         assert projectile != null;
         projectile.setItem(stack);
-        float xMove = (float) Math.sin(theta);
-        float yMove = (float)  (1.0 - Math.cos(phi));
-        float zMove = (float) Math.cos(theta);
+        Vec3 vec3 = new Vec3(getBlockPos().getX(), getBlockPos().getY(), getBlockPos().getZ()).yRot((float) phi).xRot((float) theta);
+        float xMove = (float) vec3.x;
+        float yMove = (float) vec3.y;
+        float zMove = (float) vec3.z;
         projectile.setPos(getBlockPos().getX()+xMove+0.5, getBlockPos().getY()+yMove+0.5, getBlockPos().getZ()+zMove+0.5);
         projectile.setDeltaMovement(xMove , yMove, zMove);
         getLevel().addFreshEntity(projectile);
@@ -60,6 +62,7 @@ public class ProgrammableStationaryPotatoCannonTileEntity extends KineticTileEnt
         if (stack.getCount() == 0){
             stack = ItemStack.EMPTY.copy();
         }
+
     }
 
     protected void calculateDimensions(){
