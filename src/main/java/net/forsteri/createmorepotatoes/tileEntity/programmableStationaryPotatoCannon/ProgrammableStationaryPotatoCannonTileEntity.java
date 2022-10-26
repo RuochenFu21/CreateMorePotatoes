@@ -84,9 +84,9 @@ public class ProgrammableStationaryPotatoCannonTileEntity extends KineticTileEnt
 
         double g = ((stack == ItemStack.EMPTY) ? 1.2 : PotatoProjectileTypeManager.getTypeForStack(stack).get().getGravityMultiplier());
         double v = ((stack == ItemStack.EMPTY) ? 9 : PotatoProjectileTypeManager.getTypeForStack(stack).get().getVelocityMultiplier() * 10);
-        double x = nearestEntity.getX()-getBlockPos().getX()+.5;
-        double y = nearestEntity.getY()-getBlockPos().getY()+.5;
-        double z = nearestEntity.getZ()-getBlockPos().getZ()+.5;
+        double x = nearestEntity.getX()-getBlockPos().getX()-.5;
+        double y = nearestEntity.getY()-getBlockPos().getY()-.5;
+        double z = nearestEntity.getZ()-getBlockPos().getZ()-.5;
         double r = Math.sqrt(x*x+z*z);
 
         this.phi = Math.atan2(x, z) + Math.PI;
