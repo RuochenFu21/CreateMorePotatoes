@@ -37,8 +37,9 @@ public class ProgrammableStationaryPotatoCannonTileEntity extends KineticTileEnt
         }
         if (Objects.requireNonNull(getLevel()).hasNeighborSignal(getBlockPos()) && (this.timeOut <= 0) && (this.getSpeed() != 0) && (stack != ItemStack.EMPTY))
         {
-            this.calculateDimensions();
-            this.shoot();
+            if (this.calculateDimensions()){
+                this.shoot();
+            }
         }
         timeOut--;
     }
@@ -63,7 +64,7 @@ public class ProgrammableStationaryPotatoCannonTileEntity extends KineticTileEnt
         }
     }
 
-    protected void calculateDimensions(){
+    protected boolean calculateDimensions(){
         LivingEntity nearestEntity = Objects.requireNonNull(getLevel()).getNearestEntity(
                 getLevel().getEntities(
                         null, new AABB(
@@ -77,7 +78,10 @@ public class ProgrammableStationaryPotatoCannonTileEntity extends KineticTileEnt
                 ).stream().filter(entity -> entity instanceof LivingEntity).map(entity -> (LivingEntity) entity).collect(Collectors.toList()), TargetingConditions.forNonCombat().range(16.0D).ignoreInvisibilityTesting(), null, getBlockPos().getX(), getBlockPos().getY(), getBlockPos().getZ()
         );
 
-        assert nearestEntity != null;
+        if(nearestEntity == null){
+            return false;
+        }
+
         double g = ((stack == ItemStack.EMPTY) ? 1.2 : PotatoProjectileTypeManager.getTypeForStack(stack).get().getGravityMultiplier());
         double v = ((stack == ItemStack.EMPTY) ? 9 : PotatoProjectileTypeManager.getTypeForStack(stack).get().getVelocityMultiplier() * 10);
         double x = nearestEntity.getX()-getBlockPos().getX()-0.5;
@@ -90,6 +94,7 @@ public class ProgrammableStationaryPotatoCannonTileEntity extends KineticTileEnt
                 v*v - Math.sqrt(v*v*v*v-g*(g*r*r+2*y*v*v)),
                 g*r
         );
+        return true;
     }
 
     public double getPhi() {
