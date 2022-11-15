@@ -1,13 +1,17 @@
 package net.forsteri.createmorepotatoes.mixin;
 
+import com.mojang.logging.LogUtils;
 import com.simibubi.create.content.curiosities.weapons.PotatoProjectileEntity;
 import net.forsteri.createmorepotatoes.entry.ModItems;
 import net.forsteri.createmorepotatoes.item.ExplosivePotionPotatoItem;
 import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.entity.AreaEffectCloud;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.projectile.AbstractHurtingProjectile;
 import net.minecraft.world.item.ItemStack;
+
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.alchemy.PotionUtils;
 import net.minecraft.world.level.Explosion;
@@ -20,10 +24,17 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
+
+import java.util.Objects;
+
 @Mixin(PotatoProjectileEntity.class)
 public abstract class EffectHandler extends AbstractHurtingProjectile {
 
     @Shadow protected ItemStack stack;
+
+    @Shadow protected Entity stuckEntity;
+
+    @Shadow protected double stuckFallSpeed;
 
     protected EffectHandler(EntityType<? extends AbstractHurtingProjectile> p_36833_, Level p_36834_) {
         super(p_36833_, p_36834_);
