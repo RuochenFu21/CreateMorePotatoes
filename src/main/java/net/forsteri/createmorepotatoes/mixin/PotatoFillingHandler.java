@@ -21,9 +21,9 @@ public class PotatoFillingHandler {
 
     @Inject(
             at = @At(value = "HEAD"),
-            method = "fillItem(Lnet/minecraft/world/level/Level;ILnet/minecraft/world/item/ItemStack;Lnet/minecraftforge/fluids/FluidStack)Lnet/minecraft/world/item/ItemStack;"
-    )
-    public static void fillItem(Level world, int requiredAmount, ItemStack stack, FluidStack availableFluid,  CallbackInfoReturnable<ItemStack> info){
+            method = "fillItem(Lnet/minecraft/world/level/Level;ILnet/minecraft/world/item/ItemStack;Lnet/minecraftforge/fluids/FluidStack;)Lnet/minecraft/world/item/ItemStack;",
+            cancellable = true)
+    private static void fillItem(Level world, int requiredAmount, ItemStack stack, FluidStack availableFluid, CallbackInfoReturnable<ItemStack> info){
         if (stack.getItem() == Items.POTATO && availableFluid.copy().getFluid().isSame(AllFluids.POTION.get())) {
             ItemStack fillBottle = ItemStack.EMPTY;
             Fluid fluid = availableFluid.copy().getFluid();
