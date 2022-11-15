@@ -5,7 +5,8 @@
   "mixins": [
   ],
   "client": [
-    "EffectHandler"
+    "EffectHandler",
+    "PotatoFillingHandler"
   ],
   "minVersion": "0.8"
 }
