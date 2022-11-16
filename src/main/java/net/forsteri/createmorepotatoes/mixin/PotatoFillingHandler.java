@@ -17,7 +17,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(GenericItemFilling.class)
-public class PotatoFillingHandler {
+public abstract class PotatoFillingHandler {
 
     @Inject(at = @At(value = "HEAD"), method = "Lcom/simibubi/create/content/contraptions/fluids/actors/GenericItemFilling;fillItem(Lnet/minecraft/world/level/Level;ILnet/minecraft/world/item/ItemStack;Lnet/minecraftforge/fluids/FluidStack;)Lnet/minecraft/world/item/ItemStack;", cancellable = true)
     private static void fillItem(Level world, int requiredAmount, ItemStack stack, FluidStack availableFluid, CallbackInfoReturnable<ItemStack> info){
