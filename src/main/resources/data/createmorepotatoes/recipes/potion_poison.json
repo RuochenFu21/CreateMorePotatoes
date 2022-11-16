@@ -7,7 +7,7 @@
     {
       "fluid": "create:potion",
       "nbt": {
-        "Potion": "minecraft:blindness"
+        "Potion": "minecraft:poison"
       },
       "amount": 1000
     }
@@ -16,7 +16,7 @@
     {
       "item": "createmorepotatoes:potion_potato",
       "nbt": {
-        "Potion": "minecraft:blindness"
+        "Potion": "minecraft:poison"
       }
     }
   ]

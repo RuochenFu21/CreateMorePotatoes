@@ -1,0 +1,23 @@
+{
+  "type": "create:filling",
+  "ingredients": [
+    {
+      "item": "minecraft:potato"
+    },
+    {
+      "fluid": "create:potion",
+      "nbt": {
+        "Potion": "minecraft:slow_falling"
+      },
+      "amount": 1000
+    }
+  ],
+  "results": [
+    {
+      "item": "createmorepotatoes:potion_potato",
+      "nbt": {
+        "Potion": "minecraft:slow_falling"
+      }
+    }
+  ]
+}

@@ -7,7 +7,7 @@
     {
       "fluid": "create:potion",
       "nbt": {
-        "Potion": "minecraft:bad_omen"
+        "Potion": "minecraft:slowness"
       },
       "amount": 1000
     }
@@ -16,7 +16,7 @@
     {
       "item": "createmorepotatoes:potion_potato",
       "nbt": {
-        "Potion": "minecraft:bad_omen"
+        "Potion": "minecraft:slowness"
       }
     }
   ]

@@ -7,7 +7,7 @@
     {
       "fluid": "create:potion",
       "nbt": {
-        "Potion": "minecraft:absorption"
+        "Potion": "minecraft:jump_boost"
       },
       "amount": 1000
     }
@@ -16,7 +16,7 @@
     {
       "item": "createmorepotatoes:potion_potato",
       "nbt": {
-        "Potion": "minecraft:absorption"
+        "Potion": "minecraft:jump_boost"
       }
     }
   ]
