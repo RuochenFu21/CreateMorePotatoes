@@ -32,12 +32,14 @@ public class ModBlocks {
     public static final RegistryObject<Block> EXPLOSIVE_POTATO_CROP = BLOCKS.register("explosive_potato_crop",
             () -> new ExplosivePotatoCropBlock(BlockBehaviour.Properties.copy(Blocks.POTATOES).noOcclusion()));
 
+    @SuppressWarnings("unused")
     private static <T extends Block> RegistryObject<T> registryBlock(String name, Supplier<T> block, CreativeModeTab tab){
         RegistryObject<T> toReturn = BLOCKS.register(name, block);
         registerBlockItem(name, toReturn, tab);
         return toReturn;
     }
 
+    @SuppressWarnings("UnusedReturnValue")
     private static <T extends Block>RegistryObject<Item> registerBlockItem(String name, RegistryObject<T> block, CreativeModeTab tab) {
         return ModItems.ITEMS.register(name, () -> new BlockItem(block.get(), new Item.Properties().tab(tab)));
     }
@@ -64,7 +66,7 @@ public class ModBlocks {
                     .register();
 
     public static final BlockEntry<ProgrammableStationaryPotatoCannonBlock> PROGRAMMABLE_STATIONARY_POTATO_CANNON_BLOCK =
-            REGISTRATE.block("programmable_stationary_potato_cannon", ProgrammableStationaryPotatoCannonBlock::new)
+            REGISTRATE.block("aiming_stationary_potato_cannon", ProgrammableStationaryPotatoCannonBlock::new)
                     .initialProperties(SharedProperties::softMetal)
                     .properties(BlockBehaviour.Properties::noOcclusion)
                     .blockstate(BlockStateGen.axisBlockProvider(true))
