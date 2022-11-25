@@ -4,7 +4,6 @@ import com.simibubi.create.content.curiosities.weapons.PotatoProjectileEntity;
 import net.forsteri.createmorepotatoes.entry.ModItems;
 import net.forsteri.createmorepotatoes.item.ExplosivePotionPotatoItem;
 import net.minecraft.world.effect.MobEffectInstance;
-import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.projectile.AbstractHurtingProjectile;
@@ -25,10 +24,6 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public abstract class EffectHandler extends AbstractHurtingProjectile {
 
     @Shadow protected ItemStack stack;
-
-    @Shadow protected Entity stuckEntity;
-
-    @Shadow protected double stuckFallSpeed;
 
     protected EffectHandler(EntityType<? extends AbstractHurtingProjectile> p_36833_, Level p_36834_) {
         super(p_36833_, p_36834_);
@@ -76,7 +71,7 @@ public abstract class EffectHandler extends AbstractHurtingProjectile {
             derp.finalizeExplosion(true);
         }
         if (stack.is(ModItems.FLAME_POTATO.get())){
-            level.explode(null, getX(), getY(), getZ(), 1, Explosion.BlockInteraction.NONE);
+            level.explode(null, getX(), getY(), getZ(), 1, true, Explosion.BlockInteraction.NONE);
         }
 
     }
