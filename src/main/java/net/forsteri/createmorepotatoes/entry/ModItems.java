@@ -10,6 +10,7 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 
+@SuppressWarnings("unused")
 public class ModItems {
     public static final DeferredRegister<Item> ITEMS =
             DeferredRegister.create(ForgeRegistries.ITEMS, CreateMorePotatoes.MOD_ID);
@@ -40,6 +41,8 @@ public class ModItems {
     public static final RegistryObject<Item> EXPLOSIVE_POTION_POTATO = ITEMS.register("explosive_potion_potato",
             ExplosivePotionPotatoItem::new);
 
+    public static final RegistryObject<Item> FLAME_POTATO = ITEMS.register("flame_potato",
+            () -> new Item(new Item.Properties().tab(ModCreativeModeTab.MORE_POTATOES_TAB)));
 
     public static void register(IEventBus eventBus){
         ITEMS.register(eventBus);

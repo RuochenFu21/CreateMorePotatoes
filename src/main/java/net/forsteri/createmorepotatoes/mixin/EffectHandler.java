@@ -1,17 +1,14 @@
 package net.forsteri.createmorepotatoes.mixin;
 
-import com.mojang.logging.LogUtils;
 import com.simibubi.create.content.curiosities.weapons.PotatoProjectileEntity;
 import net.forsteri.createmorepotatoes.entry.ModItems;
 import net.forsteri.createmorepotatoes.item.ExplosivePotionPotatoItem;
 import net.minecraft.world.effect.MobEffectInstance;
-import net.minecraft.world.entity.AreaEffectCloud;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.projectile.AbstractHurtingProjectile;
 import net.minecraft.world.item.ItemStack;
-
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.alchemy.PotionUtils;
 import net.minecraft.world.level.Explosion;
@@ -23,9 +20,6 @@ import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
-
-
-import java.util.Objects;
 
 @Mixin(PotatoProjectileEntity.class)
 public abstract class EffectHandler extends AbstractHurtingProjectile {
@@ -61,6 +55,10 @@ public abstract class EffectHandler extends AbstractHurtingProjectile {
             Explosion derp = new Explosion(getLevel(), this, getX(), getY(), getZ(), 3, false, Explosion.BlockInteraction.NONE);
             derp.finalizeExplosion(true);
         }
+
+        if (stack.is(ModItems.FLAME_POTATO.get())) {
+            ray.getEntity().setSecondsOnFire(10);
+        }
     }
 
     @Inject(at = @At(value = "HEAD"), method = "onHitBlock(Lnet/minecraft/world/phys/BlockHitResult;)V")
@@ -76,6 +74,9 @@ public abstract class EffectHandler extends AbstractHurtingProjectile {
             ExplosivePotionPotatoItem.makeAreaOfEffectCloud(stack, PotionUtils.getPotion(stack), getLevel(), getX(), getY(), getZ(), getOwner());
             Explosion derp = new Explosion(getLevel(), this, getX(), getY(), getZ(), 3, false, Explosion.BlockInteraction.NONE);
             derp.finalizeExplosion(true);
+        }
+        if (stack.is(ModItems.FLAME_POTATO.get())){
+            level.explode(null, getX(), getY(), getZ(), 1, Explosion.BlockInteraction.NONE);
         }
 
     }
