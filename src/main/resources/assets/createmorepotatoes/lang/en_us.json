@@ -8,7 +8,8 @@
   "item.createmorepotatoes.french_fries": "French Fries",
   "item.createmorepotatoes.creative_potato": "Creative Potato",
   "block.createmorepotatoes.explosive_potato_crop": "Potato",
-  "block.createmorepotatoes.stationary_potato_cannon": "Stationary Potato cannon",
+  "block.createmorepotatoes.stationary_potato_cannon": "Stationary Potato Cannon",
+  "block.createmorepotatoes.potato_turret": "Potato Turret",
 
   "itemGroup.potionpotatotab":"Create Potion Potatoes",
   "item.createmorepotatoes.potion_potato.effect.empty": "Effectless Potion Potato",

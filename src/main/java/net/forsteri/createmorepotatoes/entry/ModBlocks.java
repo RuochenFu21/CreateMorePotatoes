@@ -66,7 +66,7 @@ public class ModBlocks {
                     .register();
 
     public static final BlockEntry<ProgrammableStationaryPotatoCannonBlock> PROGRAMMABLE_STATIONARY_POTATO_CANNON_BLOCK =
-            REGISTRATE.block("aiming_stationary_potato_cannon", ProgrammableStationaryPotatoCannonBlock::new)
+            REGISTRATE.block("potato_turret", ProgrammableStationaryPotatoCannonBlock::new)
                     .initialProperties(SharedProperties::softMetal)
                     .properties(BlockBehaviour.Properties::noOcclusion)
                     .blockstate(BlockStateGen.axisBlockProvider(true))
