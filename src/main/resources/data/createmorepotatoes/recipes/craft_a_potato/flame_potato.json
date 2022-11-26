@@ -1,0 +1,17 @@
+{
+  "type": "create:filling",
+  "ingredients": [
+    {
+      "item": "minecraft:potato"
+    },
+    {
+      "fluidTag": "minecraft:lava",
+      "amount": 500
+    }
+  ],
+  "results": [
+    {
+      "item": "createmorepotatoes:flame_potato"
+    }
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "type": "create:mechanical_crafting",
+  "pattern": [
+    "LRCSSSL",
+    "LLL    "
+  ],
+  "key": {
+    "L": {
+      "item": "create:andesite_alloy"
+    },
+    "R": {
+      "item": "create:precision_mechanism"
+    },
+    "S": {
+      "tag": "minecraft:logs_that_burn"
+    },
+    "C": {
+      "item": "create:andesite_casing"
+    }
+  },
+  "result": {
+    "item": "createmorepotatoes:stationary_potato_cannon"
+  },
+  "acceptMirrored": true
+}

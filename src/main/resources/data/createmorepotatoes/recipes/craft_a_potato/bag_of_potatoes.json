@@ -1,0 +1,17 @@
+{
+  "type": "create:mixing",
+  "ingredients": [
+    {
+      "item": "minecraft:gold_ingot",
+      "count": 8
+    },
+    {
+      "item": "minecraft:leather"
+    }
+  ],
+  "result": [
+    {
+      "item": "createmorepotatoes:bag_of_potatoes"
+    }
+  ]
+}

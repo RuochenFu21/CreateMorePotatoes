@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "minecraft:potato"
+    },
+    {
+      "item": "minecraft:diamond",
+      "count": 4
+    }
+  ],
+  "result": {
+    "item": "createmorepotatoes:diamond_potato"
+  }
+}

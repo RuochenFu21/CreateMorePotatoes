@@ -1,0 +1,18 @@
+{
+  "type": "create:mixing",
+  "ingredients": [
+    {
+      "item": "minecraft:ice"
+    },
+    {
+      "item": "minecraft:potato",
+      "count": 2
+    }
+  ],
+  "result": [
+    {
+      "item": "createmorepotatoes:golden_potato",
+      "count": 2
+    }
+  ]
+}
