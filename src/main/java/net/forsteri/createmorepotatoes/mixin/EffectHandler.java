@@ -78,7 +78,7 @@ public abstract class EffectHandler extends AbstractHurtingProjectile {
                 }
             }
 
-            ray.getEntity().setTicksFrozen(ray.getEntity().getTicksRequiredToFreeze()+20);
+            ray.getEntity().setTicksFrozen(ray.getEntity().getTicksRequiredToFreeze()+140);
 
             if (!level.isClientSide) {
                 if (ray.getEntity().isOnFire() && (level.getGameRules().getBoolean(GameRules.RULE_MOBGRIEFING) || ray.getEntity() instanceof Player) && ray.getEntity().mayInteract(level, ray.getEntity().blockPosition())) {
