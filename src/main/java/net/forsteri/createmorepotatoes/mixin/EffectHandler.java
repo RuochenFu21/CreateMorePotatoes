@@ -9,11 +9,13 @@ import net.minecraft.util.Mth;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.AbstractHurtingProjectile;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.alchemy.PotionUtils;
 import net.minecraft.world.level.Explosion;
+import net.minecraft.world.level.GameRules;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.LiquidBlock;
@@ -21,6 +23,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.Material;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.EntityHitResult;
+import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -66,23 +69,24 @@ public abstract class EffectHandler extends AbstractHurtingProjectile {
         }
 
         if (stack.is(ModItems.FROSTY_POTATO.get())) {
+            ray.getEntity().makeStuckInBlock(Blocks.POWDER_SNOW.defaultBlockState(), new Vec3(0.9F, 1.5D, 0.9F));
             if (level.isClientSide) {
                 Random random = level.getRandom();
                 boolean flag = ray.getEntity().xOld != ray.getEntity().getX() || ray.getEntity().zOld != ray.getEntity().getZ();
                 if (flag && random.nextBoolean()) {
-                    level.addParticle(
-                            ParticleTypes.SNOWFLAKE,
-                            ray.getEntity().getX(),
-                            ray.getLocation().y,
-                            ray.getEntity().getZ(),
-                            (Mth.randomBetween(random, -1.0F, 1.0F) * 0.083333336F),
-                            0.05F,
-                            Mth.randomBetween(random, -1.0F, 1.0F) * 0.083333336F
-                    );
+                    level.addParticle(ParticleTypes.SNOWFLAKE, ray.getEntity().getX(), ray.getLocation().y + 1, ray.getEntity().getZ(), Mth.randomBetween(random, -1.0F, 1.0F) * 0.083333336F, 0.05F, Mth.randomBetween(random, -1.0F, 1.0F) * 0.083333336F);
                 }
             }
 
-            ray.getEntity().setTicksFrozen(20);
+            ray.getEntity().setTicksFrozen(ray.getEntity().getTicksRequiredToFreeze()+20);
+
+            if (!level.isClientSide) {
+                if (ray.getEntity().isOnFire() && (level.getGameRules().getBoolean(GameRules.RULE_MOBGRIEFING) || ray.getEntity() instanceof Player) && ray.getEntity().mayInteract(level, ray.getEntity().blockPosition())) {
+                    level.destroyBlock(ray.getEntity().blockPosition(), false);
+                }
+
+                ray.getEntity().setSharedFlagOnFire(false);
+            }
         }
     }
 
