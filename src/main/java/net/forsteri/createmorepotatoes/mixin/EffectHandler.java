@@ -139,7 +139,7 @@ public abstract class EffectHandler extends AbstractHurtingProjectile {
 
         if (stack.is(Items.ENDER_PEARL)) {
             if (this.getOwner() != null){
-                this.getOwner().teleportTo(ray.getBlockPos().getX(), ray.getBlockPos().getY(), ray.getBlockPos().getZ());
+                this.getOwner().teleportTo(ray.getLocation().x, ray.getLocation().y + 1.5, ray.getLocation().z);
             }
         }
 
