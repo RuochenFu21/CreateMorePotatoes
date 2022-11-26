@@ -139,7 +139,8 @@ public abstract class EffectHandler extends AbstractHurtingProjectile {
 
         if (stack.is(Items.ENDER_PEARL)) {
             if (this.getOwner() != null){
-                this.getOwner().teleportTo(ray.getLocation().x, ray.getLocation().y + 1.5, ray.getLocation().z);
+                Vec3 loc = ray.getLocation().add(ray.getDirection().getStepX(), ray.getDirection().getStepY(), ray.getDirection().getStepZ());
+                this.getOwner().teleportTo(loc.x, loc.y, loc.z);
             }
         }
 
