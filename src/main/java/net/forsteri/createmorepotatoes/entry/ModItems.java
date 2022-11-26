@@ -44,6 +44,9 @@ public class ModItems {
     public static final RegistryObject<Item> FLAME_POTATO = ITEMS.register("flame_potato",
             () -> new Item(new Item.Properties().tab(ModCreativeModeTab.MORE_POTATOES_TAB)));
 
+    public static final RegistryObject<Item> FROSTY_POTATO = ITEMS.register("frosty_potato",
+            () -> new Item(new Item.Properties().tab(ModCreativeModeTab.MORE_POTATOES_TAB)));
+
     public static void register(IEventBus eventBus){
         ITEMS.register(eventBus);
     }

@@ -3,6 +3,8 @@ package net.forsteri.createmorepotatoes.mixin;
 import com.simibubi.create.content.curiosities.weapons.PotatoProjectileEntity;
 import net.forsteri.createmorepotatoes.entry.ModItems;
 import net.forsteri.createmorepotatoes.item.ExplosivePotionPotatoItem;
+import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.util.Mth;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
@@ -19,6 +21,8 @@ import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+
+import java.util.Random;
 
 @Mixin(PotatoProjectileEntity.class)
 public abstract class EffectHandler extends AbstractHurtingProjectile {
@@ -53,6 +57,26 @@ public abstract class EffectHandler extends AbstractHurtingProjectile {
 
         if (stack.is(ModItems.FLAME_POTATO.get())) {
             ray.getEntity().setSecondsOnFire(10);
+        }
+
+        if (stack.is(ModItems.FROSTY_POTATO.get())) {
+            if (level.isClientSide) {
+                Random random = level.getRandom();
+                boolean flag = ray.getEntity().xOld != ray.getEntity().getX() || ray.getEntity().zOld != ray.getEntity().getZ();
+                if (flag && random.nextBoolean()) {
+                    level.addParticle(
+                            ParticleTypes.SNOWFLAKE,
+                            ray.getEntity().getX(),
+                            ray.getLocation().y,
+                            ray.getEntity().getZ(),
+                            (Mth.randomBetween(random, -1.0F, 1.0F) * 0.083333336F),
+                            0.05F,
+                            Mth.randomBetween(random, -1.0F, 1.0F) * 0.083333336F
+                    );
+                }
+            }
+
+            ray.getEntity().setTicksFrozen(20);
         }
     }
 
