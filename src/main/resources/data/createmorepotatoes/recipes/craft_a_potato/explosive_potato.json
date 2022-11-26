@@ -2,8 +2,10 @@
   "type": "create:mixing",
   "ingredients": [
     {
-      "item": "minecraft:tnt",
-      "count": 2
+      "item": "minecraft:tnt"
+    },
+    {
+      "item": "minecraft:tnt"
     },
     {
       "item": "minecraft:potato"

@@ -5,13 +5,15 @@
       "item": "minecraft:ice"
     },
     {
-      "item": "minecraft:potato",
-      "count": 2
+      "item": "minecraft:potato"
+    },
+    {
+      "item": "minecraft:potato"
     }
   ],
   "results": [
     {
-      "item": "createmorepotatoes:golden_potato",
+      "item": "createmorepotatoes:frosty_potato",
       "count": 2
     }
   ]

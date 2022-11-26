@@ -2,8 +2,28 @@
   "type": "create:mixing",
   "ingredients": [
     {
-      "item": "minecraft:gold_ingot",
-      "count": 8
+      "item": "minecraft:potato"
+    },
+    {
+      "item": "minecraft:potato"
+    },
+    {
+      "item": "minecraft:potato"
+    },
+    {
+      "item": "minecraft:potato"
+    },
+    {
+      "item": "minecraft:potato"
+    },
+    {
+      "item": "minecraft:potato"
+    },
+    {
+      "item": "minecraft:potato"
+    },
+    {
+      "item": "minecraft:potato"
     },
     {
       "item": "minecraft:leather"
