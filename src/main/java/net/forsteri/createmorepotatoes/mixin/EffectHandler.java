@@ -3,6 +3,7 @@ package net.forsteri.createmorepotatoes.mixin;
 import com.simibubi.create.content.curiosities.weapons.PotatoProjectileEntity;
 import net.forsteri.createmorepotatoes.entry.ModItems;
 import net.forsteri.createmorepotatoes.item.ExplosivePotionPotatoItem;
+import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.util.Mth;
 import net.minecraft.world.effect.MobEffectInstance;
@@ -14,8 +15,13 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.item.alchemy.PotionUtils;
 import net.minecraft.world.level.Explosion;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.LiquidBlock;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.material.Material;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.EntityHitResult;
+import net.minecraft.world.phys.shapes.CollisionContext;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
@@ -96,6 +102,24 @@ public abstract class EffectHandler extends AbstractHurtingProjectile {
         }
         if (stack.is(ModItems.FLAME_POTATO.get())){
             level.explode(null, getX(), getY(), getZ(), 1, true, Explosion.BlockInteraction.NONE);
+        }
+        if (stack.is(ModItems.FROSTY_POTATO.get())){
+            BlockState blockstate = Blocks.FROSTED_ICE.defaultBlockState();
+            float f = 16f;
+            @SuppressWarnings("SpellCheckingInspection") BlockPos.MutableBlockPos blockpos$mutableblockpos = new BlockPos.MutableBlockPos();
+
+            for(BlockPos blockpos : BlockPos.betweenClosed(ray.getBlockPos().offset(-f, -1.0D, -f), ray.getBlockPos().offset(f, -1.0D, f))) {
+                blockpos$mutableblockpos.set(blockpos.getX(), blockpos.getY() + 1, blockpos.getZ());
+                BlockState blockstate1 = level.getBlockState(blockpos$mutableblockpos);
+                if (blockstate1.isAir()) {
+                    BlockState blockstate2 = level.getBlockState(blockpos);
+                    boolean isFull = blockstate2.getBlock() == Blocks.WATER && blockstate2.getValue(LiquidBlock.LEVEL) == 0;
+                    if (blockstate2.getMaterial() == Material.WATER && isFull && blockstate.canSurvive(level, blockpos) && level.isUnobstructed(blockstate, blockpos, CollisionContext.empty()) && !net.minecraftforge.event.ForgeEventFactory.onBlockPlace(this, net.minecraftforge.common.util.BlockSnapshot.create(level.dimension(), level, blockpos), net.minecraft.core.Direction.UP)) {
+                        level.setBlockAndUpdate(blockpos, blockstate);
+                        level.scheduleTick(blockpos, Blocks.FROSTED_ICE, Mth.nextInt(this.random, 60, 120));
+                    }
+                }
+            }
         }
 
     }
