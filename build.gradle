@@ -21,8 +21,9 @@ apply plugin: 'net.minecraftforge.gradle'
 apply plugin: 'org.parchmentmc.librarian.forgegradle'
 apply plugin: 'maven-publish'
 apply plugin: 'org.spongepowered.mixin'
-version = '0.0.1-1.18.2'
+version = '1.0'
 group = 'com.forsteri.createmorepotatoes' // http://maven.apache.org/guides/mini/guide-naming-conventions.html
+//noinspection GroovyUnusedAssignment
 archivesBaseName = 'createmorepotatoes'
 
 // Mojang ships Java 17 to end users in 1.18+, so your mod should target Java 17.

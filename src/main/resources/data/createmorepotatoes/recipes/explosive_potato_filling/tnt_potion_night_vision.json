@@ -1,0 +1,23 @@
+{
+  "type": "create:filling",
+  "ingredients": [
+    {
+      "item": "createmorepotatoes:explosive_potato"
+    },
+    {
+      "fluid": "create:potion",
+      "nbt": {
+        "Potion": "minecraft:night_vision"
+      },
+      "amount": 1000
+    }
+  ],
+  "results": [
+    {
+      "item": "createmorepotatoes:explosive_potion_potato",
+      "nbt": {
+        "Potion": "minecraft:night_vision"
+      }
+    }
+  ]
+}

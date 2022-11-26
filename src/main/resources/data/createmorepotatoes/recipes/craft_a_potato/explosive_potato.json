@@ -1,0 +1,19 @@
+{
+  "type": "create:mixing",
+  "ingredients": [
+    {
+      "item": "minecraft:tnt"
+    },
+    {
+      "item": "minecraft:tnt"
+    },
+    {
+      "item": "minecraft:potato"
+    }
+  ],
+  "results": [
+    {
+      "item": "createmorepotatoes:explosive_potato"
+    }
+  ]
+}
