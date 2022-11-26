@@ -111,8 +111,8 @@ public abstract class EffectHandler extends AbstractHurtingProjectile {
             LivingEntity pLiving = (LivingEntity) getOwner();
             Level pLevel = getLevel();
 
-            for(BlockPos blockpos : BlockPos.betweenClosed(pPos.offset((double)(-f), -1.0D, (double)(-f)), pPos.offset((double)f, -1.0D, (double)f))) {
-                if (blockpos.closerToCenterThan(pLiving.position(), (double)f)) {
+            for(BlockPos blockpos : BlockPos.betweenClosed(pPos.offset(-f, -1.0D, -f), pPos.offset(f, -1.0D, f))) {
+                if (blockpos.closerToCenterThan(ray.getLocation(), f)) {
                     blockpos$mutableblockpos.set(blockpos.getX(), blockpos.getY() + 1, blockpos.getZ());
                     BlockState blockstate1 = pLevel.getBlockState(blockpos$mutableblockpos);
                     if (blockstate1.isAir()) {
@@ -120,7 +120,7 @@ public abstract class EffectHandler extends AbstractHurtingProjectile {
                         boolean isFull = blockstate2.getBlock() == Blocks.WATER && blockstate2.getValue(LiquidBlock.LEVEL) == 0; //TODO: Forge, modded waters?
                         if (blockstate2.getMaterial() == Material.WATER && isFull && blockstate.canSurvive(pLevel, blockpos) && pLevel.isUnobstructed(blockstate, blockpos, CollisionContext.empty()) && !net.minecraftforge.event.ForgeEventFactory.onBlockPlace(pLiving, net.minecraftforge.common.util.BlockSnapshot.create(pLevel.dimension(), pLevel, blockpos), net.minecraft.core.Direction.UP)) {
                             pLevel.setBlockAndUpdate(blockpos, blockstate);
-                            pLevel.scheduleTick(blockpos, Blocks.FROSTED_ICE, Mth.nextInt(pLiving.getRandom(), 60, 120));
+                            pLevel.scheduleTick(blockpos, Blocks.FROSTED_ICE, 90);
                         }
                     }
                 }
