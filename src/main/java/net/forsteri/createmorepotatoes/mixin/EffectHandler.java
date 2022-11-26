@@ -88,6 +88,12 @@ public abstract class EffectHandler extends AbstractHurtingProjectile {
                 ray.getEntity().setSharedFlagOnFire(false);
             }
         }
+
+        if (stack.is(Items.ENDER_PEARL)) {
+            if (this.getOwner() != null){
+                this.getOwner().teleportTo(ray.getEntity().getX(), ray.getEntity().getY(), ray.getEntity().getZ());
+            }
+        }
     }
 
     @Inject(at = @At(value = "HEAD"), method = "onHitBlock(Lnet/minecraft/world/phys/BlockHitResult;)V")
@@ -107,7 +113,7 @@ public abstract class EffectHandler extends AbstractHurtingProjectile {
         if (stack.is(ModItems.FLAME_POTATO.get())){
             level.explode(null, getX(), getY(), getZ(), 1, true, Explosion.BlockInteraction.NONE);
         }
-        if (stack.is(ModItems.FROSTY_POTATO.get())){
+        if (stack.is(ModItems.FROSTY_POTATO.get()) || stack.is(Items.PACKED_ICE)){
             BlockState blockstate = Blocks.FROSTED_ICE.defaultBlockState();
             float f = (float)Math.min(16, 2 + 1);
             BlockPos.MutableBlockPos blockpos$mutableblockpos = new BlockPos.MutableBlockPos();
@@ -128,6 +134,12 @@ public abstract class EffectHandler extends AbstractHurtingProjectile {
                         }
                     }
                 }
+            }
+        }
+
+        if (stack.is(Items.ENDER_PEARL)) {
+            if (this.getOwner() != null){
+                this.getOwner().teleportTo(ray.getBlockPos().getX(), ray.getBlockPos().getY(), ray.getBlockPos().getZ());
             }
         }
 
