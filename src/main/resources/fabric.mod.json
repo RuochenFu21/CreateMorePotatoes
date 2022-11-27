@@ -6,6 +6,7 @@
   "name": "Create More Potatoes",
   "description": "This mod adds more potatoes to the game. Time flies, Food delights, Legend never dies.",
   "authors": ["Forsteri", "SomeDom"],
+  "icon": "assets/createmorepotatoes/icon.png",
 
   "license": "MIT",
 
