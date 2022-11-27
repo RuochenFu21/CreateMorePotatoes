@@ -1,24 +1,19 @@
 package net.forsteri.createmorepotatoes.tileEntity.programmableStationaryPotatoCannon;
 
-import com.jozufozu.flywheel.core.PartialModel;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.simibubi.create.AllBlockPartials;
-import com.simibubi.create.Create;
 import com.simibubi.create.content.contraptions.base.KineticTileEntity;
 import com.simibubi.create.content.contraptions.base.KineticTileEntityRenderer;
-import com.simibubi.create.content.contraptions.relays.elementary.ShaftBlock;
 import com.simibubi.create.foundation.render.CachedBufferer;
 import com.simibubi.create.foundation.render.SuperByteBuffer;
 import com.simibubi.create.foundation.utility.AnimationTickHolder;
-import net.forsteri.createmorepotatoes.CreateMorePotatoes;
+
 import net.forsteri.createmorepotatoes.entry.ModBlockPartial;
-import net.forsteri.createmorepotatoes.entry.ModBlocks;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.world.level.block.state.BlockState;
 
 public class ProgrammableStationaryPotatoCannonRenderer extends KineticTileEntityRenderer {
 

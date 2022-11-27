@@ -1,9 +1,12 @@
 package net.forsteri.createmorepotatoes.tileEntity.stationaryPotatoCannon;
 
+import javax.annotation.ParametersAreNonnullByDefault;
+
 import com.simibubi.create.AllItems;
 import com.simibubi.create.content.contraptions.base.DirectionalAxisKineticBlock;
 import com.simibubi.create.content.curiosities.weapons.PotatoProjectileTypeManager;
 import com.simibubi.create.foundation.block.ITE;
+
 import net.forsteri.createmorepotatoes.entry.ModTileEntities;
 import net.minecraft.MethodsReturnNonnullByDefault;
 import net.minecraft.core.BlockPos;
@@ -16,11 +19,9 @@ import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.BlockHitResult;
 
-import javax.annotation.ParametersAreNonnullByDefault;
-
 @ParametersAreNonnullByDefault
 @MethodsReturnNonnullByDefault
-@SuppressWarnings("deprecation")
+// @SuppressWarnings("deprecation")
 public class StationaryPotatoCannonBlock extends DirectionalAxisKineticBlock implements ITE<StationaryPotatoCannonTileEntity> {
 
     public StationaryPotatoCannonBlock(Properties properties) {

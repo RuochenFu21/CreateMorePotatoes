@@ -4,26 +4,17 @@
   "version": "${version}",
 
   "name": "Create More Potatoes",
-  "description": "This is a long form description of the mod. You can write whatever you want here",
-  "authors": [
-    "Forsteri",
-    "DM Fabric Ports"
-  ],
-  "contact": {
-    "homepage": "https://github.com/DM-Fabric-Ports/CreateMorePotatoes"
-  },
+  "description": "This mod adds more potatoes to the game. Time flies, Food delights, Legend never dies.",
+  "authors": ["Forsteri", "SomeDom"],
 
   "license": "MIT",
 
   "environment": "*",
   "entrypoints": {
-    "main": [
-      "net.forsteri.createmorepotatoes.CreateMorePotatoes"
-    ]
+    "main": ["net.forsteri.createmorepotatoes.CreateMorePotatoes"],
+    "client": ["net.forsteri.createmorepotatoes.CreateMorePotatoes"]
   },
-  "mixins": [
-    "createmorepotatoes.mixins.json"
-  ],
+  "mixins": ["createmorepotatoes.mixins.json"],
 
   "depends": {
     "fabricloader": ">=0.14.6",

@@ -1,10 +1,13 @@
 package net.forsteri.createmorepotatoes.tileEntity.programmableStationaryPotatoCannon;
 
+import java.util.Objects;
+import java.util.stream.Collectors;
+
 import com.simibubi.create.AllEntityTypes;
 import com.simibubi.create.content.contraptions.base.KineticTileEntity;
 import com.simibubi.create.content.curiosities.weapons.PotatoProjectileEntity;
 import com.simibubi.create.content.curiosities.weapons.PotatoProjectileTypeManager;
-import net.forsteri.createmorepotatoes.CreateMorePotatoes;
+
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.targeting.TargetingConditions;
@@ -13,9 +16,6 @@ import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
-
-import java.util.Objects;
-import java.util.stream.Collectors;
 
 @SuppressWarnings("OptionalGetWithoutIsPresent")
 public class ProgrammableStationaryPotatoCannonTileEntity extends KineticTileEntity {

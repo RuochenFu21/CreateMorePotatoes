@@ -50,9 +50,8 @@ dependencies {
     mappings (loom.officialMojangMappings())
     modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
 
-    modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
-    modImplementation "com.simibubi.create:create-fabric-${project.minecraft_version}:${project.create_version}"
-    modImplementation include("maven.modrinth:deferred-registries:0.1.2")
+    modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}+${project.minecraft_version}"
+    modImplementation "com.simibubi.create:create-fabric-1.18.2:${project.create_version}+${project.minecraft_version}"
 }
 
 processResources {
