@@ -1,0 +1,10 @@
+{
+  "items": [
+    "createmorepotatoes:creative_potato"
+  ],
+  "reload_ticks": 1,
+  "knockback": 0.5,
+  "velocity_multiplier": 0.9,
+  "gravity_multiplier": 1.2,
+  "damage": 2147483647
+}

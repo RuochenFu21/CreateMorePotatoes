@@ -1,0 +1,26 @@
+{
+  "variants": {
+    "facing=down": {
+      "model": "createmorepotatoes:block/stationary_potato_cannon/stationary_potato_cannon_vertical",
+      "x": 180
+    },
+    "facing=up": {
+      "model": "createmorepotatoes:block/stationary_potato_cannon/stationary_potato_cannon_vertical"
+    },
+    "facing=north": {
+      "model": "createmorepotatoes:block/stationary_potato_cannon/stationary_potato_cannon",
+      "y": 180
+    },
+    "facing=south": {
+      "model": "createmorepotatoes:block/stationary_potato_cannon/stationary_potato_cannon"
+    },
+    "facing=west": {
+      "model": "createmorepotatoes:block/stationary_potato_cannon/stationary_potato_cannon",
+      "y": 90
+    },
+    "facing=east": {
+      "model": "createmorepotatoes:block/stationary_potato_cannon/stationary_potato_cannon",
+      "y": 270
+    }
+  }
+}

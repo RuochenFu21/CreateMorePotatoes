@@ -7,8 +7,11 @@ import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.ItemStack;
 
 public class PotionPotatoCreativeModeTab {
-	public static final CreativeModeTab POTION_POTATOES_TAB = FabricItemGroupBuilder.create(CreateMorePotatoes.asResource("potionpotatotab")).icon(() -> new ItemStack(ModItems.POTION_POTATO.get())).build();
+	public static final CreativeModeTab POTION_POTATOES_TAB = FabricItemGroupBuilder
+			.create(CreateMorePotatoes.asResource("potionpotatotab"))
+			.icon(() -> new ItemStack(ModItems.POTION_POTATO.get())).build();
 
-	public static void loadClass() {
+	public static void load() {
+		// Load this class
 	}
 }
