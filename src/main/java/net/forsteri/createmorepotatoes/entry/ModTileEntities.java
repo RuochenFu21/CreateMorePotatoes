@@ -40,9 +40,7 @@ public class ModTileEntities {
 				side) -> isRightDirection(be, side) ? be.storage : null,
 				STATIONARY_POTATO_CANNON.get());
 
-		ItemStorage.SIDED.registerForBlockEntity((be,
-				side) -> isRightDirection(be, side) ? be.storage : null,
-				PROGRAMMABLE_STATIONARY_POTATO_CANNON.get());
+		ItemStorage.SIDED.registerForBlockEntity((be, side) -> be.storage, PROGRAMMABLE_STATIONARY_POTATO_CANNON.get());
 	}
 
 	private static boolean isRightDirection(BlockEntity be, Direction direction) {

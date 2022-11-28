@@ -8,22 +8,23 @@ import com.simibubi.create.content.curiosities.weapons.PotatoProjectileEntity;
 import com.simibubi.create.content.curiosities.weapons.PotatoProjectileTypeManager;
 
 import io.github.fabricators_of_create.porting_lib.transfer.TransferUtil;
-import net.fabricmc.fabric.api.networking.v1.PacketByteBufs;
-import net.fabricmc.fabric.api.networking.v1.PlayerLookup;
-import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.fabricmc.fabric.api.transfer.v1.item.ItemVariant;
 import net.fabricmc.fabric.api.transfer.v1.storage.base.SingleVariantStorage;
 import net.forsteri.createmorepotatoes.CreateMorePotatoes;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 
+@SuppressWarnings("unused")
 public class StationaryPotatoCannonTileEntity extends KineticTileEntity {
 
 	protected int timeOut;
+
+	private static final ResourceLocation CHANNEL = CreateMorePotatoes.asResource("potato_cannon");
 
 	public final SingleVariantStorage<ItemVariant> storage = new SingleVariantStorage<>() {
 
@@ -40,9 +41,9 @@ public class StationaryPotatoCannonTileEntity extends KineticTileEntity {
 		@Override
 		protected void onFinalCommit() {
 			setChanged();
-			if (!level.isClientSide())
-				PlayerLookup.tracking(StationaryPotatoCannonTileEntity.this).forEach(player -> ServerPlayNetworking
-						.send(player, CreateMorePotatoes.asResource("potato_cannon"), PacketByteBufs.create()));
+			// if (!level.isClientSide())
+			// 	PlayerLookup.tracking(StationaryPotatoCannonTileEntity.this).forEach(player -> ServerPlayNetworking
+			// 			.send(player, CHANNEL, PacketByteBufs.create()));
 		}
 
 	};
@@ -54,8 +55,8 @@ public class StationaryPotatoCannonTileEntity extends KineticTileEntity {
 	@Override
 	public void tick() {
 		super.tick();
-		if (Objects.requireNonNull(getLevel()).hasNeighborSignal(getBlockPos()) && this.timeOut <= 0
-				&& this.getSpeed() > 0)
+		if (level.hasNeighborSignal(getBlockPos()) && this.timeOut <= 0
+				&& this.getSpeed() != 0 && !level.isClientSide())
 			this.shoot();
 		timeOut--;
 	}
@@ -96,9 +97,9 @@ public class StationaryPotatoCannonTileEntity extends KineticTileEntity {
 				getBlockPos().getZ() + zMove + 0.5);
 		projectile.setDeltaMovement(xMove * 2, yMove * 2, zMove * 2);
 		this.getLevel().addFreshEntity(projectile);
-		assert PotatoProjectileTypeManager.getTypeForStack(this.toStack()).isPresent();
+		assert PotatoProjectileTypeManager.getTypeForStack(this.toStack(1)).isPresent();
 		timeOut = this.storage.getAmount() == 0 ? 0
-				: PotatoProjectileTypeManager.getTypeForStack(this.toStack()).get().getReloadTicks() / 2;
+				: PotatoProjectileTypeManager.getTypeForStack(this.toStack(1)).get().getReloadTicks() / 2;
 		TransferUtil.extractAnyItem(storage, 1);
 	}
 
