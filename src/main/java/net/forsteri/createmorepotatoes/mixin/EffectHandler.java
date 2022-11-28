@@ -133,7 +133,7 @@ public abstract class EffectHandler extends AbstractHurtingProjectile {
 			float f = (float) Math.min(16, 2 + 1);
 			BlockPos.MutableBlockPos blockpos$mutableblockpos = new BlockPos.MutableBlockPos();
 			BlockPos pPos = ray.getBlockPos().above(1);
-			LivingEntity pLiving = (LivingEntity) getOwner();
+			// LivingEntity pLiving = (LivingEntity) getOwner();
 			Level pLevel = getLevel();
 
 			for (BlockPos blockpos : BlockPos.betweenClosed(pPos.offset(-f, -1.0D, -f), pPos.offset(f, -1.0D, f))) {
@@ -146,13 +146,7 @@ public abstract class EffectHandler extends AbstractHurtingProjectile {
 								&& blockstate2.getValue(LiquidBlock.LEVEL) == 0;
 						if (blockstate2.getMaterial() == Material.WATER && isFull
 								&& blockstate.canSurvive(pLevel, blockpos)
-								&& pLevel.isUnobstructed(blockstate, blockpos, CollisionContext.empty())
-						// && !net.minecraftforge.event.ForgeEventFactory
-						// .onBlockPlace(
-						// pLiving, net.minecraftforge.common.util.BlockSnapshot
-						// .create(pLevel.dimension(), pLevel, blockpos),
-						// net.minecraft.core.Direction.UP)
-						) {
+								&& pLevel.isUnobstructed(blockstate, blockpos, CollisionContext.empty())) {
 							pLevel.setBlockAndUpdate(blockpos, blockstate);
 							pLevel.scheduleTick(blockpos, Blocks.FROSTED_ICE, 90);
 						}

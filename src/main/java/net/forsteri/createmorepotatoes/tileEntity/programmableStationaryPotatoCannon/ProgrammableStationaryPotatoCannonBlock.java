@@ -7,10 +7,12 @@ import com.simibubi.create.content.contraptions.base.KineticBlock;
 import com.simibubi.create.content.curiosities.weapons.PotatoProjectileTypeManager;
 import com.simibubi.create.foundation.block.ITE;
 
+import io.github.fabricators_of_create.porting_lib.transfer.TransferUtil;
 import net.forsteri.createmorepotatoes.entry.ModTileEntities;
 import net.minecraft.MethodsReturnNonnullByDefault;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.world.Containers;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
@@ -60,13 +62,16 @@ public class ProgrammableStationaryPotatoCannonBlock extends KineticBlock
 		}
 
 		withTileEntityDo(worldIn, pos, te -> {
-			ItemStack inStationary = te.stack
-					.copy();
-			if (inStationary.isEmpty() && heldByPlayer.isEmpty())
+			if (te.storage.getAmount() == 0 && heldByPlayer.isEmpty())
 				return;
 
-			player.setItemInHand(handIn, inStationary);
-			te.stack = heldByPlayer;
+			if (te.storage.getAmount() > 0)
+				player.setItemInHand(handIn, new ItemStack(te.storage.getResource().getItem(), (int) te.storage.getAmount()));
+			else
+				player.setItemInHand(handIn, ItemStack.EMPTY);
+			TransferUtil.extractAnyItem(te.storage, 64);
+			if (!heldByPlayer.isEmpty())
+				TransferUtil.insertItem(te.storage, heldByPlayer);
 		});
 
 		return InteractionResult.SUCCESS;
@@ -75,5 +80,14 @@ public class ProgrammableStationaryPotatoCannonBlock extends KineticBlock
 	@Override
 	public boolean hasShaftTowards(LevelReader world, BlockPos pos, BlockState state, Direction face) {
 		return face.getAxis() == Direction.Axis.Y;
+	}
+
+	@Override
+	@SuppressWarnings("deprecation")
+	public void onRemove(BlockState blockState, Level level, BlockPos blockPos, BlockState blockState2, boolean bl) {
+		if ((!blockState.is(blockState2.getBlock()))
+				&& level.getBlockEntity(blockPos) instanceof ProgrammableStationaryPotatoCannonTileEntity be)
+			Containers.dropItemStack(level, blockPos.getX(), blockPos.getY(), blockPos.getZ(), be.toStack());
+		super.onRemove(blockState, level, blockPos, blockState2, bl);
 	}
 }
