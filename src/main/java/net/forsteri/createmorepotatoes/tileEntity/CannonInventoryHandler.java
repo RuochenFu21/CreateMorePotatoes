@@ -28,8 +28,6 @@ public class CannonInventoryHandler extends CombinedInvWrapper {
 
     @Override
     public @NotNull ItemStack extractItem(int slot, int amount, boolean simulate) {
-        if (inventory == getHandlerFromIndex(getIndexForSlot(slot)))
-            return ItemStack.EMPTY;
         return super.extractItem(slot, amount, simulate);
     }
 }
