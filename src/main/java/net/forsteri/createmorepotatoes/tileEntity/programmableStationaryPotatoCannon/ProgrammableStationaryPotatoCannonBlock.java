@@ -8,7 +8,9 @@ import com.simibubi.create.content.curiosities.weapons.PotatoProjectileTypeManag
 import com.simibubi.create.foundation.block.ITE;
 
 import io.github.fabricators_of_create.porting_lib.transfer.TransferUtil;
+import net.fabricmc.fabric.api.transfer.v1.item.ItemVariant;
 import net.forsteri.createmorepotatoes.entry.ModTileEntities;
+import net.forsteri.createmorepotatoes.tileEntity.stationaryPotatoCannon.StationaryPotatoCannonTileEntity;
 import net.minecraft.MethodsReturnNonnullByDefault;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -62,11 +64,13 @@ public class ProgrammableStationaryPotatoCannonBlock extends KineticBlock
 		}
 
 		withTileEntityDo(worldIn, pos, te -> {
-			if (te.storage.getAmount() == 0 && heldByPlayer.isEmpty())
+			if ((te.storage.getAmount() == 0 && heldByPlayer.isEmpty())
+					|| !StationaryPotatoCannonTileEntity.canInsert(ItemVariant.of(heldByPlayer)))
 				return;
 
 			if (te.storage.getAmount() > 0)
-				player.setItemInHand(handIn, new ItemStack(te.storage.getResource().getItem(), (int) te.storage.getAmount()));
+				player.setItemInHand(handIn,
+						new ItemStack(te.storage.getResource().getItem(), (int) te.storage.getAmount()));
 			else
 				player.setItemInHand(handIn, ItemStack.EMPTY);
 			TransferUtil.extractAnyItem(te.storage, 64);

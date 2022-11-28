@@ -10,6 +10,7 @@ import com.simibubi.create.content.curiosities.weapons.PotatoProjectileTypeManag
 import io.github.fabricators_of_create.porting_lib.transfer.TransferUtil;
 import net.fabricmc.fabric.api.transfer.v1.item.ItemVariant;
 import net.fabricmc.fabric.api.transfer.v1.storage.base.SingleVariantStorage;
+import net.fabricmc.fabric.api.transfer.v1.transaction.TransactionContext;
 import net.forsteri.createmorepotatoes.CreateMorePotatoes;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
@@ -41,13 +42,23 @@ public class StationaryPotatoCannonTileEntity extends KineticTileEntity {
 		@Override
 		protected void onFinalCommit() {
 			setChanged();
-			// if (!level.isClientSide())
-			// PlayerLookup.tracking(StationaryPotatoCannonTileEntity.this).forEach(player
-			// -> ServerPlayNetworking
-			// .send(player, CHANNEL, PacketByteBufs.create()));
 		}
 
+		@Override
+		public long insert(ItemVariant insertedVariant, long maxAmount, TransactionContext transaction) {
+			if (!canInsert(insertedVariant))
+				return 0;
+			return super.insert(variant, maxAmount, transaction);
+		}
+
+		public boolean canInsert(ItemVariant variant) {
+			return StationaryPotatoCannonTileEntity.canInsert(variant);
+		}
 	};
+
+	public static boolean canInsert(ItemVariant variant) {
+		return PotatoProjectileTypeManager.getTypeForStack(variant.toStack()).isPresent();
+	}
 
 	public StationaryPotatoCannonTileEntity(BlockEntityType<?> typeIn, BlockPos pos, BlockState state) {
 		super(typeIn, pos, state);
@@ -75,7 +86,6 @@ public class StationaryPotatoCannonTileEntity extends KineticTileEntity {
 	}
 
 	public void shoot() {
-		// CreateMorePotatoes.LOGGER.info("SHOOTING");
 		if (this.storage.getAmount() == 0)
 			return;
 		PotatoProjectileEntity projectile = AllEntityTypes.POTATO_PROJECTILE.create(Objects.requireNonNull(getLevel()));
