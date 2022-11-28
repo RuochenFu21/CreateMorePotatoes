@@ -6,6 +6,7 @@ import com.simibubi.create.content.curiosities.weapons.PotatoProjectileEntity;
 import com.simibubi.create.content.curiosities.weapons.PotatoProjectileTypeManager;
 import net.forsteri.createmorepotatoes.tileEntity.CannonInventoryHandler;
 import net.minecraft.core.BlockPos;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.targeting.TargetingConditions;
 import net.minecraft.world.item.ItemStack;
@@ -126,4 +127,18 @@ public class ProgrammableStationaryPotatoCannonTileEntity extends KineticTileEnt
     protected double y;
     protected double z;
     protected double r;
+
+    @Override
+    public void write(CompoundTag compound, boolean clientPacket) {
+        compound.put("item", inventory.serializeNBT());
+        super.write(compound, clientPacket);
+    }
+
+    @Override
+    protected void read(CompoundTag compound, boolean clientPacket) {
+        if (compound.contains("item")){
+            inventory.deserializeNBT(compound.getCompound("item"));
+        }
+        super.read(compound, clientPacket);
+    }
 }
