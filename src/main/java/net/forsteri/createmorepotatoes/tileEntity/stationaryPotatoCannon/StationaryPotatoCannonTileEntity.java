@@ -42,8 +42,9 @@ public class StationaryPotatoCannonTileEntity extends KineticTileEntity {
 		protected void onFinalCommit() {
 			setChanged();
 			// if (!level.isClientSide())
-			// 	PlayerLookup.tracking(StationaryPotatoCannonTileEntity.this).forEach(player -> ServerPlayNetworking
-			// 			.send(player, CHANNEL, PacketByteBufs.create()));
+			// PlayerLookup.tracking(StationaryPotatoCannonTileEntity.this).forEach(player
+			// -> ServerPlayNetworking
+			// .send(player, CHANNEL, PacketByteBufs.create()));
 		}
 
 	};
@@ -106,9 +107,12 @@ public class StationaryPotatoCannonTileEntity extends KineticTileEntity {
 	@Override
 	protected void read(CompoundTag compound, boolean clientPacket) {
 		super.read(compound, clientPacket);
-		storage.variant = ItemVariant.fromNbt(compound.getCompound("item"));
-		storage.amount = compound.getInt("count");
-		timeOut = compound.getInt("timeout");
+		if (compound.contains("item"))
+			storage.variant = ItemVariant.fromNbt(compound.getCompound("item"));
+		if (compound.contains("count"))
+			storage.amount = compound.getInt("count");
+		if (compound.contains("timeout"))
+			timeOut = compound.getInt("timeout");
 	}
 
 	@Override

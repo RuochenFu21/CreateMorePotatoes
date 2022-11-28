@@ -127,8 +127,10 @@ public class ProgrammableStationaryPotatoCannonTileEntity extends StationaryPota
 	@Override
 	protected void read(CompoundTag compound, boolean clientPacket) {
 		super.read(compound, clientPacket);
-		phi = compound.getDouble("phi");
-		theta = compound.getDouble("theta");
+		if (compound.contains("phi"))
+			phi = compound.getDouble("phi");
+		if (compound.contains("theta"))
+			theta = compound.getDouble("theta");
 	}
 
 	@Override
