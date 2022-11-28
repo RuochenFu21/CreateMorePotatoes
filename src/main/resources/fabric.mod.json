@@ -4,8 +4,8 @@
   "version": "${version}",
 
   "name": "Create More Potatoes",
-  "description": "This mod adds more potatoes to the game. Time flies, Food delights, Legend never dies.",
-  "authors": ["Forsteri", "SomeDom"],
+  "description": "This mod adds more potatoes to the game.\n\nTime flies,\nFood delights.\n\nPeople eats,\nPeople hits.\n\nSky rises,\nPotatoes are life.",
+  "authors": ["Forsteri", "Yjn024", "SomeDom"],
   "icon": "assets/createmorepotatoes/icon.png",
 
   "license": "MIT",

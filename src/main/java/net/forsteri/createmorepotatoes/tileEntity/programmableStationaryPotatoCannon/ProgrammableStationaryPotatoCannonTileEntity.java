@@ -10,7 +10,6 @@ import com.simibubi.create.content.curiosities.weapons.PotatoProjectileTypeManag
 import io.github.fabricators_of_create.porting_lib.transfer.TransferUtil;
 import net.forsteri.createmorepotatoes.tileEntity.stationaryPotatoCannon.StationaryPotatoCannonTileEntity;
 import net.minecraft.core.BlockPos;
-import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.targeting.TargetingConditions;
 import net.minecraft.world.level.block.entity.BlockEntityType;
@@ -122,19 +121,5 @@ public class ProgrammableStationaryPotatoCannonTileEntity extends StationaryPota
 				v * v - Math.sqrt(v * v * v * v - g * (g * r * r + 2 * y * v * v)),
 				g * r);
 
-	}
-
-	@Override
-	protected void read(CompoundTag compound, boolean clientPacket) {
-		super.read(compound, clientPacket);
-		phi = compound.getDouble("phi");
-		theta = compound.getDouble("theta");
-	}
-
-	@Override
-	protected void write(CompoundTag compound, boolean clientPacket) {
-		super.write(compound, clientPacket);
-		compound.putDouble("phi", phi);
-		compound.putDouble("theta", theta);
 	}
 }
