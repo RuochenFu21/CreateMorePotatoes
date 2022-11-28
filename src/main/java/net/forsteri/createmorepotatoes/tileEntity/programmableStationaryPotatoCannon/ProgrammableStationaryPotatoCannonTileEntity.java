@@ -6,6 +6,7 @@ import com.simibubi.create.content.curiosities.weapons.PotatoProjectileEntity;
 import com.simibubi.create.content.curiosities.weapons.PotatoProjectileTypeManager;
 import net.forsteri.createmorepotatoes.tileEntity.CannonInventoryHandler;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.targeting.TargetingConditions;
@@ -14,9 +15,11 @@ import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
+import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -140,5 +143,18 @@ public class ProgrammableStationaryPotatoCannonTileEntity extends KineticTileEnt
             inventory.deserializeNBT(compound.getCompound("item"));
         }
         super.read(compound, clientPacket);
+    }
+
+    @Override
+    public void setRemoved() {
+        super.setRemoved();
+        capability.invalidate();
+    }
+
+    @Override
+    public <T> @NotNull LazyOptional<T> getCapability(@NotNull Capability<T> cap, Direction side) {
+        if (isItemHandlerCap(cap))
+            return capability.cast();
+        return super.getCapability(cap, side);
     }
 }
