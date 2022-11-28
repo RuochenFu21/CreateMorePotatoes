@@ -21,7 +21,6 @@ apply plugin: 'net.minecraftforge.gradle'
 apply plugin: 'org.parchmentmc.librarian.forgegradle'
 apply plugin: 'maven-publish'
 apply plugin: 'org.spongepowered.mixin'
-version = ${mod_version}
 group = 'com.forsteri.createmorepotatoes' // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 //noinspection GroovyUnusedAssignment
 archivesBaseName = 'createmorepotatoes'
