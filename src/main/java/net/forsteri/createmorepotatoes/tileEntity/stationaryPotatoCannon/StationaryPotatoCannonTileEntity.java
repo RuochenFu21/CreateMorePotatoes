@@ -48,7 +48,7 @@ public class StationaryPotatoCannonTileEntity extends KineticTileEntity {
 		public long insert(ItemVariant insertedVariant, long maxAmount, TransactionContext transaction) {
 			if (!canInsert(insertedVariant))
 				return 0;
-			return super.insert(variant, maxAmount, transaction);
+			return super.insert(insertedVariant, maxAmount, transaction);
 		}
 
 		public boolean canInsert(ItemVariant variant) {
