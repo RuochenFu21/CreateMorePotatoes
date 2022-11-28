@@ -1,27 +1,22 @@
 package net.forsteri.createmorepotatoes.tileEntity.stationaryPotatoCannon;
 
 import com.simibubi.create.AllEntityTypes;
-import com.simibubi.create.Create;
-import com.simibubi.create.CreateClient;
-import com.simibubi.create.content.contraptions.base.DirectionalKineticBlock;
 import com.simibubi.create.content.contraptions.base.KineticTileEntity;
-import com.simibubi.create.content.curiosities.armor.BackTankUtil;
-import com.simibubi.create.content.curiosities.weapons.*;
-import com.simibubi.create.content.curiosities.zapper.ShootableGadgetItemMethods;
-import com.simibubi.create.foundation.utility.VecHelper;
+import com.simibubi.create.content.curiosities.weapons.PotatoProjectileEntity;
+import com.simibubi.create.content.curiosities.weapons.PotatoProjectileTypeManager;
 import net.forsteri.createmorepotatoes.CreateMorePotatoes;
+import net.forsteri.createmorepotatoes.tileEntity.CannonInventoryHandler;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.util.Mth;
-import net.minecraft.world.InteractionHand;
-import net.minecraft.world.InteractionResultHolder;
-import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
-import net.minecraft.world.phys.Vec3;
+import net.minecraftforge.common.capabilities.Capability;
+import net.minecraftforge.common.util.LazyOptional;
+import net.minecraftforge.items.IItemHandler;
+import net.minecraftforge.items.ItemStackHandler;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.Objects;
 
@@ -29,16 +24,20 @@ public class StationaryPotatoCannonTileEntity extends KineticTileEntity{
 
     protected int timeOut;
 
-    public ItemStack stack = ItemStack.EMPTY;
+    public LazyOptional<IItemHandler> capability;
+
+    public ItemStackHandler inventory;
 
     public StationaryPotatoCannonTileEntity(BlockEntityType<?> typeIn, BlockPos pos, BlockState state) {
         super(typeIn, pos, state);
+        inventory = new ItemStackHandler(1);
+        capability = LazyOptional.of(() -> new CannonInventoryHandler(inventory));
     }
 
     @Override
     public void tick() {
         super.tick();
-        if (Objects.requireNonNull(getLevel()).hasNeighborSignal(getBlockPos()) && (this.timeOut <= 0) && (this.getSpeed() != 0) && (stack != ItemStack.EMPTY))
+        if (Objects.requireNonNull(getLevel()).hasNeighborSignal(getBlockPos()) && (this.timeOut <= 0) && (this.getSpeed() != 0) && (inventory.getStackInSlot(0) != ItemStack.EMPTY))
         {
             this.shoot();
         }
@@ -49,7 +48,7 @@ public class StationaryPotatoCannonTileEntity extends KineticTileEntity{
         CreateMorePotatoes.LOGGER.info("SHOOTING");
         PotatoProjectileEntity projectile = AllEntityTypes.POTATO_PROJECTILE.create(Objects.requireNonNull(getLevel()));
         assert projectile != null;
-        projectile.setItem(stack);
+        projectile.setItem(inventory.getStackInSlot(0));
         float xMove = 0;
         float yMove = 0;
         float zMove = 0;
@@ -64,11 +63,24 @@ public class StationaryPotatoCannonTileEntity extends KineticTileEntity{
         projectile.setPos(getBlockPos().getX()+xMove+0.5, getBlockPos().getY()+yMove+0.5, getBlockPos().getZ()+zMove+0.5);
         projectile.setDeltaMovement(xMove * 2 , yMove * 2, zMove * 2);
         getLevel().addFreshEntity(projectile);
-        assert PotatoProjectileTypeManager.getTypeForStack(stack).isPresent();
-        timeOut = (stack == ItemStack.EMPTY)? 0 : PotatoProjectileTypeManager.getTypeForStack(stack).get().getReloadTicks() /2;
-        stack.shrink(1);
-        if (stack.getCount() == 0){
-            stack = ItemStack.EMPTY.copy();
+        assert PotatoProjectileTypeManager.getTypeForStack(inventory.getStackInSlot(0)).isPresent();
+        timeOut = (inventory.getStackInSlot(0) == ItemStack.EMPTY)? 0 : PotatoProjectileTypeManager.getTypeForStack(inventory.getStackInSlot(0)).get().getReloadTicks() /2;
+        inventory.getStackInSlot(0).shrink(1);
+        if (inventory.getStackInSlot(0).getCount() == 0){
+            inventory.setStackInSlot(0, ItemStack.EMPTY.copy());
         }
+    }
+
+    @Override
+    public void setRemoved() {
+        super.setRemoved();
+        capability.invalidate();
+    }
+
+    @Override
+    public <T> @NotNull LazyOptional<T> getCapability(@NotNull Capability<T> cap, Direction side) {
+        if (isItemHandlerCap(cap))
+            return capability.cast();
+        return super.getCapability(cap, side);
     }
 }

@@ -54,13 +54,12 @@ public class StationaryPotatoCannonBlock extends DirectionalAxisKineticBlock imp
         }
 
         withTileEntityDo(worldIn, pos, te -> {
-            ItemStack inStationary = te.stack
-                    .copy();
+            ItemStack inStationary = te.inventory.getStackInSlot(0);
             if (inStationary.isEmpty() && heldByPlayer.isEmpty())
                 return;
 
             player.setItemInHand(handIn, inStationary);
-            te.stack = heldByPlayer;
+            te.inventory.setStackInSlot(0, heldByPlayer);
         });
 
         return InteractionResult.SUCCESS;
