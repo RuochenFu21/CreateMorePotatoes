@@ -1,12 +1,10 @@
 package net.forsteri.createmorepotatoes.tileEntity.programmableStationaryPotatoCannon;
 
 import com.simibubi.create.AllItems;
-import com.simibubi.create.content.contraptions.base.HorizontalKineticBlock;
 import com.simibubi.create.content.contraptions.base.KineticBlock;
 import com.simibubi.create.content.curiosities.weapons.PotatoProjectileTypeManager;
 import com.simibubi.create.foundation.block.ITE;
 import net.forsteri.createmorepotatoes.entry.ModTileEntities;
-import net.forsteri.createmorepotatoes.tileEntity.stationaryPotatoCannon.StationaryPotatoCannonTileEntity;
 import net.minecraft.MethodsReturnNonnullByDefault;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -60,13 +58,12 @@ public class ProgrammableStationaryPotatoCannonBlock extends KineticBlock implem
         }
 
         withTileEntityDo(worldIn, pos, te -> {
-            ItemStack inStationary = te.stack
-                    .copy();
+            ItemStack inStationary = te.inventory.getStackInSlot(0);
             if (inStationary.isEmpty() && heldByPlayer.isEmpty())
                 return;
 
             player.setItemInHand(handIn, inStationary);
-            te.stack = heldByPlayer;
+            te.inventory.setStackInSlot(0, heldByPlayer);
         });
 
         return InteractionResult.SUCCESS;
