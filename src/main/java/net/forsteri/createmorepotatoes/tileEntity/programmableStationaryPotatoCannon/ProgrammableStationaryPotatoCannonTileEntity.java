@@ -4,7 +4,7 @@ import com.simibubi.create.AllEntityTypes;
 import com.simibubi.create.content.contraptions.base.KineticTileEntity;
 import com.simibubi.create.content.curiosities.weapons.PotatoProjectileEntity;
 import com.simibubi.create.content.curiosities.weapons.PotatoProjectileTypeManager;
-import net.forsteri.createmorepotatoes.CreateMorePotatoes;
+import net.forsteri.createmorepotatoes.tileEntity.CannonInventoryHandler;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.targeting.TargetingConditions;
@@ -13,6 +13,9 @@ import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
+import net.minecraftforge.common.util.LazyOptional;
+import net.minecraftforge.items.IItemHandler;
+import net.minecraftforge.items.ItemStackHandler;
 
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -24,10 +27,14 @@ public class ProgrammableStationaryPotatoCannonTileEntity extends KineticTileEnt
     protected double phi = 0;
     protected double theta = 0;
 
-    public ItemStack stack = ItemStack.EMPTY;
+    public LazyOptional<IItemHandler> capability;
+
+    public ItemStackHandler inventory;
 
     public ProgrammableStationaryPotatoCannonTileEntity(BlockEntityType<?> typeIn, BlockPos pos, BlockState state) {
         super(typeIn, pos, state);
+        inventory = new ItemStackHandler(1);
+        capability = LazyOptional.of(() -> new CannonInventoryHandler(inventory));
     }
 
     @Override
@@ -36,7 +43,7 @@ public class ProgrammableStationaryPotatoCannonTileEntity extends KineticTileEnt
         if(level != null && level.isClientSide){
             this.calculateDimensions();
         }
-        if (Objects.requireNonNull(getLevel()).hasNeighborSignal(getBlockPos()) && (this.timeOut <= 0) && (this.getSpeed() != 0) && (stack != ItemStack.EMPTY))
+        if (Objects.requireNonNull(getLevel()).hasNeighborSignal(getBlockPos()) && (this.timeOut <= 0) && (this.getSpeed() != 0) && (inventory.getStackInSlot(0) != ItemStack.EMPTY))
         {
             this.calculateDimensions();
             this.shoot();
@@ -47,7 +54,7 @@ public class ProgrammableStationaryPotatoCannonTileEntity extends KineticTileEnt
     public void shoot() {
         PotatoProjectileEntity projectile = AllEntityTypes.POTATO_PROJECTILE.create(Objects.requireNonNull(getLevel()));
         assert projectile != null;
-        projectile.setItem(stack);
+        projectile.setItem(inventory.getStackInSlot(0));
         Vec3 facing = new Vec3(0, 0, -v/10).yRot((float) phi)/* .xRot((float) theta) */;
         float xMove = (float) facing.x;
         float yMove = (float) Math.sin(getTheta());
@@ -55,11 +62,11 @@ public class ProgrammableStationaryPotatoCannonTileEntity extends KineticTileEnt
         projectile.setPos(getBlockPos().getX()+xMove+0.5, getBlockPos().getY()+yMove+0.5, getBlockPos().getZ()+zMove+0.5);
         projectile.setDeltaMovement(xMove , yMove, zMove);
         getLevel().addFreshEntity(projectile);
-        assert PotatoProjectileTypeManager.getTypeForStack(stack).isPresent();
-        timeOut = (stack == ItemStack.EMPTY)? 0 : PotatoProjectileTypeManager.getTypeForStack(stack).get().getReloadTicks() /2;
-        stack.shrink(1);
-        if (stack.getCount() == 0){
-            stack = ItemStack.EMPTY.copy();
+        assert PotatoProjectileTypeManager.getTypeForStack(inventory.getStackInSlot(0)).isPresent();
+        timeOut = (inventory.getStackInSlot(0) == ItemStack.EMPTY)? 0 : PotatoProjectileTypeManager.getTypeForStack(inventory.getStackInSlot(0)).get().getReloadTicks() /2;
+        inventory.getStackInSlot(0).shrink(1);
+        if (inventory.getStackInSlot(0).getCount() == 0){
+            inventory.setStackInSlot(0, ItemStack.EMPTY.copy());
         }
 
     }
@@ -85,8 +92,8 @@ public class ProgrammableStationaryPotatoCannonTileEntity extends KineticTileEnt
         entityX = nearestEntity.getX();
         entityY = (nearestEntity.getEyeY()+nearestEntity.getY())/2;
         entityZ = nearestEntity.getZ();
-        g = ((stack == ItemStack.EMPTY) ? 1.2 : PotatoProjectileTypeManager.getTypeForStack(stack).get().getGravityMultiplier());
-        v = ((stack == ItemStack.EMPTY) ? 9 : PotatoProjectileTypeManager.getTypeForStack(stack).get().getVelocityMultiplier() * 10);
+        g = ((inventory.getStackInSlot(0) == ItemStack.EMPTY) ? 1.2 : PotatoProjectileTypeManager.getTypeForStack(inventory.getStackInSlot(0)).get().getGravityMultiplier());
+        v = ((inventory.getStackInSlot(0) == ItemStack.EMPTY) ? 9 : PotatoProjectileTypeManager.getTypeForStack(inventory.getStackInSlot(0)).get().getVelocityMultiplier() * 10);
         x = entityX-getBlockPos().getX()-.5;
         y = entityY-getBlockPos().getY()-.5;
         z = entityZ-getBlockPos().getZ()-.5;

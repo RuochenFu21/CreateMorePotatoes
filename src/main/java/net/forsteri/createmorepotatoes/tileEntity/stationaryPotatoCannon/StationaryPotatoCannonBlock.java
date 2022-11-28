@@ -4,6 +4,7 @@ import com.simibubi.create.AllItems;
 import com.simibubi.create.content.contraptions.base.DirectionalAxisKineticBlock;
 import com.simibubi.create.content.curiosities.weapons.PotatoProjectileTypeManager;
 import com.simibubi.create.foundation.block.ITE;
+import com.simibubi.create.foundation.item.ItemHelper;
 import net.forsteri.createmorepotatoes.entry.ModTileEntities;
 import net.minecraft.MethodsReturnNonnullByDefault;
 import net.minecraft.core.BlockPos;
@@ -54,15 +55,22 @@ public class StationaryPotatoCannonBlock extends DirectionalAxisKineticBlock imp
         }
 
         withTileEntityDo(worldIn, pos, te -> {
-            ItemStack inStationary = te.stack
-                    .copy();
+            ItemStack inStationary = te.inventory.getStackInSlot(0);
             if (inStationary.isEmpty() && heldByPlayer.isEmpty())
                 return;
 
             player.setItemInHand(handIn, inStationary);
-            te.stack = heldByPlayer;
+            te.inventory.setStackInSlot(0, heldByPlayer);
         });
 
         return InteractionResult.SUCCESS;
+    }
+
+    @Override
+    public void onRemove(BlockState state, Level worldIn, BlockPos pos, BlockState newState, boolean isMoving) {
+        if (state.getBlock() == newState.getBlock())
+            return;
+        withTileEntityDo(worldIn, pos, te -> ItemHelper.dropContents(worldIn, pos, te.inventory));
+        super.onRemove(state, worldIn, pos, newState, isMoving);
     }
 }

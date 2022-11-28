@@ -37,8 +37,13 @@ description='''
 This mod adds more potatoes to the game.
 
 Time flies,
-Food delights,
-Legend never dies.
+Food delights.
+
+People eats,
+People hits.
+
+Sky rises,
+Potatoes are life.
 '''
 # A dependency - use the . to indicate dependency for a specific modid. Dependencies are optional.
 [[dependencies.createmorepotatoes]] #optional
