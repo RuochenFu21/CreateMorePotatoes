@@ -33,6 +33,8 @@ public class CreateMorePotatoes implements ModInitializer, ClientModInitializer 
 		ModBlocks.register();
 		ModTileEntities.register();
 		registrate.register();
+
+		ModTileEntities.registerTransfer();
 	}
 
 	@Override

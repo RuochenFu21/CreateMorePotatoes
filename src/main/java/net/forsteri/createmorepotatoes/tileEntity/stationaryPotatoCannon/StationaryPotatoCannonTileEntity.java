@@ -7,57 +7,115 @@ import com.simibubi.create.content.contraptions.base.KineticTileEntity;
 import com.simibubi.create.content.curiosities.weapons.PotatoProjectileEntity;
 import com.simibubi.create.content.curiosities.weapons.PotatoProjectileTypeManager;
 
+import io.github.fabricators_of_create.porting_lib.transfer.TransferUtil;
+import net.fabricmc.fabric.api.networking.v1.PacketByteBufs;
+import net.fabricmc.fabric.api.networking.v1.PlayerLookup;
+import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
+import net.fabricmc.fabric.api.transfer.v1.item.ItemVariant;
+import net.fabricmc.fabric.api.transfer.v1.storage.base.SingleVariantStorage;
 import net.forsteri.createmorepotatoes.CreateMorePotatoes;
 import net.minecraft.core.BlockPos;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 
-public class StationaryPotatoCannonTileEntity extends KineticTileEntity{
+public class StationaryPotatoCannonTileEntity extends KineticTileEntity {
 
-    protected int timeOut;
+	protected int timeOut;
 
-    public ItemStack stack = ItemStack.EMPTY;
+	public final SingleVariantStorage<ItemVariant> storage = new SingleVariantStorage<>() {
 
-    public StationaryPotatoCannonTileEntity(BlockEntityType<?> typeIn, BlockPos pos, BlockState state) {
-        super(typeIn, pos, state);
-    }
+		@Override
+		protected ItemVariant getBlankVariant() {
+			return ItemVariant.blank();
+		}
 
-    @Override
-    public void tick() {
-        super.tick();
-        if (Objects.requireNonNull(getLevel()).hasNeighborSignal(getBlockPos()) && (this.timeOut <= 0) && (this.getSpeed() != 0) && (stack != ItemStack.EMPTY))
-        {
-            this.shoot();
-        }
-        timeOut--;
-    }
+		@Override
+		protected long getCapacity(ItemVariant variant) {
+			return 64;
+		}
 
-    public void shoot() {
-        CreateMorePotatoes.LOGGER.info("SHOOTING");
-        PotatoProjectileEntity projectile = AllEntityTypes.POTATO_PROJECTILE.create(Objects.requireNonNull(getLevel()));
-        assert projectile != null;
-        projectile.setItem(stack);
-        float xMove = 0;
-        float yMove = 0;
-        float zMove = 0;
-        switch (this.getBlockState().getValue(BlockStateProperties.FACING)){
-            case UP -> yMove = 1;
-            case DOWN -> yMove = -1;
-            case EAST -> xMove = 1;
-            case WEST -> xMove = -1;
-            case SOUTH -> zMove = 1;
-            case NORTH -> zMove = -1;
-        }
-        projectile.setPos(getBlockPos().getX()+xMove+0.5, getBlockPos().getY()+yMove+0.5, getBlockPos().getZ()+zMove+0.5);
-        projectile.setDeltaMovement(xMove * 2 , yMove * 2, zMove * 2);
-        getLevel().addFreshEntity(projectile);
-        assert PotatoProjectileTypeManager.getTypeForStack(stack).isPresent();
-        timeOut = (stack == ItemStack.EMPTY)? 0 : PotatoProjectileTypeManager.getTypeForStack(stack).get().getReloadTicks() /2;
-        stack.shrink(1);
-        if (stack.getCount() == 0){
-            stack = ItemStack.EMPTY.copy();
-        }
-    }
+		@Override
+		protected void onFinalCommit() {
+			setChanged();
+			if (!level.isClientSide())
+				PlayerLookup.tracking(StationaryPotatoCannonTileEntity.this).forEach(player -> ServerPlayNetworking
+						.send(player, CreateMorePotatoes.asResource("potato_cannon"), PacketByteBufs.create()));
+		}
+
+	};
+
+	public StationaryPotatoCannonTileEntity(BlockEntityType<?> typeIn, BlockPos pos, BlockState state) {
+		super(typeIn, pos, state);
+	}
+
+	@Override
+	public void tick() {
+		super.tick();
+		if (Objects.requireNonNull(getLevel()).hasNeighborSignal(getBlockPos()) && this.timeOut <= 0
+				&& this.getSpeed() > 0)
+			this.shoot();
+		timeOut--;
+	}
+
+	public SingleVariantStorage<ItemVariant> getStorage() {
+		return this.storage;
+	}
+
+	public ItemStack toStack() {
+		return this.toStack((int) this.storage.getAmount());
+	}
+
+	public ItemStack toStack(int count) {
+		return this.storage.variant.toStack(count);
+	}
+
+	public void shoot() {
+		// CreateMorePotatoes.LOGGER.info("SHOOTING");
+		if (this.storage.getAmount() == 0)
+			return;
+		PotatoProjectileEntity projectile = AllEntityTypes.POTATO_PROJECTILE.create(Objects.requireNonNull(getLevel()));
+		assert projectile != null;
+		projectile.setItem(this.toStack(1));
+		float xMove = 0;
+		float yMove = 0;
+		float zMove = 0;
+
+		switch (this.getBlockState().getValue(BlockStateProperties.FACING)) {
+			case UP -> yMove = 1;
+			case DOWN -> yMove = -1;
+			case EAST -> xMove = 1;
+			case WEST -> xMove = -1;
+			case SOUTH -> zMove = 1;
+			case NORTH -> zMove = -1;
+		}
+
+		projectile.setPos(getBlockPos().getX() + xMove + 0.5, getBlockPos().getY() + yMove + 0.5,
+				getBlockPos().getZ() + zMove + 0.5);
+		projectile.setDeltaMovement(xMove * 2, yMove * 2, zMove * 2);
+		this.getLevel().addFreshEntity(projectile);
+		assert PotatoProjectileTypeManager.getTypeForStack(this.toStack()).isPresent();
+		timeOut = this.storage.getAmount() == 0 ? 0
+				: PotatoProjectileTypeManager.getTypeForStack(this.toStack()).get().getReloadTicks() / 2;
+		TransferUtil.extractAnyItem(storage, 1);
+	}
+
+	@Override
+	protected void read(CompoundTag compound, boolean clientPacket) {
+		super.read(compound, clientPacket);
+		storage.variant = ItemVariant.fromNbt(compound.getCompound("item"));
+		storage.amount = compound.getInt("count");
+		timeOut = compound.getInt("timeout");
+	}
+
+	@Override
+	protected void write(CompoundTag compound, boolean clientPacket) {
+		super.write(compound, clientPacket);
+		compound.put("item", storage.variant.toNbt());
+		compound.putInt("count", (int) storage.amount);
+		compound.putInt("timeout", timeOut);
+	}
+
 }
