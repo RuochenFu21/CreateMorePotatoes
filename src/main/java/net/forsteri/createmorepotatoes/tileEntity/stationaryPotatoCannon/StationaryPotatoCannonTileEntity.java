@@ -8,6 +8,7 @@ import net.forsteri.createmorepotatoes.CreateMorePotatoes;
 import net.forsteri.createmorepotatoes.tileEntity.CannonInventoryHandler;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
@@ -82,5 +83,19 @@ public class StationaryPotatoCannonTileEntity extends KineticTileEntity{
         if (isItemHandlerCap(cap))
             return capability.cast();
         return super.getCapability(cap, side);
+    }
+
+    @Override
+    public void write(CompoundTag compound, boolean clientPacket) {
+        compound.put("item", inventory.serializeNBT());
+        super.write(compound, clientPacket);
+    }
+
+    @Override
+    protected void read(CompoundTag compound, boolean clientPacket) {
+        if (compound.contains("item")){
+            inventory.deserializeNBT(compound.getCompound("item"));
+        }
+        super.read(compound, clientPacket);
     }
 }
