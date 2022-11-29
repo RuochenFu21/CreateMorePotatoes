@@ -6,6 +6,8 @@ import com.simibubi.create.content.curiosities.weapons.PotatoProjectileEntity;
 import com.simibubi.create.content.curiosities.weapons.PotatoProjectileTypeManager;
 import net.forsteri.createmorepotatoes.tileEntity.CannonInventoryHandler;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.targeting.TargetingConditions;
 import net.minecraft.world.item.ItemStack;
@@ -13,6 +15,9 @@ import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
+import net.minecraftforge.common.util.LazyOptional;
+import net.minecraftforge.items.IItemHandler;
+import net.minecraftforge.items.ItemStackHandler;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
@@ -126,4 +131,31 @@ public class ProgrammableStationaryPotatoCannonTileEntity extends KineticTileEnt
     protected double y;
     protected double z;
     protected double r;
+
+    @Override
+    public void write(CompoundTag compound, boolean clientPacket) {
+        compound.put("item", inventory.serializeNBT());
+        super.write(compound, clientPacket);
+    }
+
+    @Override
+    protected void read(CompoundTag compound, boolean clientPacket) {
+        if (compound.contains("item")){
+            inventory.deserializeNBT(compound.getCompound("item"));
+        }
+        super.read(compound, clientPacket);
+    }
+
+    @Override
+    public void setRemoved() {
+        super.setRemoved();
+        capability.invalidate();
+    }
+
+    @Override
+    public <T> @NotNull LazyOptional<T> getCapability(@NotNull Capability<T> cap, Direction side) {
+        if (isItemHandlerCap(cap))
+            return capability.cast();
+        return super.getCapability(cap, side);
+    }
 }

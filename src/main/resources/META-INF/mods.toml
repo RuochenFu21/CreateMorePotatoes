@@ -29,9 +29,9 @@ displayName="Create More Potatoes" #mandatory
 # A file name (in the root of the mod JAR) containing a logo for display
 # logoFile="examplemod.png" #optional
 # A text field displayed in the mod UI
-credits="RayRayRay#7369 and SomeDom#9509" #optional
+credits="RayRayRay#7369, Yjn024#6777 and SomeDom#9509" #optional
 # A text field displayed in the mod UI
-authors="Forsteri, SomeDom" #optional
+authors="Forsteri, Yjn024, SomeDom" #optional
 # The description text for the mod (multi line!) (#mandatory)
 description='''
 This mod adds more potatoes to the game.
