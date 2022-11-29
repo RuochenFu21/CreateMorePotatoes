@@ -10,7 +10,8 @@ public class ColorHandlers {
 		LogUtils.getLogger().info("REGISTER ITEM COLORS");
 		ColorProviderRegistry.ITEM.register(((pStack, pTintIndex) -> (PotionUtils.getColor(pStack))),
 				ModItems.POTION_POTATO.get());
-		ColorProviderRegistry.ITEM.register(((pStack, pTintIndex) -> (PotionUtils.getColor(pStack))),
+		ColorProviderRegistry.ITEM.register(
+				((pStack, pTintIndex) -> pTintIndex == 0 ? (PotionUtils.getColor(pStack)) : -1),
 				ModItems.EXPLOSIVE_POTION_POTATO.get());
 	}
 }
