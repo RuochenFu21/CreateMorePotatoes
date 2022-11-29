@@ -1,6 +1,7 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "createmorepotatoes:item/explosive_potato"
+    "layer0": "minecraft:item/potato",
+    "layer1": "createmorepotatoes:item/explosive_potato_overlay"
   }
 }
