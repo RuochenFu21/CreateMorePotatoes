@@ -31,5 +31,7 @@ bin/
 # other
 eclipse
 run
+*.pxd
+run/
 
 run/

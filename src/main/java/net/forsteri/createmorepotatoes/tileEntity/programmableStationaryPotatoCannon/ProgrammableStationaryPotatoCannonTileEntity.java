@@ -121,5 +121,45 @@ public class ProgrammableStationaryPotatoCannonTileEntity extends StationaryPota
 				v * v - Math.sqrt(v * v * v * v - g * (g * r * r + 2 * y * v * v)),
 				g * r);
 
-	}
+    }
+
+    public double getPhi() {
+        return this.phi;
+    }
+
+    public double getTheta() {
+        return this.theta;
+    }
+
+    protected LivingEntity nearestEntity;
+    protected double entityX;
+    protected double entityY;
+    protected double entityZ;
+    protected double g;
+    protected double v;
+    protected double x;
+    protected double y;
+    protected double z;
+    protected double r;
+
+    @Override
+    public void write(CompoundTag compound, boolean clientPacket) {
+        compound.put("item", inventory.serializeNBT());
+        super.write(compound, clientPacket);
+    }
+
+    @Override
+    protected void read(CompoundTag compound, boolean clientPacket) {
+        if (compound.contains("item")){
+            inventory.deserializeNBT(compound.getCompound("item"));
+        }
+        super.read(compound, clientPacket);
+    }
+
+    @Override
+    public <T> @NotNull LazyOptional<T> getCapability(@NotNull Capability<T> cap, Direction side) {
+        if (isItemHandlerCap(cap))
+            return capability.cast();
+        return super.getCapability(cap, side);
+    }
 }
