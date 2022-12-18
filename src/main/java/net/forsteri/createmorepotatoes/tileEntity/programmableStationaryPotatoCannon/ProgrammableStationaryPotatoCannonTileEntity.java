@@ -23,23 +23,6 @@ public class ProgrammableStationaryPotatoCannonTileEntity extends StationaryPota
 	protected double phi = 0;
 	protected double theta = 0;
 
-	protected LivingEntity nearestEntity;
-
-	protected double entityX;
-
-	protected double entityY;
-
-	protected double entityZ;
-
-	protected double g;
-
-	protected double v;
-
-	protected double x;
-	protected double y;
-	protected double z;
-	protected double r;
-
 	public ProgrammableStationaryPotatoCannonTileEntity(BlockEntityType<?> typeIn, BlockPos pos, BlockState state) {
 		super(typeIn, pos, state);
 	}
@@ -75,14 +58,6 @@ public class ProgrammableStationaryPotatoCannonTileEntity extends StationaryPota
 		timeOut = (storage.getAmount() == 0) ? 0
 				: PotatoProjectileTypeManager.getTypeForStack(toStack(1)).get().getReloadTicks() / 2;
 		TransferUtil.extractAnyItem(storage, 1);
-	}
-
-	public double getPhi() {
-		return this.phi;
-	}
-
-	public double getTheta() {
-		return this.theta;
 	}
 
 	protected void calculateDimensions() {
@@ -141,25 +116,4 @@ public class ProgrammableStationaryPotatoCannonTileEntity extends StationaryPota
     protected double y;
     protected double z;
     protected double r;
-
-    @Override
-    public void write(CompoundTag compound, boolean clientPacket) {
-        compound.put("item", inventory.serializeNBT());
-        super.write(compound, clientPacket);
-    }
-
-    @Override
-    protected void read(CompoundTag compound, boolean clientPacket) {
-        if (compound.contains("item")){
-            inventory.deserializeNBT(compound.getCompound("item"));
-        }
-        super.read(compound, clientPacket);
-    }
-
-    @Override
-    public <T> @NotNull LazyOptional<T> getCapability(@NotNull Capability<T> cap, Direction side) {
-        if (isItemHandlerCap(cap))
-            return capability.cast();
-        return super.getCapability(cap, side);
-    }
 }
