@@ -7,17 +7,14 @@ import com.simibubi.create.content.curiosities.weapons.PotatoProjectileTypeManag
 import net.forsteri.createmorepotatoes.CreateMorePotatoes;
 import net.forsteri.createmorepotatoes.tileEntity.CannonInventoryHandler;
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
-import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
-import org.jetbrains.annotations.NotNull;
 
 import java.util.Objects;
 
@@ -70,19 +67,6 @@ public class StationaryPotatoCannonTileEntity extends KineticTileEntity{
         if (inventory.getStackInSlot(0).getCount() == 0){
             inventory.setStackInSlot(0, ItemStack.EMPTY.copy());
         }
-    }
-
-    @Override
-    public void setRemoved() {
-        super.setRemoved();
-        capability.invalidate();
-    }
-
-    @Override
-    public <T> @NotNull LazyOptional<T> getCapability(@NotNull Capability<T> cap, Direction side) {
-        if (isItemHandlerCap(cap))
-            return capability.cast();
-        return super.getCapability(cap, side);
     }
 
     @Override
