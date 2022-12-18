@@ -33,7 +33,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import java.util.Random;
 
-@Mixin(PotatoProjectileEntity.class)
+@Mixin(value = PotatoProjectileEntity.class, remap = false)
 public abstract class EffectHandler extends AbstractHurtingProjectile {
     
     @Shadow public abstract ItemStack getItem();
