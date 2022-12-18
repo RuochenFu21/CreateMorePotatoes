@@ -35,8 +35,10 @@ import java.util.Random;
 
 @Mixin(PotatoProjectileEntity.class)
 public abstract class EffectHandler extends AbstractHurtingProjectile {
+    
+    @Shadow public abstract ItemStack getItem();
 
-    @Shadow protected ItemStack stack;
+    @Shadow public abstract void setItem(ItemStack stack);
 
     protected EffectHandler(EntityType<? extends AbstractHurtingProjectile> p_36833_, Level p_36834_) {
         super(p_36833_, p_36834_);
@@ -44,7 +46,7 @@ public abstract class EffectHandler extends AbstractHurtingProjectile {
 
     @Inject(at = @At(value = "HEAD"), method = "onHitEntity(Lnet/minecraft/world/phys/EntityHitResult;)V")
     protected void onHit(EntityHitResult ray, CallbackInfo info) {
-        if (stack.is(ModItems.EXPLOSIVE_POTATO.get())) {
+        if (getItem().is(ModItems.EXPLOSIVE_POTATO.get())) {
             Explosion derp = new Explosion(getLevel(), this, getX(), getY(), getZ(), 3, false, Explosion.BlockInteraction.BREAK);
             if (!level.isClientSide()) {
                 derp.explode();
@@ -52,23 +54,23 @@ public abstract class EffectHandler extends AbstractHurtingProjectile {
             derp.finalizeExplosion(true);
         }
 
-        if (stack.is(ModItems.POTION_POTATO.get())) {
-            for (MobEffectInstance Effect : PotionUtils.getMobEffects(stack)) {
+        if (getItem().is(ModItems.POTION_POTATO.get())) {
+            for (MobEffectInstance Effect : PotionUtils.getMobEffects(getItem())) {
                 ((LivingEntity) ray.getEntity()).addEffect(new MobEffectInstance(Effect));
             }
         }
 
-        if (stack.is(ModItems.EXPLOSIVE_POTION_POTATO.get())) {
-            ExplosivePotionPotatoItem.makeAreaOfEffectCloud(stack, PotionUtils.getPotion(stack), getLevel(), getX(), getY(), getZ(), getOwner());
+        if (getItem().is(ModItems.EXPLOSIVE_POTION_POTATO.get())) {
+            ExplosivePotionPotatoItem.makeAreaOfEffectCloud(getItem(), PotionUtils.getPotion(getItem()), getLevel(), getX(), getY(), getZ(), getOwner());
             Explosion derp = new Explosion(getLevel(), this, getX(), getY(), getZ(), 3, false, Explosion.BlockInteraction.NONE);
             derp.finalizeExplosion(true);
         }
 
-        if (stack.is(ModItems.FLAME_POTATO.get())) {
+        if (getItem().is(ModItems.FLAME_POTATO.get())) {
             ray.getEntity().setSecondsOnFire(10);
         }
 
-        if (stack.is(ModItems.FROSTY_POTATO.get())) {
+        if (getItem().is(ModItems.FROSTY_POTATO.get())) {
             ray.getEntity().makeStuckInBlock(Blocks.POWDER_SNOW.defaultBlockState(), new Vec3(0.9F, 1.5D, 0.9F));
             if (level.isClientSide) {
                 Random random = level.getRandom();
@@ -89,7 +91,7 @@ public abstract class EffectHandler extends AbstractHurtingProjectile {
             }
         }
 
-        if (stack.is(Items.ENDER_PEARL)) {
+        if (getItem().is(Items.ENDER_PEARL)) {
             if (this.getOwner() != null){
                 this.getOwner().teleportTo(ray.getEntity().getX(), ray.getEntity().getY(), ray.getEntity().getZ());
             }
@@ -98,22 +100,22 @@ public abstract class EffectHandler extends AbstractHurtingProjectile {
 
     @Inject(at = @At(value = "HEAD"), method = "onHitBlock(Lnet/minecraft/world/phys/BlockHitResult;)V")
     protected void onHitBlock(BlockHitResult ray, CallbackInfo info) {
-        if (stack.is(ModItems.EXPLOSIVE_POTATO.get())) {
+        if (getItem().is(ModItems.EXPLOSIVE_POTATO.get())) {
             Explosion derp = new Explosion(getLevel(), this, getX(), getY(), getZ(), 3, false, Explosion.BlockInteraction.BREAK);
             if (!level.isClientSide()) {
                 derp.explode();
             }
             derp.finalizeExplosion(true);
         }
-        if (stack.is(ModItems.EXPLOSIVE_POTION_POTATO.get())) {
-            ExplosivePotionPotatoItem.makeAreaOfEffectCloud(stack, PotionUtils.getPotion(stack), getLevel(), getX(), getY(), getZ(), getOwner());
+        if (getItem().is(ModItems.EXPLOSIVE_POTION_POTATO.get())) {
+            ExplosivePotionPotatoItem.makeAreaOfEffectCloud(getItem(), PotionUtils.getPotion(getItem()), getLevel(), getX(), getY(), getZ(), getOwner());
             Explosion derp = new Explosion(getLevel(), this, getX(), getY(), getZ(), 3, false, Explosion.BlockInteraction.NONE);
             derp.finalizeExplosion(true);
         }
-        if (stack.is(ModItems.FLAME_POTATO.get())){
+        if (getItem().is(ModItems.FLAME_POTATO.get())){
             level.explode(null, getX(), getY(), getZ(), 1, true, Explosion.BlockInteraction.NONE);
         }
-        if (stack.is(ModItems.FROSTY_POTATO.get()) || stack.is(Items.PACKED_ICE)){
+        if (getItem().is(ModItems.FROSTY_POTATO.get()) || getItem().is(Items.PACKED_ICE)){
             BlockState blockstate = Blocks.FROSTED_ICE.defaultBlockState();
             float f = (float)Math.min(16, 2 + 1);
             BlockPos.MutableBlockPos blockpos$mutableblockpos = new BlockPos.MutableBlockPos();
@@ -137,7 +139,7 @@ public abstract class EffectHandler extends AbstractHurtingProjectile {
             }
         }
 
-        if (stack.is(Items.ENDER_PEARL)) {
+        if (getItem().is(Items.ENDER_PEARL)) {
             if (this.getOwner() != null){
                 Vec3 loc = ray.getLocation().add(ray.getDirection().getStepX(), ray.getDirection().getStepY(), ray.getDirection().getStepZ());
                 this.getOwner().teleportTo(loc.x, loc.y, loc.z);
@@ -148,8 +150,8 @@ public abstract class EffectHandler extends AbstractHurtingProjectile {
 
     @Inject(at = @At(value = "HEAD"), method = "tick()V")
     protected void OnTick(CallbackInfo info) {
-        if (stack.is(ModItems.BAG_OF_POTATOES.get())) {
-            stack = new ItemStack(Items.POTATO);
+        if (getItem().is(ModItems.BAG_OF_POTATOES.get())) {
+            setItem(new ItemStack(Items.POTATO));
         }
     }
 }

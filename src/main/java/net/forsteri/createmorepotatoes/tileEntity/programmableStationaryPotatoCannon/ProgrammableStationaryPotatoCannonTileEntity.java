@@ -146,12 +146,6 @@ public class ProgrammableStationaryPotatoCannonTileEntity extends KineticTileEnt
     }
 
     @Override
-    public void setRemoved() {
-        super.setRemoved();
-        capability.invalidate();
-    }
-
-    @Override
     public <T> @NotNull LazyOptional<T> getCapability(@NotNull Capability<T> cap, Direction side) {
         if (isItemHandlerCap(cap))
             return capability.cast();
