@@ -9,10 +9,7 @@ import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.PotatoBlock;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.NotNull;
-
-import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
 
 public class ExplosivePotatoCropBlock extends PotatoBlock {
     public ExplosivePotatoCropBlock(Properties p_55198_) {

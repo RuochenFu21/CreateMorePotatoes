@@ -26,6 +26,7 @@ public class CreateMorePotatoes
     // Directly reference a slf4j logger
     public static final Logger LOGGER = LogUtils.getLogger();
 
+    @SuppressWarnings("removal")
     private static final NonNullSupplier<CreateRegistrate> registrate = CreateRegistrate.lazy(CreateMorePotatoes.MOD_ID);
 
     public CreateMorePotatoes()
@@ -45,6 +46,7 @@ public class CreateMorePotatoes
     }
 
     private void clientSetup(final FMLClientSetupEvent event){
+        //noinspection removal
         ItemBlockRenderTypes.setRenderLayer(ModBlocks.EXPLOSIVE_POTATO_CROP.get(), RenderType.cutout());
 
 
@@ -52,9 +54,6 @@ public class CreateMorePotatoes
 
     private void setup(final FMLCommonSetupEvent event)
     {
-        // some preinit code
-        LOGGER.info("HELLO FROM PREINIT");
-        LOGGER.info("DIRT BLOCK >> {}", Blocks.DIRT.getRegistryName());
     }
 
     public static CreateRegistrate registrate() {
