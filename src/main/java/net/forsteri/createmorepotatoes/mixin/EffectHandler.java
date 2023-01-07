@@ -20,6 +20,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.LiquidBlock;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.levelgen.RandomSource;
 import net.minecraft.world.level.material.Material;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.EntityHitResult;
@@ -73,10 +74,10 @@ public abstract class EffectHandler extends AbstractHurtingProjectile {
         if (getItem().is(ModItems.FROSTY_POTATO.get())) {
             ray.getEntity().makeStuckInBlock(Blocks.POWDER_SNOW.defaultBlockState(), new Vec3(0.9F, 1.5D, 0.9F));
             if (level.isClientSide) {
-                Random random = level.getRandom();
+                RandomSource random = level.getRandom();
                 boolean flag = ray.getEntity().xOld != ray.getEntity().getX() || ray.getEntity().zOld != ray.getEntity().getZ();
                 if (flag && random.nextBoolean()) {
-                    level.addParticle(ParticleTypes.SNOWFLAKE, ray.getEntity().getX(), ray.getLocation().y + 1, ray.getEntity().getZ(), Mth.randomBetween(random, -1.0F, 1.0F) * 0.083333336F, 0.05F, Mth.randomBetween(random, -1.0F, 1.0F) * 0.083333336F);
+                    level.addParticle(ParticleTypes.SNOWFLAKE, ray.getEntity().getX(), ray.getLocation().y + 1, ray.getEntity().getZ(), ((random.nextFloat() * 2) - 1) * 0.083333336F, 0.05F, ((random.nextFloat() * 2) - 1) * 0.083333336F);
                 }
             }
 
