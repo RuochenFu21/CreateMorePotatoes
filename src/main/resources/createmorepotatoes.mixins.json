@@ -1,6 +1,7 @@
 {
   "required": true,
   "package": "net.forsteri.createmorepotatoes.mixin",
+  "refmap": "createmorepotatoes.refmap.json",
   "compatibilityLevel": "JAVA_17",
   "mixins": [
     "EffectHandler"

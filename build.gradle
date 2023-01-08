@@ -52,8 +52,6 @@ minecraft {
     runs {
         client {
             workingDirectory project.file('run')
-            property 'mixin.env.remapRefMap', 'true'
-            property 'mixin.env.refMapRemappingFile', "${projectDir}/build/createSrgToMcp/output.srg"
             // Recommended logging data for a userdev environment
             // The markers can be added/remove as needed separated by commas.
             // "SCAN": For mods scan.
@@ -161,10 +159,11 @@ dependencies {
     // that the dep is a ForgeGradle 'patcher' dependency, and its patches will be applied.
     // The userdev artifact is a special name and will get all sorts of transformations applied to it.
     minecraft 'net.minecraftforge:forge:1.19.2-43.2.3'
-    annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
     implementation fg.deobf("com.simibubi.create:create-${create_minecraft_version}:${create_version}:slim") { transitive = false }
     implementation fg.deobf("com.jozufozu.flywheel:flywheel-forge-${flywheel_minecraft_version}:${flywheel_version}")
     implementation fg.deobf("com.tterrag.registrate:Registrate:${registrate_version}")
+
+    annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
 
     // Real mod deobf dependency examples - these get remapped to your current mappings
     // compileOnly fg.deobf("mezz.jei:jei-${mc_version}:${jei_version}:api") // Adds JEI API as a compile dependency
@@ -213,8 +212,11 @@ publishing {
     }
 }
 mixin {
-    // MixinGradle Settings
-    config "createmorepotatoes.mixins.json"
+    add sourceSets.main, 'createmorepotatoes.refmap.json'
+    config 'createmorepotatoes.mixins.json'
+
+    debug.verbose = true
+    debug.export = true
 }
 tasks.withType(JavaCompile).configureEach {
     options.encoding = 'UTF-8' // Use the UTF-8 charset for Java compilation
