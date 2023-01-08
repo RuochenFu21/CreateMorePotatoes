@@ -5,7 +5,6 @@ import net.forsteri.createmorepotatoes.entry.ModItems;
 import net.forsteri.createmorepotatoes.item.ExplosivePotionPotatoItem;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
-import net.minecraft.util.Mth;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;

@@ -4,7 +4,6 @@ import com.simibubi.create.AllEntityTypes;
 import com.simibubi.create.content.contraptions.base.KineticTileEntity;
 import com.simibubi.create.content.curiosities.weapons.PotatoProjectileEntity;
 import com.simibubi.create.content.curiosities.weapons.PotatoProjectileTypeManager;
-import net.forsteri.createmorepotatoes.CreateMorePotatoes;
 import net.forsteri.createmorepotatoes.tileEntity.CannonInventoryHandler;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
@@ -43,7 +42,6 @@ public class StationaryPotatoCannonTileEntity extends KineticTileEntity{
     }
 
     public void shoot() {
-        CreateMorePotatoes.LOGGER.info("SHOOTING");
         PotatoProjectileEntity projectile = AllEntityTypes.POTATO_PROJECTILE.create(Objects.requireNonNull(getLevel()));
         assert projectile != null;
         projectile.setItem(inventory.getStackInSlot(0));
